@@ -1,3 +1,10 @@
+.. toctree::
+   :hidden:
+
+   index.rst
+   Presentations.rst
+   Publications.rst
+
 *****
 UShER Wiki
 *****
@@ -9,13 +16,6 @@ Programs
 * UShER_
 * matUtils_
 * RotTrees_
-
-.. toctree::
-   :hidden:
-
-   index.rst
-   Presentations.rst
-   Publications.rst
 
 .. _UShER:
 
@@ -60,7 +60,7 @@ RotTrees enables quick inference of congruence of tanglegrams. This is particula
     :width: 700px
     :align: center
 
-RotTrees produces a merged tree from two input trees that is maximally resolved and compatible with both input trees (refer to our manuscript referenced at the bottom for more details). 
+RotTrees produces a merged tree from two input trees that is maximally resolved and compatible with both input trees (refer to our `manuscript, <ttps://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1009175>`_ for more details). 
 
 .. image:: rotation.gif
     :width: 700px
