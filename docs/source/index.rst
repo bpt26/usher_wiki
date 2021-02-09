@@ -10,10 +10,11 @@ Guide
 * :ref:`MAT Utils`
 
 .. toctree::
-   
+
    Test
    Test1
    Test2
+   NOT A DUPLICATE
    Presentations.rst
    Publications.rst
 
