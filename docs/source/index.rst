@@ -31,49 +31,49 @@ Installation
 
 A pre-compiled binary is available for download `here <http://public.gi.ucsc.edu/~yatisht/data/binaries/usher>`_. Otherwise, to download and compile from source, first clone the GitHub repository:
 
-`git clone https://github.com/yatisht/usher.git
-cd usher`
+`git clone https://github.com/yatisht/usher.git  
+cd usher  `
 
 Then install using either **Docker**, **conda**, or one of the provided **installation scripts**:
 
 Docker
 --------
 
-`docker build --no-cache -t usher .
-docker run -t -i usher /bin/bash`
+`docker build --no-cache -t usher .  
+docker run -t -i usher /bin/bash  `
 
 or
 
-`docker pull yatisht/usher:latest
-docker run -t -i yatisht/usher:latest /bin/bash`
+`docker pull yatisht/usher:latest  
+docker run -t -i yatisht/usher:latest /bin/bash  `
 
 
 conda
 -------
 
-`conda env create -f environment.yml
-conda activate usher
-git clone https://github.com/oneapi-src/oneTBB
-cd oneTBB
-git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6
-cd ..
-mkdir build
-cd build
-cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..
-make -j
-cd ..`
+`conda env create -f environment.yml  
+conda activate usher  
+git clone https://github.com/oneapi-src/oneTBB  
+cd oneTBB  
+git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6  
+cd ..  
+mkdir build  
+cd build  
+cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..  
+make -j  
+cd ..  `
 
 followed by, if on a MacOS system:
 
-`rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .
-chmod +x faToVcf
-mv faToVcf scripts/`
+`rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .  
+chmod +x faToVcf  
+mv faToVcf scripts/  `
 
 if on a Linux system:
 
-`rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .
-chmod +x faToVcf
-mv faToVcf scripts/`
+`rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .  
+chmod +x faToVcf  
+mv faToVcf scripts/  `
 
 Installation Scripts
 ------------------------
@@ -98,9 +98,21 @@ Given existing samples, whose genotypes and phylogenetic tree is known, and the 
 
 In the **pre-processing phase**, UShER accepts the phylogenetic tree of existing samples in a Newick format and their genotypes, specified as a set of single-nucleotide variants with respect to a reference sequence (UShER currently ignores indels), in a VCF format. For each site in the VCF, UShER uses `Fitch-Sankoff algorithm, <https://evolution.gs.washington.edu/gs541/2010/lecture1.pdf>`_ to find the most parsimonious nucleotide assignment for every node of the tree (UShER automatically labels internal tree nodes). When a sample contains **ambiguous genotypes**, multiple nucleotides may be most parsimonious at a node. To resolve these, UShER assigns it any one of the most parsimonious nucleotides with preference, when possible, given to the reference base. UShER also allows the VCF to specify ambiguous bases in samples using `IUPAC format,<https://www.bioinformatics.org/sms/iupac.html>`_, which are also resolved to a unique base using the above strategy. When a node is found to carry a mutation, i.e. the base assigned to the node differs from its parent, the mutation gets added to a list of mutations corresponding to that node. Finally, UShER uses `protocol buffers,<https://developers.google.com/protocol-buffers>`_ to store in a file, the Newick string corresponding to the input tree and a list of lists of node mutation, which we refer to as **mutation-annotated tree object**, as shown in the figure below.
 
+.. image:: placement.png
+    :width: 700px
+    :align: center
+
+At the end of the placement phase, UShER allows the user to create another protocol-buffer (protobuf) file containing the mutation-annotated tree object for the newly generated tree including added samples as also shown in the example figure above. This allows for another round of placements to be carried out over and above the newly added samples. 
+
 --------------
 Usage
 --------------
+
+To familiarize with the different command-line options of UShER, it would be useful to view its help message using the command below:
+
+`./build/usher --help`
+
+
 
 
 .. _matUtils:
