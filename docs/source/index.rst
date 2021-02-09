@@ -47,8 +47,6 @@ Usage
 matUtils
 =========
 
-**r**\ e\ **s**\ tructured **t**\ ext.
-
 matUtils is a set of tools to be used for analyses relating to **m**\ utation\  **a**\ nnotated\  **t**\ rees, such as the protobuf (.pb) files used in UShER. This toolkit is currently under development and will be publicized shortly.
 
 .. _RotTrees:
