@@ -12,6 +12,7 @@ Guide
 .. toctree::
    :maxdepth: 2
    :titlesonly:
+   :hidden:
    Presentations.rst
    Publications.rst
 
