@@ -10,9 +10,10 @@ Guide
 * :ref:`MAT Utils`
 
 .. toctree::
-   :maxdepth: 2
-   :titlesonly:
-   :hidden:
+   
+   Test
+   Test1
+   Test2
    Presentations.rst
    Publications.rst
 
