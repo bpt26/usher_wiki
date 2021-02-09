@@ -56,12 +56,13 @@ matUtils is a set of tools to be used for analyses relating to **m**\ utation\  
 RotTrees
 ==========
 
-RotTrees enables quick inference of congruence of tanglegrams. This is particularly useful for SARS-CoV-2 phylogenomics due to multiple groups independently analyzing data-sets with many identical samples. Previous tanglegram visualization software relied on fewer 
+RotTrees enables quick inference of congruence of tanglegrams. This is particularly useful for SARS-CoV-2 phylogenomics due to multiple groups independently analyzing data-sets with many identical samples. Previous tanglegram visualization software relied on fewer rotations to minimize crossings over:
 
 .. image:: tanglegrams_comparison.png
     :width: 700px
     :align: center
 
+RotTrees produces a merged tree from two input trees that is maximally resolved and compatible with both input trees (refer to our manuscript referenced at the bottom for more details). 
 
 .. image:: rotation.gif
     :width: 700px
