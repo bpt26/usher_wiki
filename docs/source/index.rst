@@ -51,29 +51,32 @@ docker run -t -i yatisht/usher:latest /bin/bash  `
 conda
 -------
 
-`conda env create -f environment.yml  
-conda activate usher  
-git clone https://github.com/oneapi-src/oneTBB  
-cd oneTBB  
-git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6  
-cd ..  
-mkdir build  
-cd build  
-cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..  
-make -j  
-cd ..  `
+.. code-block:: bash
+   conda env create -f environment.yml  
+   conda activate usher  
+   git clone https://github.com/oneapi-src/oneTBB  
+   cd oneTBB  
+   git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6  
+   cd ..  
+   mkdir build  
+   cd build  
+   cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..  
+   make -j  
+   cd ..  
 
 followed by, if on a MacOS system:
 
-`rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .  
-chmod +x faToVcf  
-mv faToVcf scripts/  `
+.. code-block:: bash
+   rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .  
+   chmod +x faToVcf  
+   mv faToVcf scripts/ 
 
 if on a Linux system:
 
-`rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .  
-chmod +x faToVcf  
-mv faToVcf scripts/  `
+.. code-block:: bash
+   rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .  
+   chmod +x faToVcf  
+   mv faToVcf scripts/  
 
 Installation scripts
 ------------------------
@@ -99,7 +102,7 @@ Given existing samples, whose genotypes and phylogenetic tree is known, and the 
 Pre-processing
 ------------------------
 
-In the pre-processing phase, UShER accepts the phylogenetic tree of existing samples in a Newick format and their genotypes, specified as a set of single-nucleotide variants with respect to a reference sequence (UShER currently ignores indels), in a VCF format. For each site in the VCF, UShER uses `Fitch-Sankoff algorithm, <https://evolution.gs.washington.edu/gs541/2010/lecture1.pdf>`_ to find the most parsimonious nucleotide assignment for every node of the tree (UShER automatically labels internal tree nodes). When a sample contains **ambiguous genotypes**, multiple nucleotides may be most parsimonious at a node. To resolve these, UShER assigns it any one of the most parsimonious nucleotides with preference, when possible, given to the reference base. UShER also allows the VCF to specify ambiguous bases in samples using `IUPAC format,<https://www.bioinformatics.org/sms/iupac.html>`_, which are also resolved to a unique base using the above strategy. When a node is found to carry a mutation, i.e. the base assigned to the node differs from its parent, the mutation gets added to a list of mutations corresponding to that node. Finally, UShER uses `protocol buffers,<https://developers.google.com/protocol-buffers>`_ to store in a file, the Newick string corresponding to the input tree and a list of lists of node mutation, which we refer to as **mutation-annotated tree object**, as shown in the figure below.
+In the pre-processing phase, UShER accepts the phylogenetic tree of existing samples in a Newick format and their genotypes, specified as a set of single-nucleotide variants with respect to a reference sequence (UShER currently ignores indels), in a VCF format. For each site in the VCF, UShER uses the `Fitch-Sankoff algorithm <https://evolution.gs.washington.edu/gs541/2010/lecture1.pdf>`_ to find the most parsimonious nucleotide assignment for every node of the tree (UShER automatically labels internal tree nodes). When a sample contains **ambiguous genotypes**, multiple nucleotides may be most parsimonious at a node. To resolve these, UShER assigns it any one of the most parsimonious nucleotides with preference, when possible, given to the reference base. UShER also allows the VCF to specify ambiguous bases in samples using `IUPAC format <https://www.bioinformatics.org/sms/iupac.html>`_, which are also resolved to a unique base using the above strategy. When a node is found to carry a mutation, i.e. the base assigned to the node differs from its parent, the mutation gets added to a list of mutations corresponding to that node. Finally, UShER uses `protocol buffers <https://developers.google.com/protocol-buffers>`_ to store in a file, the Newick string corresponding to the input tree and a list of lists of node mutation, which we refer to as **mutation-annotated tree object**, as shown in the figure below.
 
 .. image:: pre-processing.png
     :width: 700px
@@ -129,8 +132,25 @@ To familiarize with the different command-line options of UShER, it would be use
 
 `./build/usher --help`
 
+
 Pre-processing global phylogeny
 ------------------------------------
+
+The following example command pre-processes the existing phylogeny (`global_phylo.nh`) and using the genotypes (`global_samples.vcf`) and generates the mutation-annotated tree object that gets stored in a protobuf file (`global_assignments.pb`). Note that UShER would automatically place onto the input global phylogeny any samples in the VCF (to convert a fasta sequence to VCF, consider using Fasta2USHER that are missing in the input global phylogeny using its parsimony-optimal placement algorithm. This final tree is written to a file named `final-tree.nh` in the folder specified by `--outdir` or `-d` option (if not specified, default uses current directory). 
+
+`./build/usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -d output/`  
+
+By default, UShER uses **all available threads** but the user can also specify the number of threads using the `--threads` or `-T` command-line parameter.
+
+UShER also allows an option during the pre-processing phase to collapse nodes (i.e. delete the node after moving its child nodes to its parent node) that are not inferred to contain a mutation through the Fitch-Sankoff algorithm as well as to condense nodes that contain identical sequences into a single representative node. This is the **recommended usage** for UShER as it not only helps in significantly reducing the search space for the placement phase but also helps reduce ambiguities in the placement step and can be done by setting the `--collapse-tree` or `-c` parameter. The collapsed input tree is stored as `condensed-tree.nh` in the output directory. 
+
+`./build/usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -c -d output/`
+
+Note the the above command would condense identical sequences, namely S2, S3 and S4, in the example figure above into a single condensed new node (named something like *node_1_condensed_3_leaves*). If you wish to display the collapsed tree without condensing the nodes, also set the `--write-uncondensed-final-tree` or `-u` option, for example, as follows:
+
+`./build/usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -c -u -d output/`
+
+The above commands saves the collapsed but uncondensed tree as `uncondensed-final-tree.nh` in the output directory. 
 
 Placing new samples
 ------------------------------------
