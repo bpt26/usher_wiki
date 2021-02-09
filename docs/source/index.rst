@@ -14,7 +14,8 @@ Guide
    Presentations.rst
    Publications.rst
 
-UShER :ref:`UShER`
+.. _UShER: 
+UShER
 =====
 .. image:: usher_logo.png
     :width: 700px
@@ -23,7 +24,8 @@ UShER :ref:`UShER`
 UShER is a program for rapid, accurate placement of samples to existing phylogenies. It is available `here <https://github.com/yatisht/usher>`_ and is updated regularly. While not restricted to SARS-CoV-2 phylogenetic analyses, it has enabled real-time phylogenetic analyses and genomic contact tracing in that its placement is orders of magnitude faster and more memory-efficient than previous methods, and is being widely used by several SARS-CoV-2 research groups.
 
 
-MAT Utils :ref:`MAT Utils`
+.. _MAT Utils: 
+MAT Utils
 =========
 
 
