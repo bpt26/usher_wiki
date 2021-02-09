@@ -10,6 +10,7 @@ Guide
 
 .. toctree::
    :maxdepth: 2
+   :hidden: False
    :caption: Contents:
 
 UShER
