@@ -31,6 +31,8 @@ UShER is a program for rapid, accurate placement of samples to existing phylogen
 Installation
 --------------
 
+
+
 --------------
 Methodology
 --------------
@@ -45,13 +47,22 @@ Usage
 matUtils
 =========
 
-matUtils is a set of tools to be used for analyses relating to **`m`**utation **`a`**notated **`t`**rees, such as the protobuf (.pb) files used in UShER. This toolkit is currently under development and will be publicized shortly.
+**r**\ e\ **s**\ tructured **t**\ ext.
+
+matUtils is a set of tools to be used for analyses relating to **m**\ utation\  **a**\ nnotated\  **t**\ rees, such as the protobuf (.pb) files used in UShER. This toolkit is currently under development and will be publicized shortly.
 
 .. _RotTrees:
 
 RotTrees
 ==========
 
-RotTrees 
+RotTrees enables quick inference of congruence of tanglegrams. This is particularly useful for SARS-CoV-2 phylogenomics due to multiple groups independently analyzing data-sets with many identical samples. Previous tanglegram visualization software relied on fewer 
+
+.. image:: tanglegrams_comparison.png
+    :width: 700px
+    :align: center
 
 
+.. image:: rotation.gif
+    :width: 700px
+    :align: center
