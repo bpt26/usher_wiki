@@ -2,8 +2,6 @@
    :hidden:
 
    index.rst
-   Presentations.rst
-   Publications.rst
 
 *****
 UShER Wiki
