@@ -9,7 +9,4 @@ To aid in showing the utility of our software, we are hosting slides from past p
 
 .. toctree::
    :hidden:
-
-   index.rst
-   Presentations.rst
-   Publications.rst
+   covid-meet.rst
