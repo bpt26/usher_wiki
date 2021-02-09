@@ -15,6 +15,7 @@ Guide
    Publications.rst
 
 .. _UShER:
+
 UShER
 =====
 .. image:: usher_logo.png
@@ -25,6 +26,7 @@ UShER is a program for rapid, accurate placement of samples to existing phylogen
 
 
 .. _MATUtils:
+
 MATUtils
 =========
 
