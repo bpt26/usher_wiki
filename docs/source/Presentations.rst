@@ -1,6 +1,6 @@
-*****
+*************
 Presentations
-*****
+*************
 
 To aid in showing the utility of our software, we are hosting slides from past presentations for public viewing:
 
