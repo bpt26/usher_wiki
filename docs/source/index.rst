@@ -10,8 +10,8 @@ Guide
 
 .. toctree::
    :maxdepth: 2
-   Presentations
-   Publications
+   Presentations/index.rst
+   Publications/index.rst
 
 UShER
 =====
