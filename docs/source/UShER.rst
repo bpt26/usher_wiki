@@ -8,7 +8,6 @@ UShER
    :hidden:
 
    index.rst
-   UShER.rst
    matUtils.rst
    Strain_Phylogenetics.rst
 

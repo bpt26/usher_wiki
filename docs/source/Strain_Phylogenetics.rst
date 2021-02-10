@@ -10,7 +10,6 @@ Strain_Phylogenetics
    index.rst
    UShER.rst
    matUtils.rst
-   Strain_Phylogenetics.rst
 
 ----------
 RotTrees
