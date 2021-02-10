@@ -9,7 +9,6 @@ Welcome to the manual for UShER, MAT Utils, and other related SARS-CoV-2 Phyloge
 .. toctree::
    :hidden:
 
-   index.rst
    UShER.rst
    matUtils.rst
    Strain_Phylogenetics.rst
