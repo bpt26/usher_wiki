@@ -9,7 +9,7 @@ Programs
 =================
 * UShER_
 * matUtils_
-* StrainPhylogenetics_
+* Strain Phylogenetics_
 
 
 
@@ -239,10 +239,13 @@ Output
 
 Fasta2UShER outputs a merged VCF with missing data for a particular sample denoted as "." in the corresponding genotype column. The above example command would yield a new VCF *test/test_merged.vcf* (identical to the one already provided), which can be used by UShER to place the new samples.
 
+
+
 .. _matUtils:
 
+============
 matUtils
-=========
+============
 
 matUtils is a set of tools to be used for analyses relating to **m**\ utation\  **a**\ nnotated\  **t**\ rees, such as the protobuf (.pb) files used in UShER. 
 
@@ -282,9 +285,10 @@ The above example command generates a VCF file named `global_assignments.vcf` an
 
 
 
-.. _StrainPhylogenetics:
+.. _Strain Phylogenetics:
 
-StrainPhylogenetics
+========================
+Strain Phylogenetics
 =======================
 
 ----------
