@@ -9,7 +9,7 @@ Programs
 -----------
 * UShER_
 * matUtils_
-* Strain Phylogenetics_
+* `Strain Phylogenetics`_
 
 .. toctree::
    :hidden:
@@ -281,8 +281,9 @@ Output
 
 The above example command generates a VCF file named `global_assignments.vcf` and the output tree named `global_assignments.nh`.
 
-.. _Strain PHylogenetics:
 
+
+.. _Strain Phylogenetics:
 
 Strain Phylogenetics
 =======================
@@ -316,5 +317,29 @@ TreeMerge
 The above command produces a merged tree (*symm-merged-sumtree-cog.nh*) from two input trees (*pruned-sumtree-for-cog.nh* and *pruned-cog-for-sumtree.nh*) that is maximally resolved and compatible with both input trees (refer to our `manuscript <https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1009175>`_ for more details). Below are the resulting tanglegrams of the resulting merged tree with the two input trees (after applying tree rotation). The above command can also be used without the symmetric flag for its asymmetric version (where the first input tree is given a priority to resolve the merged tree) or using the intersectOnly flag that produces a simple consensus of the two input trees.  
 
 .. image:: merged.png
+    :width: 700px
+    :align: center
+
+----------------------------------------
+Identify and plot extremal sites
+----------------------------------------
+
+`python3 scripts/identify_extremal_sites.py -in pruned-sumtree-for-cog_PARSIMONY.txt`
+
+The above command can be used for identifying and flagging extremal sites i.e. sites having exceptional parsimony scores relative to their allele frequencies and therefore also suspected to contain systematic errors. The above command identifies 6 extremal sites (C11074T, C27046T, T13402G, A3778G, G24390C, G26144T) with a phylogenetic instability value of 3.03. For the precise definition of extremal sites and phylogenetic instability, refer to our manuscript referenced at the bottom. The code also provides an ability to ignore high-frequency C\>T and G\>T mutations using optional flags
+
+`python3 scripts/identify_extremal_sites.py -in pruned-sumtree-for-cog_PARSIMONY.txt -ignoreCtoT=1 -ignoreGtoT=1`
+
+The above command identifies three extremal sites (T13402G, A3778G, G24390C) with a phylogenetic instability value of 2.32. To create a figure requires `installing R <https://docs.rstudio.com/resources/install-r/>`_ and the `plyr package <https://www.rdocumentation.org/packages/plyr>`_.
+
+`python3 scripts/generate_plot_extremal_sites_data.py -in pruned-sumtree-for-cog_PARSIMONY.txt > plot_extremal_sites_data.txt`
+
+The above commands create raw input data for the extremal sites plot.
+
+`Rscript --vanilla scripts/plot_parsimony.r plot_extremal_sites_data.txt extremal_sites_plot.pdf`
+
+Next, the R command accepts the generated data and creates a log(allele count) by parsimony plot for all variant sites in a given vcf. It produces three plots, one of all data, one ignoring C>U mutations and one ignoring C>U and G>U mutations, as shown below.
+
+.. image:: extremal.png
     :width: 700px
     :align: center
