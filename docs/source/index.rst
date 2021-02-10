@@ -4,6 +4,14 @@ UShER Wiki
 
 Welcome to the manual for UShER, MAT Utils, and other related SARS-CoV-2 Phylogenetics tools.
 
+.. toctree::
+   :hidden:
+
+   index.rst
+   UShER.rst
+   matUtils.rst
+   Strain_Phylogenetics.rst
+
 =================
 Programs
 =================
@@ -44,14 +52,3 @@ Strain_Phylogenetics Package
 ================================
 
 We have developed several auxiliary tools for phylogenetic analysis in the *strain_phylogenetics* package, which is available `here <https://github.com/yatisht/strain_phylogenetics>`_. Information on its constituent programs and their usage can be found `here <https://usher-wiki.readthedocs.io/en/latest/Strain_Phylogenetics.html>`_.
-
-
-
-
-.. toctree::
-   :hidden:
-
-   index.rst
-   UShER.rst
-   matUtils.rst
-   Strain_Phylogenetics.rst

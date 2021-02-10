@@ -25,16 +25,10 @@ Covid-19 Dynamics & Evolution Meeting, October 19-20, 2020
 .. image:: sars_cov_talk_slides1024_8.jpg
     :width: 800px
     :align: center
-.. image:: sars_cov_talk_slides1024_9.jpg
-    :width: 800px
-    :align: center
 .. image:: sars_cov_talk_slides1024_10.jpg
     :width: 800px
     :align: center
 .. image:: sars_cov_talk_slides1024_11.jpg
-    :width: 800px
-    :align: center
-.. image:: sars_cov_talk_slides1024_12.jpg
     :width: 800px
     :align: center
 .. image:: sars_cov_talk_slides1024_13.jpg
