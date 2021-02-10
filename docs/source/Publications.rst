@@ -1,12 +1,12 @@
-*
+**************
 Publications
-*
-
-Here we provide links to all publications and preprints detailing our software and SARS-CoV-2 phylogenomics analyses.
+**************
 
 .. toctree::
    :hidden:
    Publications.rst
+
+Here we provide links to all publications and preprints detailing our software and SARS-CoV-2 phylogenomics analyses.
 
 - Turakhia Y, Thornlow B, Hinrichs A, De Maio N, Gozashti L, Lanfear R, Haussler D, and Corbett-Detig R. `Ultrafast Sample Placement on Existing Trees (UShER) Empowers Real-Time Phylogenetics for the SARS-CoV-2 Pandemic., <https://www.biorxiv.org/content/10.1101/2020.09.26.314971v1.abstract>`_ Nature Genetics. In Press.
 
