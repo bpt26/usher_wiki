@@ -24,58 +24,53 @@ Installation
 
 A pre-compiled binary is available for download `here <http://public.gi.ucsc.edu/~yatisht/data/binaries/usher>`_. Otherwise, to download and compile from source, first clone the GitHub repository:
 
-`git clone https://github.com/yatisht/usher.git  
-cd usher  `
+`git clone https://github.com/yatisht/usher.git`  
+`cd usher`  
 
 Then install using either **Docker**, **conda**, or one of the provided **installation scripts**:
 
 Docker
 --------
 
-.. code-block:: html
-    docker build --no-cache -t usher .
-    docker run -t -i usher /bin/bash
+    `docker build --no-cache -t usher .`  
+    `docker run -t -i usher /bin/bash`
 
 
 or
 
-.. code-block:: html
-    docker pull yatisht/usher:latest
-    docker run -t -i yatisht/usher:latest /bin/bash
+
+    `docker pull yatisht/usher:latest`
+    `docker run -t -i yatisht/usher:latest /bin/bash`
 
 
 conda
 -------
-
-.. code-block:: html
-    conda env create -f environment.yml   
-    conda activate usher
-    git clone https://github.com/oneapi-src/oneTBB
-    cd oneTBB
-    git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6
-    cd ..
-    mkdir build
-    cd build
-    cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..
-    make -j
-    cd ..
+    `conda env create -f environment.yml`  
+    `conda activate usher`  
+    `git clone https://github.com/oneapi-src/oneTBB`  
+    `cd oneTBB`  
+    `git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6`  
+    `cd ..`  
+    `mkdir build`  
+    `cd build`  
+    `cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..`  
+    `make -j`  
+    `cd ..`  
 
 
 
 followed by, if on a MacOS system:
 
-.. code-block:: html
-    rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .
-    chmod +x faToVcf
-    mv faToVcf scripts/`
+    `rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .`  
+    `chmod +x faToVcf`  
+    `mv faToVcf scripts/`  
 
 
 or if on a Linux system:
 
-.. code-block:: html
-    rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .
-    chmod +x faToVcf 
-    mv faToVcf scripts
+    `rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .`  
+    `chmod +x faToVcf`  
+    `mv faToVcf scripts`  
 
 
 Installation scripts
@@ -221,7 +216,7 @@ UShER is also fast enough to allow users to update multiple input trees incorpor
 Fasta2UShER
 --------------
 
-We also provide a tool, Fasta2UShER.py, that converts SARS-CoV-2 genomic data in fasta format into a merged VCF viable for input to UShER. Fasta2UShER.py can take a multiple sequence alignment (MSA) file as input (including standard MSA output from the `SARS-CoV-2 ARTIC Network protocol <https://artic.network/ncov-2019>_`). Fasta2UShER.py also possesses an input option for unalifgned SARS-CoV-2 data. In this case Fasta2UShER.py employs multiple alignment using Fast Fourier Transform ([MAFFT](https://mafft.cbrc.jp/alignment/software/)) to construct an alignment for each user specified sequence with the SARS-CoV-2 reference. In addition, Fasta2UShER.py considers missing data and can automatically filter variants at `problematic sites <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/12>`_ (also see this `pre-print <https://www.biorxiv.org/content/biorxiv/early/2020/06/09/2020.06.08.141127.full.pdf>`_). Fasta2UShER no longer supports multiple msa files as input. If you possess multiple independently generated msa's, please remove gaps and use the unaligned input option.
+We also provide a tool, Fasta2UShER.py, that converts SARS-CoV-2 genomic data in fasta format into a merged VCF viable for input to UShER. Fasta2UShER.py can take a multiple sequence alignment (MSA) file as input (including standard MSA output from the `SARS-CoV-2 ARTIC Network protocol <https://artic.network/ncov-2019>`_). Fasta2UShER.py also possesses an input option for unalifgned SARS-CoV-2 data. In this case Fasta2UShER.py employs multiple alignment using Fast Fourier Transform (`MAFFT <https://mafft.cbrc.jp/alignment/software/>`_)) to construct an alignment for each user specified sequence with the SARS-CoV-2 reference. In addition, Fasta2UShER.py considers missing data and can automatically filter variants at `problematic sites <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/12>`_ (also see this `pre-print <https://www.biorxiv.org/content/biorxiv/early/2020/06/09/2020.06.08.141127.full.pdf>`_). Fasta2UShER no longer supports multiple msa files as input. If you possess multiple independently generated msa's, please remove gaps and use the unaligned input option.
 
 Input
 -------------
