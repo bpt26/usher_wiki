@@ -1,10 +1,3 @@
-.. toctree::
-   :hidden:
-
-   index.rst
-   Presentations.rst
-   Publications.rst
-
 ***************
 UShER Wiki
 ***************
@@ -45,54 +38,41 @@ Then install using either **Docker**, **conda**, or one of the provided **instal
 Docker
 --------
 
-\::
-   docker build --no-cache -t usher .
-   docker run -t -i usher /bin/bash
+    docker build --no-cache -t usher .
+    docker run -t -i usher /bin/bash
 
-or\::
-   docker pull yatisht/usher:latest
-   docker run -t -i yatisht/usher:latest /bin/bash
+or
+
+    docker pull yatisht/usher:latest
+    docker run -t -i yatisht/usher:latest /bin/bash
 
 
 conda
 -------
 
-::
-   conda env create -f environment.yml
-   
-   conda activate usher
-   
-   git clone https://github.com/oneapi-src/oneTBB
-   
-   cd oneTBB
-   
-   git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6
-   
-   cd ..
-   
-   mkdir build
-   
-   cd build
-   
-   cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..
-   
-   make -j
-   
-   cd ..
-
+    conda env create -f environment.yml   
+    conda activate usher
+    git clone https://github.com/oneapi-src/oneTBB
+    cd oneTBB
+    git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6
+    cd ..
+    mkdir build
+    cd build
+    cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..
+    make -j
+    cd ..
 
 followed by, if on a MacOS system:
 
-   `rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .`
-   
-   `chmod +x faToVcf`
+    rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .
+    chmod +x faToVcf
+    mv faToVcf scripts/`
 
-   `mv faToVcf scripts/`
+or if on a Linux system:
 
-if on a Linux system::
-   rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .
-   chmod +x faToVcf 
-   mv faToVcf scripts
+    rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .
+    chmod +x faToVcf 
+    mv faToVcf scripts
 
 Installation scripts
 ------------------------
@@ -362,3 +342,11 @@ Next, the R command accepts the generated data and creates a log(allele count) b
 .. image:: extremal.png
     :width: 700px
     :align: center
+
+
+.. toctree::
+   :hidden:
+
+   index.rst
+   Presentations.rst
+   Publications.rst
