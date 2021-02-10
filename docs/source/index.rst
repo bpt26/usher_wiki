@@ -50,33 +50,31 @@ docker run -t -i yatisht/usher:latest /bin/bash  `
 
 conda
 -------
-
-.. code-block:: bash
-   conda env create -f environment.yml  
-   conda activate usher  
-   git clone https://github.com/oneapi-src/oneTBB  
-   cd oneTBB  
-   git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6  
-   cd ..  
-   mkdir build  
-   cd build  
-   cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..  
-   make -j  
-   cd ..  
+`conda env create -f environment.yml`  
+`conda activate usher`  
+`git clone https://github.com/oneapi-src/oneTBB`  
+`cd oneTBB`  
+`git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6`  
+`cd ..`  
+`mkdir build`  
+`cd build`  
+`cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..`  
+`make -j`  
+`cd ..`  
 
 followed by, if on a MacOS system:
 
-.. code-block:: bash
-   rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .  
-   chmod +x faToVcf  
-   mv faToVcf scripts/ 
+
+`rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .`  
+`chmod +x faToVcf`  
+`mv faToVcf scripts/`  
 
 if on a Linux system:
 
-.. code-block:: bash
-   rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .  
-   chmod +x faToVcf  
-   mv faToVcf scripts/  
+
+`rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .`  
+`chmod +x faToVcf`  
+`mv faToVcf scripts/`  
 
 Installation scripts
 ------------------------
@@ -155,13 +153,103 @@ The above commands saves the collapsed but uncondensed tree as `uncondensed-fina
 Placing new samples
 ------------------------------------
 
+Once the pre-processing is complete and a mutation-annotated tree object is generate (e.g. `global_assignments.pb`), UShER can place new sequences whose variants are called in a VCF file (e.g. `new_samples.vcf`) to existing tree as follows:
+
+`./build/usher -i global_assignments.pb -v test/new_samples.vcf -u -d output/`
+
+Again, by default, UShER uses **all available threads** but the user can also specify the number of threads using the *--threads* command-line parameter.
+
+The above command not only places each new sample sequentially, but also reports the parsimony score and the number of parsimony-optimal placements found for each added sample. UShER displays warning messages if several (>=4) possibilities of parsimony-optimal placements are found for a sample. This can happen due to several factors, including (i) missing data in new samples, (ii) presence of ambiguous genotypes in new samples and (iii) structure and mutations in the global phylogeny itself, including presence of multiple back-mutations. 
+
+In addition to the global phylogeny, one often needs to contextualize the newly added sequences using subtrees of closest *N* neighbouring sequences, where *N* is small. UShER allows this functionality using `--write-subtrees-size` or `-k` option, which can be set to an arbitrary *N*, such as 20 in the example below:
+
+`./build/usher -i global_assignments.pb -v test/new_samples.vcf -u -k 20 -d output/`
+
+The above command writes subtrees to files names `subtree-<subtree-number>.nh`. It also write a text file for each subtree (named `subtree-<subtree-number>-mutations.txt` showing mutations at each internal node of the subtree. If the subtrees contain condensed nodes, it writes the expanded leaves for those nodes to text files named `subtree-<subtree-number>-expanded.txt`. 
+
+Finally, the new mutation-annotated tree object can be stored again using `--save-mutation-annotated-tree` or `-o` option (overwriting the loaded protobuf file is allowed).
+
+`./build/usher -i global_assignments.pb -v test/new_samples.vcf -u -o new_global_assignments.pb -d output/`
+
+--------------
+Features
+--------------
+
+In addition to simply placing samples on an existing phylogeny, UShER provides the user with several points of additional information, and is capable of auxiliary analyses:
+
+Uncertainty in placing new samples
+-------------------------------------------
+
+Branch Parsimony Score
+-------------------------------------------
+
+UShER also allows quantifying the uncertainty in placing new samples by reporting the parsimony scores of adding new samples to all possible nodes in the tree **without** actually modifying the tree (this is because the tree structure, as well as number of possible optimal placements could change with each new sequential placement). In particular, this can help the user explore which nodes of the tree result in a small and optimal or near-optimal parsimony score. This can be done by setting the `--write-parsimony-scores-per-node` or `-p` option, for example, as follows:
+
+`./build/usher -i global_assignments.pb -v test/new_samples.vcf -p -d output/`
+
+The above command writes a file `parsimony-scores.tsv` containing branch parsimony scores to the output directory. Note that because the above command does not perform the sequential placement on the tree, the number of parsimony-optimal placements reported for the second and later samples could differ from those reported with actual placements.
+
+The figure below shows how branch parsimony score could be useful for uncertainty analysis. The figure shows color-coded parsimony score of placing a new sample at different branches of the tree with black arrow pointing to the branch where the placement is optimal. As can be seen from the color codes, the parsimony scores are low (implying good alternative placement) for several neighboring branches of the optimal branch. 
+
+.. image:: branch-parsimony-score.png
+    :width: 700px
+    :align: center
+
+
+Multiple parsimony-optimal placements
+-------------------------------------------
+
+To further aid the user to quantify phylogenetic uncertainty in placement, UShER has an ability to enumerate all possible topologies resulting from equally parsimonious sample placements. UShER does this by maintaining a list of mutation-annotated trees (starting with a single mutation-annotated tree corresponding to the input tree of existing samples) and sequentially adds new samples to each tree in the list while increasing the size of the list as needed to accommodate multiple equally parsimonious placements for a new sample. This feature is available using the `--multiple-placements` or `-M` option in which the user specifies the maximum number of topologies that UShER should maintain before it reverts back to using the default tie-breaking strategy for multiple parsimony-optimal placements in order to keep the runtime and memory usage of UShER reasonable. 
+
+`./build/usher -i global_assignments.pb -v <USER_PROVIDED_VCF> -M -d output/`
+
+Note that if the number of equally parsimonious placements for the initial samples is large, the tree space can get too large too quickly and slow down the placement for the subsequent samples. Therefore, UShER also provides an option to sort the samples first based on the number of equally parsimonious placements using the `-S` option. 
+
+`./build/usher -i global_assignments.pb -v <USER_PROVIDED_VCF> -M -S -d output/`
+
+There are many ways to interpret and visualize the forest of trees produced by multiple placements. One method is to use DensiTree, as shown using an example figure (generated using the `phangorn <https://cran.r-project.org/web/packages/phangorn/>`_ package) below:
+
+Updating multiple input trees
+-------------------------------------------
+
+UShER is also fast enough to allow users to update multiple input trees incorporating uncertainty in tree resonstruction, such as multiple bootstrap trees. While we do not provide an explicit option to input multiple trees at once, UShER can be run independently for each input tree and place new samples. We recommend the user to use the `GNU parallel utility <https://www.gnu.org/software/parallel/>`_ to do so in parallel using multiple CPU cores while setting `-T 1` for each UShER task.
+
 
 .. _matUtils:
 
 matUtils
 =========
 
-matUtils is a set of tools to be used for analyses relating to **m**\ utation\  **a**\ nnotated\  **t**\ rees, such as the protobuf (.pb) files used in UShER. This toolkit is currently under development and will be publicized shortly.
+matUtils is a set of tools to be used for analyses relating to **m**\ utation\  **a**\ nnotated\  **t**\ rees, such as the protobuf (.pb) files used in UShER. 
+
+Input
+-----------
+
+matUtils takes as an input a mutation-annotated tree file generated by UShER.
+
+Options
+-----------
+
+**-i**: Input mutation-annotated tree file. (**REQUIRED**)  
+**-v**: Output VCF file.  
+**-t**: Output Newick tree file.  
+**-n**: Do not include sample genotype columns in VCF output (used only with -v).  
+**-p**: Calculate and store total tree parsimony.  
+**-e**: Calculate and store equally parsimonious placements for all samples in the tree.  
+**-s**: Use to mask specific samples from the tree.  
+**-h**: Print help message.  
+
+Usage
+-----------
+
+An example usage of matUtils:  
+`./build/matUtils -i global_assignments.pb -v global_assignments.vcf -t global_assignments.nh`
+
+
+Output
+-----------
+
+The above example command generates a VCF file named `global_assignments.vcf` and the output tree named `global_assignments.nh`.
 
 .. _RotTrees:
 
