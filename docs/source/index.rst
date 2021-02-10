@@ -4,7 +4,7 @@
    index.rst
    Presentations.rst
    Publications.rst
-   
+
 ***************
 UShER Wiki
 ***************
@@ -315,7 +315,7 @@ RotTrees enables quick inference of congruence of tanglegrams. This is particula
 
 `./build/rotate_trees --T1 tree/pruned-sumtree-for-cog.nh --T2 tree/pruned-cog-for-sumtree.nh --T1_out rot-pruned-sumtree-for-cog.nh --T2_out rot-pruned-cog-for-sumtree.nh`
 
-The above command produces rotated trees (rot-pruned-cog-for-sumtree.nh and rot-pruned-sumtree-for-cog.nh) with a much improved tanglegram as seen below (images generated with the help of `cophylo <https://www.rdocumentation.org/packages/phytools/versions/0.7-20/topics/cophylo>`_ tool, setting rotate to FALSE).
+The above command produces rotated trees (rot-pruned-cog-for-sumtree.nh and rot-pruned-sumtree-for-cog.nh) with a much improved tanglegram as seen below (images generated with the help of `cophylo <https://www.rdocumentation.org/packages/phytools/versions/0.7-20/topics/cophylo>`_, setting rotate to FALSE).
 
 .. image:: tanglegrams_comparison.png
     :width: 700px
