@@ -4,11 +4,12 @@ UShER Wiki
 
 Welcome to the manual for UShER, MAT Utils, and other related SARS-CoV-2 Phylogenetics tools.
 
+-----------
 Programs
-========
+-----------
 * UShER_
 * matUtils_
-* RotTrees_
+* Strain Phylogenetics_
 
 .. toctree::
    :hidden:
@@ -280,19 +281,40 @@ Output
 
 The above example command generates a VCF file named `global_assignments.vcf` and the output tree named `global_assignments.nh`.
 
-.. _RotTrees:
+.. _Strain PHylogenetics:
 
+
+Strain Phylogenetics
+=======================
+
+----------
 RotTrees
-==========
+----------
 
-RotTrees enables quick inference of congruence of tanglegrams. This is particularly useful for SARS-CoV-2 phylogenomics due to multiple groups independently analyzing data-sets with many identical samples. Previous tanglegram visualization software relied on fewer rotations to minimize crossings over:
+RotTrees enables quick inference of congruence of tanglegrams. This is particularly useful for SARS-CoV-2 phylogenomics due to multiple groups independently analyzing data-sets with many identical samples. Previous tanglegram visualization software, such as `cophylo <ttps://www.rdocumentation.org/packages/phytools/versions/0.7-20/topics/cophylo>`_ and `Dendroscope3 <http://dendroscope.org/>`_ rely on fewer rotations to minimize crossings over, which is inadequate for phylogenies on the scale of SARS-CoV-2. We implemented a quick heuristic to produce vastly improved tanglegrams.
+
+`./build/rotate_trees --T1 tree/pruned-sumtree-for-cog.nh --T2 tree/pruned-cog-for-sumtree.nh --T1_out rot-pruned-sumtree-for-cog.nh --T2_out rot-pruned-cog-for-sumtree.nh`
+
+The above command produces rotated trees (rot-pruned-cog-for-sumtree.nh and rot-pruned-sumtree-for-cog.nh) with a much improved tanglegram as seen below (images generated with the help of `cophylo <https://www.rdocumentation.org/packages/phytools/versions/0.7-20/topics/cophylo>`_ tool, setting rotate to FALSE).
 
 .. image:: tanglegrams_comparison.png
     :width: 700px
     :align: center
 
-RotTrees produces a merged tree from two input trees that is maximally resolved and compatible with both input trees (refer to our `manuscript, <ttps://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1009175>`_ for more details). 
+Below is a GIF of approximately 20 frames showing various operations of the tree rotation algorithm operating on a much larger pair of trees (~4k leaves)
 
 .. image:: rotation.gif
+    :width: 700px
+    :align: center
+
+----------
+TreeMerge
+----------
+
+`python3 scripts/tree_merge.py -T1 tree/pruned-sumtree-for-cog.nh -T2 tree/pruned-cog-for-sumtree.nh -symmetric 1 -T_out symm-merged-sumtree-cog.nh`
+
+The above command produces a merged tree (*symm-merged-sumtree-cog.nh*) from two input trees (*pruned-sumtree-for-cog.nh* and *pruned-cog-for-sumtree.nh*) that is maximally resolved and compatible with both input trees (refer to our `manuscript <https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1009175>`_ for more details). Below are the resulting tanglegrams of the resulting merged tree with the two input trees (after applying tree rotation). The above command can also be used without the symmetric flag for its asymmetric version (where the first input tree is given a priority to resolve the merged tree) or using the intersectOnly flag that produces a simple consensus of the two input trees.  
+
+.. image:: merged.png
     :width: 700px
     :align: center
