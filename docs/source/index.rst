@@ -1,37 +1,39 @@
-***************
-UShER Wiki
-***************
-
-Welcome to the manual for UShER, MAT Utils, and other related SARS-CoV-2 Phylogenetics tools.
-
-=================
-Programs
-=================
-* UShER_
-* matUtils_
-* Strain_Phylogenetics_
-
 .. toctree::
    :hidden:
 
    index.rst
    Presentations.rst
    Publications.rst
+   
+***************
+UShER Wiki
+***************
+
+Welcome to the manual for UShER, MAT Utils, and other related SARS-CoV-2 Phylogenetics tools.
+
+
+Programs
+=================
+* UShER_
+* matUtils_
+* StrainPhylogenetics_
+
+
 
 .. _UShER:
 
------------
+=================
 UShER
------------
+=================
 .. image:: usher_logo.png
     :width: 700px
     :align: center
 
 UShER is a program for rapid, accurate placement of samples to existing phylogenies. It is available for downloading `here <https://github.com/yatisht/usher>`_ and is updated regularly. While not restricted to SARS-CoV-2 phylogenetic analyses, it has enabled real-time phylogenetic analyses and genomic contact tracing in that its placement is orders of magnitude faster and more memory-efficient than previous methods, and is being widely used by several SARS-CoV-2 research groups, including the `UCSC Genome Browser team <https://genome.ucsc.edu/cgi-bin/hgPhyloPlace>`_ and `Rob Lanfear's global phylogeny releases <https://github.com/roblanf/sarscov2phylo/releases>`_.
 
-=================
+--------------
 Installation
-=================
+--------------
 
 A pre-compiled binary is available for download `here <http://public.gi.ucsc.edu/~yatisht/data/binaries/usher>`_. Otherwise, to download and compile from source, first clone the GitHub repository:
 
@@ -196,6 +198,7 @@ In addition to simply placing samples on an existing phylogeny, UShER provides t
 Uncertainty in placing new samples
 -------------------------------------------
 
+
 Branch Parsimony Score
 -------------------------------------------
 
@@ -299,9 +302,9 @@ The above example command generates a VCF file named `global_assignments.vcf` an
 
 
 
-.. _Strain_Phylogenetics:
+.. _StrainPhylogenetics:
 
-Strain_Phylogenetics
+StrainPhylogenetics
 =======================
 
 ----------
