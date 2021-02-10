@@ -4,13 +4,6 @@
 UShER
 ***************
 
-.. toctree::
-   :hidden:
-
-   index.rst
-   matUtils.rst
-   Strain_Phylogenetics.rst
-
 .. image:: usher_logo.png
     :width: 700px
     :align: center

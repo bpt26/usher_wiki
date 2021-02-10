@@ -4,12 +4,6 @@
 matUtils
 ***************
 
-.. toctree::
-   :hidden:
-
-   index.rst
-   UShER.rst
-   Strain_Phylogenetics.rst
 
 -----------
 Input
