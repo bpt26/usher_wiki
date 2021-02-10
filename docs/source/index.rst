@@ -1,5 +1,13 @@
 .. include:: /Includes.rst.txt
 
+.. toctree::
+   :hidden:
+
+   index.rst
+   UShER.rst
+   matUtils.rst
+   Strain_Phylogenetics.rst
+
 ***************
 UShER Wiki
 ***************
