@@ -22,22 +22,22 @@ Then install using either **Docker**, **conda**, or one of the provided **instal
 Docker
 --------
 
-```
+.. code-block:: html
     docker build --no-cache -t usher .
     docker run -t -i usher /bin/bash
-```
+
 
 or
 
-```
+.. code-block:: html
     docker pull yatisht/usher:latest
     docker run -t -i yatisht/usher:latest /bin/bash
-```
+
 
 conda
 -------
 
-```
+.. code-block:: html
     conda env create -f environment.yml   
     conda activate usher
     git clone https://github.com/oneapi-src/oneTBB
@@ -49,24 +49,24 @@ conda
     cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..
     make -j
     cd ..
-```
+
 
 
 followed by, if on a MacOS system:
 
-```
+.. code-block:: html
     rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .
     chmod +x faToVcf
     mv faToVcf scripts/`
-```
+
 
 or if on a Linux system:
 
-```
+.. code-block:: html
     rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .
     chmod +x faToVcf 
     mv faToVcf scripts
-```
+
 
 Installation scripts
 ------------------------
