@@ -9,7 +9,7 @@ Programs
 =================
 * UShER_
 * matUtils_
-* Strain Phylogenetics_
+* Others_
 
 
 
@@ -310,11 +310,13 @@ The above example command generates a VCF file named `global_assignments.vcf` an
 
 
 
-.. _Strain Phylogenetics:
+.. _Others:
 
 
-Strain Phylogenetics
-=======================
+Strain Phylogenetics Package
+================================
+
+We have developed several auxiliary tools for phylogenetic analysis, which are stored `here <https://github.com/yatisht/strain_phylogenetics>`_
 
 ----------
 RotTrees
