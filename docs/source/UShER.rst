@@ -239,3 +239,15 @@ Output
 -------------
 
 Fasta2UShER outputs a merged VCF with missing data for a particular sample denoted as "." in the corresponding genotype column. The above example command would yield a new VCF *test/test_merged.vcf* (identical to the one already provided), which can be used by UShER to place the new samples.
+
+--------------
+Presentations
+--------------
+
+Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. You can find his slides `here <https://usher-wiki.readthedocs.io/en/latest/covid-meet.html>`_.
+
+--------------
+Publications
+--------------
+
+- Turakhia Y, Thornlow B, Hinrichs A, De Maio N, Gozashti L, Lanfear R, Haussler D, and Corbett-Detig R. `Ultrafast Sample Placement on Existing Trees (UShER) Empowers Real-Time Phylogenetics for the SARS-CoV-2 Pandemic., <https://www.biorxiv.org/content/10.1101/2020.09.26.314971v1.abstract>`_ Nature Genetics. In Press.
