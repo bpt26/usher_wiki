@@ -1,5 +1,7 @@
+.. include:: /Includes.rst.txt
+
 Covid-19 Dynamics & Evolution Meeting, October 19-20, 2020
-==========================================================
+=============================================================
 
 .. image:: usher-covid19-meet1024_1.jpg
     :width: 800px
