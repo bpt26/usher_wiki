@@ -2,6 +2,14 @@
 Strain_Phylogenetics
 **************************
 
+.. toctree::
+   :hidden:
+
+   index.rst
+   UShER.rst
+   matUtils.rst
+   Strain_Phylogenetics.rst
+
 ----------
 RotTrees
 ----------
