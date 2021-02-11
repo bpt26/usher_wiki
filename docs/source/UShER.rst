@@ -204,6 +204,22 @@ Updating multiple input trees
 
 UShER is also fast enough to allow users to update multiple input trees incorporating uncertainty in tree resonstruction, such as multiple bootstrap trees. While we do not provide an explicit option to input multiple trees at once, UShER can be run independently for each input tree and place new samples. We recommend the user to use the `GNU parallel utility <https://www.gnu.org/software/parallel/>`_ to do so in parallel using multiple CPU cores while setting `-T 1` for each UShER task.
 
+Finding sister clades
+-------------------------------------------
+
+To determine the accuracy of each sample placement, one might be interested in knowing all of the sister clades of that sample on the final tree. `We provide a utility for this calculation here <http://public.gi.ucsc.edu/~yatisht/data/binaries/find_sister_clades>`. `find_sister_clades` takes the following options:
+
+- `--tree: Input tree file`
+- `--samples: File containing missing samples`
+- `--generations: Number of generations`
+- `--help: Print help messages`
+
+An example usage of this function is given below:
+
+`find_sister_clades --generations 1 final-tree.nh --samples list-of-samples.txt > sister_clades.txt`
+
+The samples file should have the name of each sample of interest exactly as it appears in the input tree file. The output file will contain the name of each sample with a `:`, followed by each sister sample at the input generation, separated by a new-line character. Lists of sister clades for each sample are separated by two new-lines characters.
+
 --------------
 Fasta2UShER
 --------------

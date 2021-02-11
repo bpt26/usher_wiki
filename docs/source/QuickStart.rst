@@ -10,10 +10,11 @@ To get acquainted with UShER, we have provided a simple example of placing 10 sa
 Files you will need
 ------------------------
 
-* `pruned_10.nh <https://usher-wiki.readthedocs.io/en/latest/pruned_10.nh>`_ (newick file containing the initial phylogeny)
-* `pruned_10.vcf.gz <https://usher-wiki.readthedocs.io/en/latest/pruned_10.vcf.gz>`_ (.vcf.gz file informing the initial phylogeny)
-* `missing_10.vcf.gz <https://usher-wiki.readthedocs.io/en/latest/missing_10.vcf.gz>`_ (.vcf.gz file containing samples to be placed)
-* `full_tree.nh <https://usher-wiki.readthedocs.io/en/latest/full_tree.nh>`_ (newick file containing the full tree, to assess UShER's performance)
+* `pruned_10.nh <https://github.com/bpt26/usher_wiki/raw/main/docs/source/pruned_10.nh>`_ (newick file containing the initial phylogeny)
+* `pruned_10.vcf.gz <https://github.com/bpt26/usher_wiki/raw/main/docs/source/pruned_10.vcf.gz>`_ (.vcf.gz file informing the initial phylogeny)
+* `missing_10.vcf.gz <https://github.com/bpt26/usher_wiki/raw/main/docs/source/missing_10.vcf.gz>`_ (.vcf.gz file containing samples to be placed)
+* `missing_10.txt <https://github.com/bpt26/usher_wiki/raw/main/docs/source/missing_10.vcf.gz>`_ (.vcf.gz file containing samples to be placed)
+* `full_tree.nh <https://github.com/bpt26/usher_wiki/raw/main/docs/source/full_tree.nh>`_ (newick file containing the full tree, to assess UShER's performance)
 
 ------------------------
 Making the protobuf
@@ -43,4 +44,29 @@ This command will output three files:
 Assessing performance
 ------------------------
 
-To compare the final tree output by UShER to 
+TreeCmp
+---------------
+
+To compare the final tree output by UShER to `full_tree.nh`, there are several options. We recommend downloading TreeCmp, which is `available to download here <https://github.com/TreeCmp/TreeCmp>`_. Upon installation, the following command:
+
+`java -jar treeCmp.jar -r final-tree.nh -d rf -i full_tree.nh -o results.txt`
+
+should show that the `Robinson-Foulds distance <https://en.wikipedia.org/wiki/Robinson%E2%80%93Foulds_metric>`_ between the two trees is 0.0, indicating that UShER placed each of the ten samples correctly.
+
+find_sister_clades
+---------------------------
+
+We also described a method for measuring tree congruence involving comparing the sister clades at several generations, and finding the minimum combined number of generations at which a given sample has the same sister clades in two trees. For clarity, we provide the figure below:
+
+.. image:: nstat.png
+    :width: 700px
+    :align: center
+
+To determine this statistic for our tree, the following commands will give our N1 results:
+
+`find_sister_clades --generations 1 final-tree.nh --samples missing_10.txt > final_tree_n1.txt`
+
+`find_sister_clades --generations 1 full_tree.nh --samples missing_10.txt > full_tree_n1.txt`
+
+Then, upon comparing the clade sets for each sample, you would find that they are identical.
+
