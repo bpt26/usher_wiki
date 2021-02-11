@@ -13,7 +13,7 @@ Files you will need
 * `pruned_10.nh <https://github.com/bpt26/usher_wiki/raw/main/docs/source/pruned_10.nh>`_ (newick file containing the initial phylogeny)
 * `pruned_10.vcf.gz <https://github.com/bpt26/usher_wiki/raw/main/docs/source/pruned_10.vcf.gz>`_ (.vcf.gz file informing the initial phylogeny)
 * `missing_10.vcf.gz <https://github.com/bpt26/usher_wiki/raw/main/docs/source/missing_10.vcf.gz>`_ (.vcf.gz file containing samples to be placed)
-* `missing_10.txt <https://github.com/bpt26/usher_wiki/raw/main/docs/source/missing_10.vcf.gz>`_ (.vcf.gz file containing samples to be placed)
+* `missing_10.txt <https://github.com/bpt26/usher_wiki/raw/main/docs/source/missing_10.txt>`_ (new-line separated list of samples to be placed)
 * `full_tree.nh <https://github.com/bpt26/usher_wiki/raw/main/docs/source/full_tree.nh>`_ (newick file containing the full tree, to assess UShER's performance)
 
 ------------------------

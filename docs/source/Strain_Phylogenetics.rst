@@ -10,9 +10,11 @@ RotTrees
 
 RotTrees enables quick inference of congruence of tanglegrams. This is particularly useful for SARS-CoV-2 phylogenomics due to multiple groups independently analyzing data-sets with many identical samples. Previous tanglegram visualization software, such as `cophylo <ttps://www.rdocumentation.org/packages/phytools/versions/0.7-20/topics/cophylo>`_ and `Dendroscope3 <http://dendroscope.org/>`_ rely on fewer rotations to minimize crossings over, which is inadequate for phylogenies on the scale of SARS-CoV-2. We implemented a quick heuristic to produce vastly improved tanglegrams.
 
-`./build/rotate_trees --T1 tree/pruned-sumtree-for-cog.nh --T2 tree/pruned-cog-for-sumtree.nh --T1_out rot-pruned-sumtree-for-cog.nh --T2_out rot-pruned-cog-for-sumtree.nh`
+First, ensure that `tree_1.nh` and `tree_2.nh` have identical sets of samples. Then, use as follows:
 
-The above command produces rotated trees (rot-pruned-cog-for-sumtree.nh and rot-pruned-sumtree-for-cog.nh) with a much improved tanglegram as seen below (images generated with the help of `cophylo <https://www.rdocumentation.org/packages/phytools/versions/0.7-20/topics/cophylo>`_, setting rotate to FALSE).
+`./build/rotate_trees --T1 tree_1.nh --T2 tree_2.nh --T1_out rot-tree_1.nh --T2_out rot-tree_2.nh`
+
+The above command produces rotated trees (`rot-tree_1.nh` and `rot-tree_2.nh`) with a much improved tanglegram as seen below (images generated with the help of `cophylo <https://www.rdocumentation.org/packages/phytools/versions/0.7-20/topics/cophylo>`_, setting rotate to FALSE).
 
 .. image:: tanglegrams_comparison.png
     :width: 700px
@@ -28,9 +30,9 @@ Below is a GIF of approximately 20 frames showing various operations of the tree
 TreeMerge
 ----------
 
-`python3 scripts/tree_merge.py -T1 tree/pruned-sumtree-for-cog.nh -T2 tree/pruned-cog-for-sumtree.nh -symmetric 1 -T_out symm-merged-sumtree-cog.nh`
+`python3 scripts/tree_merge.py -T1 tree_1.nh -T2 tree_2.nh -symmetric 1 -T_out symm-merged-tree_1-tree_2.nh`
 
-The above command produces a merged tree (*symm-merged-sumtree-cog.nh*) from two input trees (*pruned-sumtree-for-cog.nh* and *pruned-cog-for-sumtree.nh*) that is maximally resolved and compatible with both input trees (refer to our `manuscript <https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1009175>`_ for more details). Below are the resulting tanglegrams of the resulting merged tree with the two input trees (after applying tree rotation). The above command can also be used without the symmetric flag for its asymmetric version (where the first input tree is given a priority to resolve the merged tree) or using the intersectOnly flag that produces a simple consensus of the two input trees.  
+The above command produces a merged tree (`symm-merged-tree_1-tree_2.nh`) from two input trees (`tree_1.nh` and `tree_2.nh`) that is maximally resolved and compatible with both input trees (refer to our `manuscript <https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1009175>`_ for more details). Below are the resulting tanglegrams of the resulting merged tree with the two input trees (after applying tree rotation). The above command can also be used without the symmetric flag for its asymmetric version (where the first input tree is given a priority to resolve the merged tree) or using the intersectOnly flag that produces a simple consensus of the two input trees.  
 
 .. image:: merged.png
     :width: 700px
@@ -42,13 +44,13 @@ Identify and plot extremal sites
 
 `python3 scripts/identify_extremal_sites.py -in pruned-sumtree-for-cog_PARSIMONY.txt`
 
-The above command can be used for identifying and flagging extremal sites i.e. sites having exceptional parsimony scores relative to their allele frequencies and therefore also suspected to contain systematic errors. The above command identifies 6 extremal sites (C11074T, C27046T, T13402G, A3778G, G24390C, G26144T) with a phylogenetic instability value of 3.03. For the precise definition of extremal sites and phylogenetic instability, refer to our manuscript referenced at the bottom. The code also provides an ability to ignore high-frequency C\>T and G\>T mutations using optional flags
+The above command can be used for identifying and flagging extremal sites i.e. sites having exceptional parsimony scores relative to their allele frequencies and therefore also suspected to contain systematic errors. The above command identifies 6 extremal sites (C11074T, C27046T, T13402G, A3778G, G24390C, G26144T) with a phylogenetic instability value of 3.03. For the precise definition of extremal sites and phylogenetic instability, refer to our manuscript referenced at the bottom. The code also provides an ability to ignore high-frequency C\>T and G\>T mutations using optional flags.
 
-`python3 scripts/identify_extremal_sites.py -in pruned-sumtree-for-cog_PARSIMONY.txt -ignoreCtoT=1 -ignoreGtoT=1`
+`python3 scripts/identify_extremal_sites.py -in tree_1_PARSIMONY.txt -ignoreCtoT=1 -ignoreGtoT=1`
 
 The above command identifies three extremal sites (T13402G, A3778G, G24390C) with a phylogenetic instability value of 2.32. To create a figure requires `installing R <https://docs.rstudio.com/resources/install-r/>`_ and the `plyr package <https://www.rdocumentation.org/packages/plyr>`_.
 
-`python3 scripts/generate_plot_extremal_sites_data.py -in pruned-sumtree-for-cog_PARSIMONY.txt > plot_extremal_sites_data.txt`
+`python3 scripts/generate_plot_extremal_sites_data.py -in tree_1_PARSIMONY.txt > plot_extremal_sites_data.txt`
 
 The above commands create raw input data for the extremal sites plot.
 
@@ -64,7 +66,7 @@ Next, the R command accepts the generated data and creates a log(allele count) b
 Presentations
 ----------------------------------------
 
-We have presented this package and analyses on GISAID data at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. You can find our slides `here <https://usher-wiki.readthedocs.io/en/latest/sp_meet.html>`_.
+We have presented this package and analyses on GISAID data at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. `You can find our slides here <https://usher-wiki.readthedocs.io/en/latest/sp_meet.html>`_.
 
 
 ----------------------------------------

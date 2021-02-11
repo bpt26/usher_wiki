@@ -207,7 +207,7 @@ UShER is also fast enough to allow users to update multiple input trees incorpor
 Finding sister clades
 -------------------------------------------
 
-To determine the accuracy of each sample placement, one might be interested in knowing all of the sister clades of that sample on the final tree. `We provide a utility for this calculation here <http://public.gi.ucsc.edu/~yatisht/data/binaries/find_sister_clades>`. `find_sister_clades` takes the following options:
+To determine the accuracy of each sample placement, one might be interested in knowing all of the sister clades of that sample on the final tree. `We provide a utility for this calculation here <http://public.gi.ucsc.edu/~yatisht/data/binaries/find_sister_clades>`_. `find_sister_clades` takes the following options:
 
 - `--tree: Input tree file`
 - `--samples: File containing missing samples`
@@ -224,7 +224,7 @@ The samples file should have the name of each sample of interest exactly as it a
 Fasta2UShER
 --------------
 
-We also provide a tool, Fasta2UShER.py, that converts SARS-CoV-2 genomic data in fasta format into a merged VCF viable for input to UShER. Fasta2UShER.py can take a multiple sequence alignment (MSA) file as input (including standard MSA output from the `SARS-CoV-2 ARTIC Network protocol <https://artic.network/ncov-2019>`_). Fasta2UShER.py also possesses an input option for unalifgned SARS-CoV-2 data. In this case Fasta2UShER.py employs multiple alignment using Fast Fourier Transform (`MAFFT <https://mafft.cbrc.jp/alignment/software/>`_)) to construct an alignment for each user specified sequence with the SARS-CoV-2 reference. In addition, Fasta2UShER.py considers missing data and can automatically filter variants at `problematic sites <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/12>`_ (also see this `pre-print <https://www.biorxiv.org/content/biorxiv/early/2020/06/09/2020.06.08.141127.full.pdf>`_). Fasta2UShER no longer supports multiple msa files as input. If you possess multiple independently generated msa's, please remove gaps and use the unaligned input option.
+We also provide a tool, Fasta2UShER.py, that converts SARS-CoV-2 genomic data in fasta format into a merged VCF viable for input to UShER. Fasta2UShER.py can take a multiple sequence alignment (MSA) file as input (including standard MSA output from the `SARS-CoV-2 ARTIC Network protocol <https://artic.network/ncov-2019>`_). Fasta2UShER.py also possesses an input option for unalifgned SARS-CoV-2 data. In this case Fasta2UShER.py employs multiple alignment using Fast Fourier Transform (`MAFFT <https://mafft.cbrc.jp/alignment/software/>`_)) to construct an alignment for each user specified sequence with the SARS-CoV-2 reference. In addition, Fasta2UShER.py considers missing data and can automatically filter variants at `problematic sites <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/12>`_ (see also this `pre-print <https://www.biorxiv.org/content/biorxiv/early/2020/06/09/2020.06.08.141127.full.pdf>`_). Fasta2UShER no longer supports multiple msa files as input. If you possess multiple independently generated msa's, please remove gaps and use the unaligned input option.
 
 Input
 -------------
@@ -233,6 +233,20 @@ Fasta2UShER takes a single MSA file or unaligned full SARS-CoV-2 genomic sequenc
 
 Options
 -------------
+
+`-inpath`: Path to directory containing ONLY multiple sequence alignment or unaligned files in fasta format (make sure no other files exist in this directory).
+
+`-output`: Output VCF file name
+
+`-reference`: Reference genome fasta file with identical reference header to that of the input MSA (if MSA is used as input)
+
+`-unaligned`: Specifies unaligned input files
+
+`-auto_mask`: Ignore problematic sites per masking recomendations
+
+`-user_specified_mask`: Path to VCF fle containing custom masking recomendations (please ensure VCF format is consistent with `this <https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf>`_)
+
+`-thread`: Number of threads to use for MSA (Default = 1)
 
 Usage
 -------------
@@ -250,7 +264,7 @@ Fasta2UShER outputs a merged VCF with missing data for a particular sample denot
 Presentations
 --------------
 
-Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. You can find his slides `here <https://usher-wiki.readthedocs.io/en/latest/covid-meet.html>`_.
+Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. `You can find his slides here <https://usher-wiki.readthedocs.io/en/latest/covid-meet.html>`_.
 
 --------------
 Publications
