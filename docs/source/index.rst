@@ -7,6 +7,7 @@ UShER Wiki
 Welcome to the manual for UShER, MAT Utils, and other related SARS-CoV-2 Phylogenetics tools. `Click here <https://usher-wiki.readthedocs.io/en/latest/QuickStart.html>`_ for a quick tutorial on getting started.
 
 .. toctree::
+   :hidden:
    QuickStart.rst
    UShER.rst
    matUtils.rst
@@ -23,7 +24,7 @@ UShER
     :width: 500px
     :align: center
 
-UShER is a program for rapid, accurate placement of samples to existing phylogenies. `Information on installation, usage, and features can be found here <https://usher-wiki.readthedocs.io/en/latest/UShER.html>`_. `Our manuscript about UShER can be found here <https://www.biorxiv.org/content/10.1101/2020.09.26.314971v1.abstract>`_.
+UShER is a program for rapid, accurate placement of samples to existing phylogenies. Information on installation, usage, and features `can be found here <https://usher-wiki.readthedocs.io/en/latest/UShER.html>`_. Our `manuscript about UShER can be found here <https://www.biorxiv.org/content/10.1101/2020.09.26.314971v1.abstract>`_.
 
 
 
@@ -43,4 +44,4 @@ matUtils is a set of tools to be used for analyses relating to **m**\ utation\  
 Strain_Phylogenetics Package
 ================================
 
-We have developed several auxiliary tools for phylogenetic analysis in the *strain_phylogenetics* package, `which is available here <https://github.com/yatisht/strain_phylogenetics>`_. `Information on its constituent programs and their usage can be found here <https://usher-wiki.readthedocs.io/en/latest/Strain_Phylogenetics.html>`_.
+We have developed several auxiliary tools for phylogenetic analysis in the *strain_phylogenetics* package, `which is available here <https://github.com/yatisht/strain_phylogenetics>`_. Information on `its constituent programs and their usage can be found here <https://usher-wiki.readthedocs.io/en/latest/Strain_Phylogenetics.html>`_.

@@ -42,7 +42,7 @@ The above command produces a merged tree (`symm-merged-tree_1-tree_2.nh`) from t
 Identify and plot extremal sites
 ----------------------------------------
 
-`python3 scripts/identify_extremal_sites.py -in pruned-sumtree-for-cog_PARSIMONY.txt`
+`python3 scripts/identify_extremal_sites.py -in tree_1_PARSIMONY.txt`
 
 The above command can be used for identifying and flagging extremal sites i.e. sites having exceptional parsimony scores relative to their allele frequencies and therefore also suspected to contain systematic errors. The above command identifies 6 extremal sites (C11074T, C27046T, T13402G, A3778G, G24390C, G26144T) with a phylogenetic instability value of 3.03. For the precise definition of extremal sites and phylogenetic instability, refer to our manuscript referenced at the bottom. The code also provides an ability to ignore high-frequency C\>T and G\>T mutations using optional flags.
 
@@ -73,11 +73,11 @@ We have presented this package and analyses on GISAID data at the Covid-19 Dynam
 Publications
 ----------------------------------------
 
-- Turakhia Y, De Maio N, Thornlow B, Gozashti L, Lanfear R, Walker C, Hinrichs A, Fernandes J, Borges R, Slodkowicz G, Weilguny L, Haussler D, Goldman N, and Corbett-Detig R. `Stability of SARS-CoV-2 Phylogenies. <https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1009175>`_ PLOS Genetics. 2020. 16(11): e1009175.
+- Turakhia Y, De Maio N, Thornlow B, Gozashti L, Lanfear R, Walker C, Hinrichs A, Fernandes J, Borges R, Slodkowicz G, Weilguny L, Haussler D, Goldman N, and Corbett-Detig R. `Stability of SARS-CoV-2 Phylogenies. <https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1009175>`_ *PLOS Genetics*. 2020. 16(11): e1009175.
 
-- De Maio N, Walker C, Turakhia Y, Lanfear R, Corbett-Detig R, and Goldman N. `Mutation rates and selection on synonymous mutations in SARS-CoV-2. <https://www.biorxiv.org/content/10.1101/2021.01.14.426705v1.abstract>`_ bioRxiv. 2020.
+- De Maio N, Walker C, Turakhia Y, Lanfear R, Corbett-Detig R, and Goldman N. `Mutation rates and selection on synonymous mutations in SARS-CoV-2. <https://www.biorxiv.org/content/10.1101/2021.01.14.426705v1.abstract>`_ *bioRxiv*. 2020.
 
-- DeMaio N, Walker C, Borges R, Weilguny L, Slodkowicz G, and Goldman N. `Issues with SARS-CoV-2 sequencing data. <http://virological.org/t/issues-with-sars-cov-2-sequencing-data/473>`_ Virological. 2020.
+- DeMaio N, Walker C, Borges R, Weilguny L, Slodkowicz G, and Goldman N. `Issues with SARS-CoV-2 sequencing data. <http://virological.org/t/issues-with-sars-cov-2-sequencing-data/473>`_ *Virological*. 2020.
 
-- Gozashti L, Walker C, Goldman N, Corbett-Detig R, and DeMaio N. `Updated analysis with data from 13th November 2020. <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/14>`_ Virological. 2020.
+- Gozashti L, Walker C, Goldman N, Corbett-Detig R, and DeMaio N. `Updated analysis with data from 13th November 2020. <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/14>`_ *Virological*. 2020.
 

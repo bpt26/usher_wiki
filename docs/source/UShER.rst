@@ -164,11 +164,7 @@ Finally, the new mutation-annotated tree object can be stored again using `--sav
 Features
 --------------
 
-In addition to simply placing samples on an existing phylogeny, UShER provides the user with several points of additional information, and is capable of auxiliary analyses:
-
-Uncertainty in placing new samples
--------------------------------------------
-
+In addition to simply placing samples on an existing phylogeny, UShER provides the user with several points of additional information, including measurements of uncertainty in sample placement, and is capable of auxiliary analyses:
 
 Branch Parsimony Score
 -------------------------------------------
@@ -182,7 +178,7 @@ The above command writes a file `parsimony-scores.tsv` containing branch parsimo
 The figure below shows how branch parsimony score could be useful for uncertainty analysis. The figure shows color-coded parsimony score of placing a new sample at different branches of the tree with black arrow pointing to the branch where the placement is optimal. As can be seen from the color codes, the parsimony scores are low (implying good alternative placement) for several neighboring branches of the optimal branch. 
 
 .. image:: bps.png
-    :width: 300px
+    :width: 350px
     :align: center
 
 
@@ -270,4 +266,4 @@ Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meet
 Publications
 --------------
 
-- Turakhia Y, Thornlow B, Hinrichs A, De Maio N, Gozashti L, Lanfear R, Haussler D, and Corbett-Detig R. `Ultrafast Sample Placement on Existing Trees (UShER) Empowers Real-Time Phylogenetics for the SARS-CoV-2 Pandemic., <https://www.biorxiv.org/content/10.1101/2020.09.26.314971v1.abstract>`_ Nature Genetics. In Press.
+- Turakhia Y, Thornlow B, Hinrichs A, De Maio N, Gozashti L, Lanfear R, Haussler D, and Corbett-Detig R. `Ultrafast Sample Placement on Existing Trees (UShER) Empowers Real-Time Phylogenetics for the SARS-CoV-2 Pandemic., <https://www.biorxiv.org/content/10.1101/2020.09.26.314971v1.abstract>`_ *Nature Genetics*. In Press.
