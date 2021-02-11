@@ -37,17 +37,17 @@ or
 
 conda
 -------
-    ``conda env create -f environment.yml``  
-    ``conda activate usher``  
-    ``git clone https://github.com/oneapi-src/oneTBB``  
-    ``cd oneTBB``  
-    ``git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6``  
-    ``cd ..``  
-    ``mkdir build``  
-    ``cd build``  
-    ``cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..``  
-    ``make -j``  
-    ``cd ..``  
+    :literal:`conda env create -f environment.yml`  
+    :literal:`conda activate usher`  
+    :literal:`git clone https://github.com/oneapi-src/oneTBB`  
+    :literal:`cd oneTBB`  
+    :literal:`git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6`  
+    :literal:`cd ..`  
+    :literal:`mkdir build`  
+    :literal:`cd build`  
+    :literal:`cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..`  
+    :literal:`make -j`  
+    :literal:`cd ..`  
 
 
 
