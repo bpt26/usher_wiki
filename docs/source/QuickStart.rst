@@ -4,7 +4,7 @@
 Quick Start
 ***************
 
-To get acquainted with UShER, we have provided a simple example of placing 10 samples on an existing phylogeny, and doing basic analyses to assess the placements. If you have not yet installed UShER, `please follow the instructions here <https://usher-wiki.readthedocs.io/en/latest/UShER.html#installation>`_ before continuing with this example.
+To get acquainted with UShER, we provide a simple example of placing 10 samples on an existing phylogeny, and doing basic analyses to assess the placements. If you have not yet installed UShER, `please follow the instructions here <https://usher-wiki.readthedocs.io/en/latest/UShER.html#installation>`_ before continuing with this example.
 
 ------------------------
 Files you will need
@@ -32,7 +32,7 @@ Placing samples
 
 Now, we want to place the samples from `missing_10.vcf.gz` onto our tree. We can do this by using the following command:
 
-`usher --vcf MISSING_VCF/missing_10.vcf.gz --load-mutation-annotated-tree pruned_10.pb --write-uncondensed-final-tree`
+`usher --vcf missing_10.vcf.gz --load-mutation-annotated-tree pruned_10.pb --write-uncondensed-final-tree`
 
 This command will output three files:
 
@@ -59,7 +59,7 @@ find_sister_clades
 We also described a method for measuring tree congruence involving comparing the sister clades at several generations, and finding the minimum combined number of generations at which a given sample has the same sister clades in two trees. For clarity, we provide the figure below:
 
 .. image:: nstat.png
-    :width: 700px
+    :width: 550px
     :align: center
 
 To determine this statistic for our tree, the following commands will give our N1 results:
