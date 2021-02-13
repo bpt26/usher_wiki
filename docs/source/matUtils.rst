@@ -14,14 +14,14 @@ annotate
 Options
 -----------
 
-::
-   --input-mat (-i): Input mutation-annotated tree file. (**REQUIRED**)  
-   --output-mat (-o): Path to output processed mutation-annotated tree file (**REQUIRED**)
-   --lineage-names (-l): Path to a file containing lineage asssignments of samples. Use to locate and annotate clade root nodes.
-   --allele-frequency (-f): Minimum allele frequency in input samples for finding the best clade root. Used only with -l. Default = 0.800000012.      
-   --set-overlap (-s): Minimum fraction of the lineage samples that should be desecendants of the assigned clade root. Defualt = 0.600000024. 
-   --threads (-T): Number of threads to use when possible. Default = use all available cores.
-   --help (-h): Print help messages.
+
+- `--input-mat (-i): Input mutation-annotated tree file. (**REQUIRED**)`
+- `--output-mat (-o): Path to output processed mutation-annotated tree file (**REQUIRED**)`
+- `--lineage-names (-l): Path to a file containing lineage asssignments of samples. Use to locate and annotate clade root nodes.`
+- `--allele-frequency (-f): Minimum allele frequency in input samples for finding the best clade root. Used only with -l. Default = 0.800000012.`
+- `--set-overlap (-s): Minimum fraction of the lineage samples that should be desecendants of the assigned clade root. Defualt = 0.600000024.`
+- `--threads (-T): Number of threads to use when possible. Default = use all available cores.`
+- `--help (-h): Print help messages.`
 
 ----------
 filter
@@ -30,12 +30,12 @@ filter
 Options
 -----------
 
-::
-   --input-mat (-i): Input mutation-annotated tree file. (**REQUIRED**)  
-   --output-mat (-o): Path to output processed mutation-annotated tree file (**REQUIRED**)
-   --restricted-samples (-s): Sample names to restrict. Use to perform masking.  
-   --threads (-T): Number of threads to use when possible. Default = use all available cores.  
-   --help (-h): Print help messages.
+
+- `--input-mat (-i): Input mutation-annotated tree file. (**REQUIRED**)`  
+- `--output-mat (-o): Path to output processed mutation-annotated tree file (**REQUIRED**)`
+- `--restricted-samples (-s): Sample names to restrict. Use to perform masking.`  
+- `--threads (-T): Number of threads to use when possible. Default = use all available cores.`
+- `--help (-h): Print help messages.`
 
 ----------
 convert
@@ -46,13 +46,12 @@ convert
 Options
 -----------
 
-::
-   --input-mat (-i): Input mutation-annotated tree file. (**REQUIRED**)  
-   --write-vcf (-v): Output VCF file.  
-   --no-genotypes (-n): Do not include sample genotype columns in VCF. output. Used only with the --write-vcf option.  
-   --write-tree (-t): Use to write a newick tree to the indicated file.  
-   --threads (-T): Number of threads to use when possible. Default = use all available cores.  
-   --help (-h): Print help messages.
+- `--input-mat (-i): Input mutation-annotated tree file. (**REQUIRED**)`  
+- `--write-vcf (-v): Output VCF file.`  
+- `--no-genotypes (-n): Do not include sample genotype columns in VCF. output. Used only with the --write-vcf option.`  
+- `--write-tree (-t): Use to write a newick tree to the indicated file.`  
+- `--threads (-T): Number of threads to use when possible. Default = use all available cores.`  
+- `--help (-h): Print help messages.`
 
 -----------
 prune
@@ -64,10 +63,9 @@ prune
 Options
 -----------
 
-::
-   --input-mat (-i): Input mutation-annotated tree file. (**REQUIRED**)  
-   --output-mat (-o): Path to output processed mutation-annotated tree file (**REQUIRED**)
-   --prune-samples (-p): File containing names of samples (one per line) to be pruned from the input MAT.
-   --prune-all-but-samples (-P): File containing names of samples (one per line) to be maintained (remaining are pruned) from the input MAT.
-   --threads (-T): Number of threads to use when possible. Default = use all available cores.  
-   --help (-h): Print help messages.
+- `--input-mat (-i): Input mutation-annotated tree file. (**REQUIRED**)`  
+- `--output-mat (-o): Path to output processed mutation-annotated tree file. (**REQUIRED**)`
+- `--prune-samples (-p): File containing names of samples (one per line) to be pruned from the input MAT.`
+- `--prune-all-but-samples (-P): File containing names of samples (one per line) to be maintained (remaining are pruned) from the input MAT.`
+- `--threads (-T): Number of threads to use when possible. Default = use all available cores.`  
+- `--help (-h): Print help messages.`

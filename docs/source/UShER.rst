@@ -230,19 +230,13 @@ Fasta2UShER takes a single MSA file or unaligned full SARS-CoV-2 genomic sequenc
 Options
 -------------
 
-`-inpath`: Path to directory containing ONLY multiple sequence alignment or unaligned files in fasta format (make sure no other files exist in this directory).
-
-`-output`: Output VCF file name
-
-`-reference`: Reference genome fasta file with identical reference header to that of the input MSA (if MSA is used as input)
-
-`-unaligned`: Specifies unaligned input files
-
-`-auto_mask`: Ignore problematic sites per masking recomendations
-
-`-user_specified_mask`: Path to VCF fle containing custom masking recomendations (please ensure VCF format is consistent with `this <https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf>`_)
-
-`-thread`: Number of threads to use for MSA (Default = 1)
+- `-inpath`: Path to directory containing ONLY multiple sequence alignment or unaligned files in fasta format (make sure no other files exist in this directory).
+- `-output`: Output VCF file name
+- `-reference`: Reference genome fasta file with identical reference header to that of the input MSA (if MSA is used as input)
+- `-unaligned`: Specifies unaligned input files
+- `-auto_mask`: Ignore problematic sites per masking recomendations
+- `-user_specified_mask`: Path to VCF fle containing custom masking recomendations (please ensure VCF format is consistent with `this <https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf>`_)
+- `-thread`: Number of threads to use for MSA (Default = 1)
 
 Usage
 -------------
