@@ -24,8 +24,9 @@ Then install using either **Docker**, **conda**, or one of the provided **instal
 Docker
 --------
 
-    `docker build --no-cache -t usher .`  
-    `docker run -t -i usher /bin/bash`
+.. code-block:: bash
+   $ docker build --no-cache -t usher .  
+   $ docker run -t -i usher /bin/bash
 
 
 or
@@ -263,6 +264,7 @@ Russ Corbett-Detig has created a module on UShER for the CDC:
     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
         <iframe src="https://www.youtube.com/embed/63jtbF2sZSY" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
     </div>
+
 
 --------------
 Publications
