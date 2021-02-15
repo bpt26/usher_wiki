@@ -24,31 +24,17 @@ Then install using either **Docker**, **conda**, or one of the provided **instal
 Docker
 --------
 
-:: code-block: bash
-   docker build --no-cache -t usher .  
-   docker run -t -i usher /bin/bash
-
+.. include:: docker.sh
 
 or
 
-:: code-block: bash
-    `docker pull yatisht/usher:latest`
-    `docker run -t -i yatisht/usher:latest /bin/bash`
+.. include:: docker2.sh
 
 
 conda
 -------
-    :literal:`conda env create -f environment.yml`  
-    :literal:`conda activate usher`  
-    :literal:`git clone https://github.com/oneapi-src/oneTBB`  
-    :literal:`cd oneTBB`  
-    :literal:`git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6`  
-    :literal:`cd ..`  
-    :literal:`mkdir build`  
-    :literal:`cd build`  
-    :literal:`cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..`  
-    :literal:`make -j`  
-    :literal:`cd ..`  
+
+.. include:: conda.sh
 
 
 
