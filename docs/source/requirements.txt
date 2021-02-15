@@ -1,4 +1,1 @@
-sphinx-autogen==3.5.1
-sphinx-apidoc==3.5.1
-sphinxcontrib-youtube==0.1.2
 sphinxcontrib-osexample==0.1.1
