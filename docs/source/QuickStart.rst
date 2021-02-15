@@ -22,7 +22,9 @@ Making the protobuf
 
 A major part of UShER's speed and memory-efficiency is its usage of .pb protobuf files to encode mutation annotated trees. To create the mutation annotated tree we'll need here, use the following command:
 
-`usher --tree pruned_10.nh --vcf pruned_10.vcf.gz --collapse-tree --save-mutation-annotated-tree pruned_10.pb`
+.. code-block:: shell-session
+
+  usher --tree pruned_10.nh --vcf pruned_10.vcf.gz --collapse-tree --save-mutation-annotated-tree pruned_10.pb
 
 This command will read in both the newick file and the .vcf and output a .pb file storing all mutations as well as the structure of the tree.
 
@@ -32,7 +34,9 @@ Placing samples
 
 Now, we want to place the samples from `missing_10.vcf.gz` onto our tree. We can do this by using the following command:
 
-`usher --vcf missing_10.vcf.gz --load-mutation-annotated-tree pruned_10.pb --write-uncondensed-final-tree`
+.. code-block:: shell-session
+
+  usher --vcf missing_10.vcf.gz --load-mutation-annotated-tree pruned_10.pb --write-uncondensed-final-tree
 
 This command will output three files:
 
@@ -49,7 +53,9 @@ TreeCmp
 
 To compare the final tree output by UShER to `full_tree.nh`, there are several options. We recommend downloading TreeCmp, which is `available to download here <https://github.com/TreeCmp/TreeCmp>`_. Upon installation, the following command:
 
-`java -jar treeCmp.jar -r final-tree.nh -d rf -i full_tree.nh -o results.txt`
+.. code-block:: shell-session
+
+  java -jar treeCmp.jar -r final-tree.nh -d rf -i full_tree.nh -o results.txt
 
 should show that the `Robinson-Foulds distance <https://en.wikipedia.org/wiki/Robinson%E2%80%93Foulds_metric>`_ between the two trees is 0.0, indicating that UShER placed each of the ten samples correctly.
 
@@ -64,9 +70,10 @@ We also described a method for measuring tree congruence involving comparing the
 
 To determine this statistic for our tree, the following commands will give our N1 results:
 
-`find_sister_clades --generations 1 final-tree.nh --samples missing_10.txt > final_tree_n1.txt`
+.. code-block:: shell-session
 
-`find_sister_clades --generations 1 full_tree.nh --samples missing_10.txt > full_tree_n1.txt`
+  find_sister_clades --generations 1 final-tree.nh --samples missing_10.txt > final_tree_n1.txt
+  find_sister_clades --generations 1 full_tree.nh --samples missing_10.txt > full_tree_n1.txt
 
 Then, upon comparing the clade sets for each sample, you would find that they are identical.
 

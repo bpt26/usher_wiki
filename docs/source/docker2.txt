@@ -1,2 +1,0 @@
-docker pull yatisht/usher:latest
-docker run -t -i yatisht/usher:latest /bin/bash
