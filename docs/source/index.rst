@@ -1,5 +1,4 @@
 .. toctree::
-   :glob:
    QuickStart.rst
    UShER.rst
    matUtils.rst
