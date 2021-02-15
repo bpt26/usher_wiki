@@ -4,6 +4,8 @@
    matUtils.rst
    Strain_Phylogenetics.rst
 
+   index
+
 
 .. include:: /Includes.rst.txt
 
