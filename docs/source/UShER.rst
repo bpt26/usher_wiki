@@ -24,17 +24,17 @@ Then install using either **Docker**, **conda**, or one of the provided **instal
 Docker
 --------
 
-.. include:: docker.sh
+.. include:: docker.txt
 
 or
 
-.. include:: docker2.sh
+.. include:: docker2.txt
 
 
 conda
 -------
 
-.. include:: conda.sh
+.. include:: conda.txt
 
 
 
