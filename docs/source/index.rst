@@ -1,11 +1,9 @@
 .. toctree::
+   :hidden:
    QuickStart.rst
    UShER.rst
    matUtils.rst
    Strain_Phylogenetics.rst
-
-   index
-
 
 .. include:: /Includes.rst.txt
 
