@@ -1,5 +1,4 @@
 .. toctree::
-   :hidden:
    QuickStart.rst
    UShER.rst
    matUtils.rst
