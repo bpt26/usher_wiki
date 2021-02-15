@@ -31,8 +31,12 @@ Docker
 or
 
 .. raw:: html
-   <pre><code>docker pull yatisht/usher:latest
-   docker run -t -i yatisht/usher:latest /bin/bash</code></pre>
+   <pre>
+   <code>
+   docker pull yatisht/usher:latest
+   docker run -t -i yatisht/usher:latest /bin/bash
+   </code>
+   </pre>
 
 conda
 -------
@@ -86,6 +90,23 @@ Methodology
 --------------
 
 Given existing samples, whose genotypes and phylogenetic tree is known, and the genotypes of new samples, UShER aims to incorporate new samples into the phylogenetic tree while preserving the topology of existing samples and maximizing parsimony. UShER’s algorithm consists of two phases: (i) the pre-processing phase and (ii) the placement phase.
+
+.. example-code::
+
+  .. code-block:: JSON
+
+    {
+      "key": "value"
+    }
+
+  .. code-block:: python
+
+    pygments_style = 'sphinx'
+
+
+  .. code-block:: ruby
+
+    print "Hello, World!\n"
 
 Pre-processing
 ------------------------
