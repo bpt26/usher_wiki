@@ -24,14 +24,14 @@ Then install using either **Docker**, **conda**, or one of the provided **instal
 Docker
 --------
 
-::
+:: code-block: bash
    docker build --no-cache -t usher .  
    docker run -t -i usher /bin/bash
 
 
 or
 
-
+:: code-block: bash
     `docker pull yatisht/usher:latest`
     `docker run -t -i yatisht/usher:latest /bin/bash`
 
