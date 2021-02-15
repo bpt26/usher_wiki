@@ -60,22 +60,20 @@ conda
 
 followed by, if on a MacOS system:
 
-.. example-code::
-  .. code-block:: shell-session
+.. code-block:: shell-session
 
-    rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .
-    chmod +x faToVcf
-    mv faToVcf scripts/ 
+  rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .
+  chmod +x faToVcf
+  mv faToVcf scripts/ 
 
 
 or if on a Linux system:
 
-.. example-code::
-  .. code-block:: shell-session
+.. code-block:: shell-session
 
-    rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf . 
-    chmod +x faToVcf
-    mv faToVcf scripts  
+  rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf . 
+  chmod +x faToVcf
+  mv faToVcf scripts  
 
 
 Installation scripts
