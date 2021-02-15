@@ -1,0 +1,2 @@
+docker build --no-cache -t usher .  
+docker run -t -i usher /bin/bash
