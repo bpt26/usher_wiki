@@ -16,8 +16,10 @@ Installation
 
 A pre-compiled binary is available for download `here <http://public.gi.ucsc.edu/~yatisht/data/binaries/usher>`_. Otherwise, to download and compile from source, first clone the GitHub repository:
 
-`git clone https://github.com/yatisht/usher.git`  
-`cd usher`  
+.. code-block:: shell-session
+
+   git clone https://github.com/yatisht/usher.git
+   cd usher
 
 Then install using either **Docker**, **conda**, or one of the provided **installation scripts**:
 
