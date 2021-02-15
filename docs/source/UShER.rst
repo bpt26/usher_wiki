@@ -41,33 +41,38 @@ or
 conda
 -------
 
-.. code-block:: shell-session
-   conda env create -f environment.yml
-   conda activate usher
-   git clone https://github.com/oneapi-src/oneTBB
-   cd oneTBB
-   git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6
-   cd ..
-   mkdir build
-   cd build
-   cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..
-   make -j
-   cd ..
+.. example-code::
+  .. code-block:: shell-session
+    conda env create -f environment.yml
+    conda activate usher
+    git clone https://github.com/oneapi-src/oneTBB
+    cd oneTBB
+    git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6
+    cd ..
+    mkdir build
+    cd build
+    cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..
+    make -j
+    cd ..
 
 
 
 followed by, if on a MacOS system:
 
-    `rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .`  
-    `chmod +x faToVcf`  
-    `mv faToVcf scripts/`  
+.. example-code::
+  .. code-block:: shell-session
+    rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .
+    chmod +x faToVcf
+    mv faToVcf scripts/ 
 
 
 or if on a Linux system:
 
-    `rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf .`  
-    `chmod +x faToVcf`  
-    `mv faToVcf scripts`  
+.. example-code::
+  .. code-block:: shell-session
+    rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf . 
+    chmod +x faToVcf
+    mv faToVcf scripts  
 
 
 Installation scripts
