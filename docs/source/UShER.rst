@@ -24,19 +24,19 @@ Then install using either **Docker**, **conda**, or one of the provided **instal
 Docker
 --------
 
-.. raw:: html
-   <code>docker build --no-cache -t usher .</code><br>
-   <code>docker run -t -i usher /bin/bash</code><br>
+.. example-code::
+  .. code-block:: shell-session
+
+   docker build --no-cache -t usher .
+   docker run -t -i usher /bin/bash
 
 or
 
-.. raw:: html
-   <pre>
-   <code>
+.. example-code::
+  .. code-block:: shell-session
+
    docker pull yatisht/usher:latest
    docker run -t -i yatisht/usher:latest /bin/bash
-   </code>
-   </pre>
 
 conda
 -------
@@ -72,7 +72,7 @@ or if on a Linux system:
 
 .. example-code::
   .. code-block:: shell-session
-  
+
     rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf . 
     chmod +x faToVcf
     mv faToVcf scripts  
