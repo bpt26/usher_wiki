@@ -30,10 +30,9 @@ Docker
 
 or
 
-```
-docker pull yatisht/usher:latest
-docker run -t -i yatisht/usher:latest /bin/bash
-```
+.. raw:: html
+   <pre><code>docker pull yatisht/usher:latest
+   docker run -t -i yatisht/usher:latest /bin/bash</code></pre>
 
 conda
 -------
