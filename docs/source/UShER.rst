@@ -258,8 +258,11 @@ Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meet
 
 Russ Corbett-Detig has created a module on UShER for the CDC:
 
+.. raw:: html
 
-.. youtube:: 63jtbF2sZSY
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://www.youtube.com/embed/63jtbF2sZSY" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
 
 --------------
 Publications
