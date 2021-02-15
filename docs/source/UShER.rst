@@ -25,8 +25,8 @@ Docker
 --------
 
 .. code-block:: bash
-   $ docker build --no-cache -t usher .  
-   $ docker run -t -i usher /bin/bash
+   docker build --no-cache -t usher .  
+   docker run -t -i usher /bin/bash
 
 
 or
