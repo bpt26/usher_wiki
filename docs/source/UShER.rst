@@ -24,10 +24,9 @@ Then install using either **Docker**, **conda**, or one of the provided **instal
 Docker
 --------
 
-```
-   docker build --no-cache -t usher .  
-   docker run -t -i usher /bin/bash
-```
+.. raw:: html
+   <code>docker build --no-cache -t usher .</code><br>
+   <code>docker run -t -i usher /bin/bash</code><br>
 
 or
 
