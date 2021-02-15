@@ -24,11 +24,15 @@ Then install using either **Docker**, **conda**, or one of the provided **instal
 Docker
 --------
 
-.. include:: docker.txt
+.. highlight:: python
+   docker build --no-cache -t usher .  
+   docker run -t -i usher /bin/bash
 
 or
 
-.. include:: docker2.txt
+.. highlight:: python
+   docker pull yatisht/usher:latest
+   docker run -t -i yatisht/usher:latest /bin/bash
 
 
 conda
