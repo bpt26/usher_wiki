@@ -13,7 +13,6 @@ UShER Wiki
 Welcome to the manual for UShER, MAT Utils, and other related SARS-CoV-2 Phylogenetics tools. `Click here <https://usher-wiki.readthedocs.io/en/latest/QuickStart.html>`_ for a quick tutorial on getting started.
 
 
-
 .. _UShER:
 
 
@@ -27,7 +26,6 @@ UShER
 UShER is a program for rapid, accurate placement of samples to existing phylogenies. Information on installation, usage, and features `can be found here <https://usher-wiki.readthedocs.io/en/latest/UShER.html>`_. Our `manuscript about UShER can be found here <https://www.biorxiv.org/content/10.1101/2020.09.26.314971v1.abstract>`_.
 
 
-
 .. _matUtils:
 
 
@@ -37,6 +35,7 @@ matUtils
 matUtils is a set of tools to be used for analyses relating to **m**\ utation\  **a**\ nnotated\  **t**\ rees, such as the protobuf (.pb) files used in UShER. `Information on its usage can be found here <https://usher-wiki.readthedocs.io/en/latest/matUtils.html>`_.
 
 
+X
 
 .. _Strain_Phylogenetics:
 
