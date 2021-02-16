@@ -1,10 +1,10 @@
+.. include:: /Includes.rst.txt
+
 .. toctree::
    QuickStart.rst
    UShER.rst
    matUtils.rst
    Strain_Phylogenetics.rst
-
-.. include:: /Includes.rst.txt
 
 ***************
 UShER Wiki
