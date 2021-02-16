@@ -294,8 +294,6 @@ Fasta2UShER outputs a merged VCF with missing data for a particular sample denot
 Presentations
 --------------
 
-Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. `You can find his slides here <https://usher-wiki.readthedocs.io/en/latest/covid-meet.html>`_.
-
 Russ Corbett-Detig has created a module on UShER for the CDC:
 
 .. raw:: html
@@ -303,6 +301,11 @@ Russ Corbett-Detig has created a module on UShER for the CDC:
     <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
         <iframe src="https://www.youtube.com/embed/7EwVmdtqI1E" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
     </div>
+    <br>
+
+Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. `You can find his slides here <https://usher-wiki.readthedocs.io/en/latest/covid-meet.html>`_.
+
+
 
 
 --------------
