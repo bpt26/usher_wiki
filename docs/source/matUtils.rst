@@ -16,7 +16,7 @@ Options
 
 .. code-block:: shell-session
 
-  --input-mat (-i): Input mutation-annotated tree file. (**REQUIRED**)
+  --input-mat (-i): Input mutation-annotated tree file. (REQUIRED)
   --output-mat (-o): Path to output processed mutation-annotated tree file (REQUIRED)
   --lineage-names (-l): Path to a file containing lineage asssignments of samples. Use to locate and annotate clade root nodes.
   --allele-frequency (-f): Minimum allele frequency in input samples for finding the best clade root. Used only with -l. Default = 0.800000012.

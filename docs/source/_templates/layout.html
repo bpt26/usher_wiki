@@ -1,5 +1,6 @@
-{% extends "!layout.html" %}
+<div class="sidebar">
   {% block sidebartoc %}
     <h3>{{ _('Table Of Contents') }}</h3>
-    {{ toctree() }}
+    {{ toctree(includehidden=True) }}
   {% endblock %}
+</div>
