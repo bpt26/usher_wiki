@@ -1,17 +1,19 @@
 .. include:: /Includes.rst.txt
 
-.. toctree::
-   QuickStart.rst
-   UShER.rst
-   matUtils.rst
-   Strain_Phylogenetics.rst
+
 
 ***************
 UShER Wiki
 ***************
 
-Welcome to the manual for UShER, MAT Utils, and other related SARS-CoV-2 Phylogenetics tools. `Click here <https://usher-wiki.readthedocs.io/en/latest/QuickStart.html>`_ for a quick tutorial on getting started.
+Welcome to the manual for UShER, matUtils, strain_phylogenetics, and other related SARS-CoV-2 Phylogenetics tools. Please see the table of contents below or on the sidebar, or `click here <https://usher-wiki.readthedocs.io/en/latest/QuickStart.html>`_ for a quick tutorial on getting started.
 
+.. toctree::
+   :caption: Table of Contents
+   QuickStart.rst
+   UShER.rst
+   matUtils.rst
+   Strain_Phylogenetics.rst
 
 .. _UShER:
 
@@ -34,8 +36,6 @@ matUtils
 
 matUtils is a set of tools to be used for analyses relating to **m**\ utation\  **a**\ nnotated\  **t**\ rees, such as the protobuf (.pb) files used in UShER. `Information on its usage can be found here <https://usher-wiki.readthedocs.io/en/latest/matUtils.html>`_.
 
-
-X
 
 .. _Strain_Phylogenetics:
 
