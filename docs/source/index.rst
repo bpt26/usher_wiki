@@ -1,5 +1,9 @@
 .. include:: /Includes.rst.txt
 
+***************
+UShER Wiki
+***************
+
 .. toctree::
    QuickStart.rst
    UShER.rst
