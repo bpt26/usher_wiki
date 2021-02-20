@@ -301,8 +301,10 @@ Options
   -reference: Reference genome fasta file with identical reference header to that of the input MSA (if MSA is used as input)
   -unaligned: Specifies unaligned input files
   -auto_mask: Ignore problematic sites per masking recomendations
-  -user_specified_mask: Path to VCF fle containing custom masking recomendations (please ensure VCF format is consistent with `this <https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf>`_)
+  -user_specified_mask: Path to VCF fle containing custom masking recomendations  
   -thread: Number of threads to use for MSA (Default = 1)
+
+If you choose to provide a VCF file via the `-user_specified_mask` option, please ensure that the VCF format is consistent with `this file <https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf>`_).
 
 Usage
 -------------

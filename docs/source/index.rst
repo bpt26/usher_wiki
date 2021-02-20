@@ -5,6 +5,7 @@ UShER Wiki
 Welcome to the manual for UShER, matUtils, strain_phylogenetics, and other related SARS-CoV-2 Phylogenetics tools. Please see the table of contents below or on the sidebar, or `click here <https://usher-wiki.readthedocs.io/en/latest/QuickStart.html>`_ for a quick tutorial on getting started.
 
 .. toctree::
+   :maxdepth: 3
    QuickStart.rst
    UShER.rst
    matUtils.rst
