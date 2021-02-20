@@ -10,7 +10,6 @@ matUtils is a suite of tools used to analyze, edit, and manipulate mutation anno
 annotate
 -----------
 
-
 Options
 -----------
 
@@ -73,5 +72,21 @@ Options
   --output-mat (-o): Path to output processed mutation-annotated tree file. (REQUIRED)
   --prune-samples (-p): File containing names of samples (one per line) to be pruned from the input MAT.
   --prune-all-but-samples (-P): File containing names of samples (one per line) to be maintained (remaining are pruned) from the input MAT.
+  --threads (-T): Number of threads to use when possible. Default = use all available cores.
+  --help (-h): Print help messages.
+
+-----------
+describe
+-----------
+
+`matUtils describe` takes a mutation annotated tree object and a list of samples of interest as inputs, and outputs the mutation paths for those samples.
+
+Options
+-----------
+
+.. code-block:: shell-session
+
+  --input-mat (-i): Input mutation-annotated tree file. (REQUIRED)  
+  --mutation-paths (-m): File containing sample names for which mutation paths should be displayed. (REQUIRED])  
   --threads (-T): Number of threads to use when possible. Default = use all available cores.
   --help (-h): Print help messages.

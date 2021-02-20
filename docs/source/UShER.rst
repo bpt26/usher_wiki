@@ -191,6 +191,30 @@ Finally, the new mutation-annotated tree object can be stored again using `--sav
   ./build/usher -i global_assignments.pb -v test/new_samples.vcf -u -o new_global_assignments.pb -d output/
 
 --------------
+Options
+--------------
+
+.. code-block:: shell-session
+
+  --vcf (-v): Input VCF file (in uncompressed or gzip-compressed .gz format). (REQUIRED)  
+  --tree (-t): Input tree file.  
+  --outdir (-d):  Output directory to dump output and log files.  
+  --load-mutation-annotated-tree (-i): Load mutation-annotated tree object.  
+  --save-mutation-annotated-tree (-o): Save output mutation-annotated tree to the specified filename.  
+  --sort-before-placement-1 (-s): Sort new samples based on computed parsimony score and then number of optimal placements before the actual placement (EXPERIMENTAL).  
+  --sort-before-placement-2 (-S): Sort new samples based on the number of optimal placements and then the parsimony score before the actual placement (EXPERIMENTAL). 
+  --reverse-sort (-r): Reverse the sorting order of sorting options (sort-before-placement-1 or sort-before-placement-2). (EXPERIMENTAL)  
+  --collapse-tree (-c): Collapse internal nodes of the input tree with no mutations and condense identical sequences in polytomies into a single node and the save the tree to file condensed-tree.nh in outdir.  
+  --max-uncertainty-per-sample (-e): Maximum number of equally parsimonious placements allowed per sample beyond which the sample is ignored. Default = 1000000.  
+  --write-uncondensed-final-tree (-u): Write the final tree in uncondensed format and save to file uncondensed-final-tree.nh in outdir.  
+  --write-subtrees-size (-k): Write minimum set of subtrees covering the newly added samples of size equal to or larger than this value. Default = 0.  
+  --write-parsimony-scores-per-node (-p): Write the parsimony scores for adding new samples at each existing node in the tree without modifying the tree in a file names parsimony-scores.tsv in outdir.  
+  --multiple-placements (-M): Create a new tree up to this limit for each possibility of parsimony-optimal placement. Default = 1.
+  --retain-input-branch-lengths (-l): Retain the branch lengths from the input tree in out newick files instead of using number of mutations for the branch lengths.  
+  --threads (-T): Number of threads to use when possible. Default = use all available cores.
+  --help (-h): Print help messages.  
+
+--------------
 Features
 --------------
 
@@ -203,7 +227,7 @@ UShER also allows quantifying the uncertainty in placing new samples by reportin
 
 .. code-block:: shell-session
 
-  ./build/usher -i global_assignments.pb -v test/new_samples.vcf -p -d output/
+  ./build/usher -i global_assignments.pb -v test/new_samples.vcf -p -d output/ 
 
 The above command writes a file `parsimony-scores.tsv` containing branch parsimony scores to the output directory. Note that because the above command does not perform the sequential placement on the tree, the number of parsimony-optimal placements reported for the second and later samples could differ from those reported with actual placements.
 
@@ -241,10 +265,12 @@ Finding sister clades
 
 To determine the accuracy of each sample placement, one might be interested in knowing all of the sister clades of that sample on the final tree. `We provide a utility for this calculation here <http://public.gi.ucsc.edu/~yatisht/data/binaries/find_sister_clades>`_. `find_sister_clades` takes the following options:
 
-- `--tree: Input tree file`
-- `--samples: File containing missing samples`
-- `--generations: Number of generations`
-- `--help: Print help messages`
+.. code-block:: shell-session
+
+  --tree: Input tree file.  
+  --samples: File containing missing samples.  
+  --generations: Number of generations.  
+  --help: Print help messages.  
 
 An example usage of this function is given below:
 
@@ -258,7 +284,7 @@ The samples file should have the name of each sample of interest exactly as it a
 Fasta2UShER
 --------------
 
-We also provide a tool, Fasta2UShER.py, that converts SARS-CoV-2 genomic data in fasta format into a merged VCF viable for input to UShER. Fasta2UShER.py can take a multiple sequence alignment (MSA) file as input (including standard MSA output from the `SARS-CoV-2 ARTIC Network protocol <https://artic.network/ncov-2019>`_). Fasta2UShER.py also possesses an input option for unalifgned SARS-CoV-2 data. In this case Fasta2UShER.py employs multiple alignment using Fast Fourier Transform (`MAFFT <https://mafft.cbrc.jp/alignment/software/>`_)) to construct an alignment for each user specified sequence with the SARS-CoV-2 reference. In addition, Fasta2UShER.py considers missing data and can automatically filter variants at `problematic sites <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/12>`_ (see also this `pre-print <https://www.biorxiv.org/content/biorxiv/early/2020/06/09/2020.06.08.141127.full.pdf>`_). Fasta2UShER no longer supports multiple msa files as input. If you possess multiple independently generated msa's, please remove gaps and use the unaligned input option.
+We also provide a tool, Fasta2UShER.py, that converts SARS-CoV-2 genomic data in fasta format into a merged VCF viable for input to UShER. Fasta2UShER.py can take a multiple sequence alignment (MSA) file as input (including standard MSA output from the `SARS-CoV-2 ARTIC Network protocol <https://artic.network/ncov-2019>`_). Fasta2UShER.py also possesses an input option for unalifgned SARS-CoV-2 data. In this case Fasta2UShER.py employs multiple alignment using Fast Fourier Transform (`MAFFT <https://mafft.cbrc.jp/alignment/software/>`_)) to construct an alignment for each user specified sequence with the SARS-CoV-2 reference. In addition, Fasta2UShER.py considers missing data and can automatically filter variants at `problematic sites <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/12>`_ (see also this `pre-print <https://www.biorxiv.org/content/biorxiv/early/2020/06/09/2020.06.08.141127.full.pdf>`_). Fasta2UShER no longer supports multiple msa files as input. If you possess multiple independently generated MSAs, please remove gaps and use the unaligned input option.
 
 Input
 -------------
@@ -268,13 +294,15 @@ Fasta2UShER takes a single MSA file or unaligned full SARS-CoV-2 genomic sequenc
 Options
 -------------
 
-- `-inpath`: Path to directory containing ONLY multiple sequence alignment or unaligned files in fasta format (make sure no other files exist in this directory).
-- `-output`: Output VCF file name
-- `-reference`: Reference genome fasta file with identical reference header to that of the input MSA (if MSA is used as input)
-- `-unaligned`: Specifies unaligned input files
-- `-auto_mask`: Ignore problematic sites per masking recomendations
-- `-user_specified_mask`: Path to VCF fle containing custom masking recomendations (please ensure VCF format is consistent with `this <https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf>`_)
-- `-thread`: Number of threads to use for MSA (Default = 1)
+.. code-block:: shell-session
+
+  -inpath: Path to directory containing ONLY multiple sequence alignment or unaligned files in fasta format (make sure no other files exist in this directory).
+  -output: Output VCF file name
+  -reference: Reference genome fasta file with identical reference header to that of the input MSA (if MSA is used as input)
+  -unaligned: Specifies unaligned input files
+  -auto_mask: Ignore problematic sites per masking recomendations
+  -user_specified_mask: Path to VCF fle containing custom masking recomendations (please ensure VCF format is consistent with `this <https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf>`_)
+  -thread: Number of threads to use for MSA (Default = 1)
 
 Usage
 -------------
@@ -304,8 +332,6 @@ Russ Corbett-Detig has created a module on UShER for the CDC:
     <br>
 
 Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. `You can find his slides here <https://usher-wiki.readthedocs.io/en/latest/covid-meet.html>`_.
-
-
 
 
 --------------

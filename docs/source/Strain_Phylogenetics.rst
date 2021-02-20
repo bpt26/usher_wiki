@@ -28,6 +28,18 @@ Below is a GIF of approximately 20 frames showing various operations of the tree
     :width: 700px
     :align: center
 
+Options
+------------
+
+.. code-block:: shell-session
+
+  --T1: Input tree 1 (in Newick format).  
+  --T2: Input tree 2 (in Newick format).  
+  --T1_out: Output tree 1 (in Newick format).  
+  --T2_out: Output tree 2 (in Newick format).  
+  --max_iter: Maximum number of iterations. Default = 100  
+  --help: Print help messages. 
+
 ----------
 TreeMerge
 ----------
@@ -42,8 +54,48 @@ The above command produces a merged tree (`symm-merged-tree_1-tree_2.nh`) from t
     :width: 700px
     :align: center
 
+
+Options
+------------
+
+.. code-block:: shell-session
+
+  -T1: tree 1 (in Newick format). (REQUIRED)  
+  -T2: tree 2 (in Newick format). (REQUIRED)  
+  -T-out: output tree filename (in Newick format). (REQUIRED) 
+  -intersectOnly: output intersection (instead of a maximal merge) of T1 and T2.  
+  -symmetric: output symmetric merge of T1 and T2.  
+  --help (-h): Print help messages.  
+
+-----------------------------------
+Find parsimonious assignments
+-----------------------------------
+
+.. code-block:: shell-session
+
+  ./build/find_parsimonious_assignments --tree tree/pruned-sumtree-for-cog.nh --vcf vcf/tree_1.vcf > tree_1_PARSIMONY.txt
+
+The above command reads the tree topology of the input Newick file and assigns an internal numeric label for each internal node (ignoring the internal labels and branch lengths if already provided by the input Newick). The first two lines of the output file print the input tree with internal nodes labelled in Newick format. The output is too large to display, so we view the first 1000 characters using the command below.
+
+.. code-block:: shell-session
+
+  head -c 1000 tree_1_PARSIMONY.txt  
+
+For each variant/site in the VCF file, the output file then displays the allele frequency for each alternate variant, its total parsimony score, the list of nodes (comma-separated, if its length is <=4) for which the branches leading to it have acquired a mutation (forward [F] or backward [B], the sizes of the clades affected by those mutations and a list of flagged leaves which are affected by a mutation affecting 3 or fewer leaves.
+
+Options
+------------
+
+.. code-block:: shell-session
+
+  --tree: Input tree file.
+  --vcf: Input VCF file (in uncompressed or gzip-compressed format).
+  --threads: Number of threads. Default = 40
+  --print-vcf: Print VCF with variants resolved instead of printing a parsimony file.  
+  --help: Print help messages.  
+
 ----------------------------------------
-Identify and plot extremal sites
+Identify extremal sites
 ----------------------------------------
 
 .. code-block:: shell-session
@@ -57,6 +109,20 @@ The above command can be used for identifying and flagging extremal sites i.e. s
   python3 scripts/identify_extremal_sites.py -in tree_1_PARSIMONY.txt -ignoreCtoT=1 -ignoreGtoT=1
 
 The above command identifies three extremal sites (T13402G, A3778G, G24390C) with a phylogenetic instability value of 2.32. To create a figure requires `installing R <https://docs.rstudio.com/resources/install-r/>`_ and the `plyr package <https://www.rdocumentation.org/packages/plyr>`_.
+
+Options
+------------
+
+.. code-block:: shell-session
+
+  -in: Input parsimony file.  
+  -ignoreCtoT: Set to 1 to ignore C>T sites (default=0)  
+  -ignoreGtoT: Set to 1 to ignore G>T sites (default=0) 
+  --help (-h): Print help messages.  
+
+----------------------------------------
+Plot extremal sites
+----------------------------------------
 
 .. code-block:: shell-session
 
