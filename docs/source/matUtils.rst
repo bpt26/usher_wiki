@@ -10,6 +10,8 @@ matUtils is a suite of tools used to analyze, edit, and manipulate mutation anno
 annotate
 -----------
 
+`matUtils annotate` is used to add metadata, and to calculate and store uncertainty metrics.
+
 Options
 -----------
 
@@ -17,7 +19,7 @@ Options
 
   --input-mat (-i): Input mutation-annotated tree file. (REQUIRED)
   --output-mat (-o): Path to output processed mutation-annotated tree file (REQUIRED)
-  --lineage-names (-l): Path to a file containing lineage asssignments of samples. Use to locate and annotate clade root nodes.
+  --clade-names (-c): Path to a file containing clade asssignments of samples. Use to locate and annotate clade root nodes. 
   --allele-frequency (-f): Minimum allele frequency in input samples for finding the best clade root. Used only with -l. Default = 0.800000012.
   --set-overlap (-s): Minimum fraction of the lineage samples that should be desecendants of the assigned clade root. Defualt = 0.600000024.
   --threads (-T): Number of threads to use when possible. Default = use all available cores.
@@ -27,6 +29,8 @@ Options
 filter
 ----------
 
+`matUtils filter` is used to mask or strip high-uncertainty samples from a .pb file.
+
 Options
 -----------
 
@@ -34,7 +38,7 @@ Options
 
   --input-mat (-i): Input mutation-annotated tree file. (REQUIRED) 
   --output-mat (-o): Path to output processed mutation-annotated tree file (REQUIRED)
-  --restricted-samples (-s): Sample names to restrict. Use to perform masking.
+  --restricted-samples (-s): Sample names to restrict. Use to perform masking. 
   --threads (-T): Number of threads to use when possible. Default = use all available cores.
   --help (-h): Print help messages.
 
