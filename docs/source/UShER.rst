@@ -280,6 +280,12 @@ An example usage of this function is given below:
 
 The samples file should have the name of each sample of interest exactly as it appears in the input tree file. The output file will contain the name of each sample with a `:`, followed by each sister sample at the input generation, separated by a new-line character. Lists of sister clades for each sample are separated by two new-lines characters.
 
+We also described a method for measuring tree congruence involving comparing the sister clades at several generations, and finding the minimum combined number of generations at which a given sample has the same sister clades in two trees. For clarity, we provide the figure below:
+
+.. image:: nstat.png
+    :width: 550px
+    :align: center
+
 --------------
 Fasta2UShER
 --------------
