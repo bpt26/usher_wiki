@@ -24,7 +24,7 @@ extract
 
 `matUtils extract` is used for tasks related to selection from and conversion of mutation annotated tree (.pb) files to other formats. 
 Subtrees can be queried in a number of ways, including by sample certainty or clade membership. Output formats include newick and VCF.
-A detailed explanation and examples usage can be found here INSERT LINK TO MATUTILS EXTRACT TUTORIAL.
+A detailed explanation and examples usage can be found :ref:`here <extract>`.
 
 Example Usage
 ----------
@@ -113,7 +113,7 @@ annotate
 `matUtils annotate` is used to add clade assignment metadata. 
 Generally this will use a simple algorithm to identify the clade root node when given a 
 text file of samples associated with that clade. The input file is expected to be a two column tsv of sample and clade assignment.
-A more detailed explanation and tutorial can be found at INSERT LINK HERE.
+A more detailed explanation and tutorial can be found :ref:`here <annotate>`.
 
 Example Usage
 -----------
@@ -141,7 +141,7 @@ uncertainty
 -----------
 
 `matUtils uncertainty` is used to calculate sample placement and tree quality metrics. 
-Detailed explanations of these metrics and usage tutorial can be found here INSERT LINK HERE.
+Detailed explanations of these metrics and usage tutorial can be found :ref:`here <uncertainty>`.
 
 Example Usage
 -----------
