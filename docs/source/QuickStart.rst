@@ -14,8 +14,8 @@ Files you will need
 ------------------------
 
 * `global_phylo.nh <https://github.com/yatisht/usher/tree/master/test/global_phylo.nh>`_ (newick file containing the initial phylogeny)
-* `global_samples.vcf <https://github.com/yatisht/usher/tree/master/test/global_samples.vcf>`_ (.vcf.gz file informing the initial phylogeny)
-* `new_samples.vcf <https://github.com/yatisht/usher/blob/master/test/new_samples.vcf>`_ (.vcf.gz file containing samples to be placed)
+* `global_samples.vcf <https://github.com/yatisht/usher/tree/master/test/global_samples.vcf>`_ (.vcf file informing the initial phylogeny)
+* `new_samples.vcf <https://github.com/yatisht/usher/blob/master/test/new_samples.vcf>`_ (.vcf file containing samples to be placed)
 
 ------------------------
 Making the protobuf

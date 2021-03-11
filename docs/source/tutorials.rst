@@ -1,15 +1,15 @@
 .. include:: includes.rst.txt
 
-***************
+*********************************************
 Explanations and Tutorials
-***************
+*********************************************
 
 This document contains detailed explanations and example workflows for Usher and matUtils.
 
 .. _extract:
------------
+--------------------------------------------
 matUtils extract Explanation
------------
+--------------------------------------------
 
 `matUtils extract` serves as a flexible prebuilt pipeline, which can quickly subset and convert an input MAT .pb file. 
 Generally, its parameters can be grouped into four categories: 
@@ -37,9 +37,9 @@ Rr as complex as multiple levels of selection of samples and writing of multiple
 `matUtils extract` is the workhorse function for manipulating MAT .pb files, particularly for any operations involving removing part of the .pb and converting .pb to other file formats.
 
 .. _annotate:
------------
+---------------------------------
 matUtils annotate Explanation
------------
+---------------------------------
 
 `matUtils annotate` is a function for adding clade annotation information to the pb. This information can be accessed downstream by `matUtils extract` or other tools.
 
@@ -60,9 +60,9 @@ The other option is simpler and more direct. Internal node identifiers can be pa
     Internal node names are not maintained when saving and loading from a .pb file. It is not guaranteed that internal node names will correspond directly between two .pb files, so use the latter method with caution.
 
 .. _uncertainty:
------------
+--------------------------------------------
 matUtils uncertainty Explanation
------------
+--------------------------------------------
 
 `matUtils uncertainty` calculates two specific metrics for sample placement certainty. These metrics can be very important to support contact tracing and reliable identification
 of the origin of a newly placed sample.

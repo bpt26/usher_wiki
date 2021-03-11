@@ -6,9 +6,9 @@ matUtils
 
 matUtils is a suite of tools used to analyze, edit, and manipulate mutation annotated tree (.pb) files. 
 
------------
+----------------------
 Common Options
------------
+----------------------
 
 All matUtils subcommands include these parameters.
 
@@ -27,7 +27,7 @@ Subtrees can be queried in a number of ways, including by sample certainty or cl
 A detailed explanation and examples usage can be found :ref:`here <extract>`.
 
 Example Usage
-----------
+---------------------
 
 Write a vcf representing all samples within a clade.
 
@@ -48,7 +48,7 @@ Remove samples with a parsimony score greater than five and save a new pb withou
   ./matUtils extract -i input.pb -a 5 -o filtered.pb
 
 Specific Options
------------
+----------------------
 
 .. code-block:: shell-session
 
@@ -80,7 +80,7 @@ If no specific arguments are set, prints the number of nodes, number of samples,
 and total tree parsimony of the input mat to standard output.
 
 Example Usage
------------
+----------------------
 
 Get a tsv containing all sample names and parsimony scores.
 
@@ -95,7 +95,7 @@ Write all possible summary output files to a specific directory.
   ./matUtils summary -i input.pb -A -d input_summary/
 
 Specific Options
------------
+----------------------
 
 .. code-block:: shell-session
 
@@ -116,7 +116,7 @@ text file of samples associated with that clade. The input file is expected to b
 A more detailed explanation and tutorial can be found :ref:`here <annotate>`.
 
 Example Usage
------------
+----------------------
 
 Assign a new set of custom clade annotations to the tree.
 
@@ -136,15 +136,15 @@ Options
   --set-overlap (-s): Minimum fraction of the lineage samples that should be desecendants of the assigned clade root. Defualt = 0.6.
   --clear-current (-l): Use to remove current annotations before applying new annotations.
 
------------
+----------------------
 uncertainty
------------
+----------------------
 
 `matUtils uncertainty` is used to calculate sample placement and tree quality metrics. 
 Detailed explanations of these metrics and usage tutorial can be found :ref:`here <uncertainty>`.
 
 Example Usage
------------
+----------------------
 
 Calculate uncertainty metrics for a specific set of samples.
 
@@ -162,14 +162,14 @@ Options
   --find-epps (-e): Writes an Auspice-compatible two-column tsv of the number of equally parsimonious placements for each sample to the target file. 
   --find-neighborhood (-n): Writes an Auspice-compatible two-column tsv of the neighborhood size scores to the target file.
 
------------
+----------------------
 mask [EXPERIMENTAL]
------------
+----------------------
 
 `matUtils mask` is used to mask specific samples out of the pb, removing their mutations from visibility.
 
 Example Usage
------------
+----------------------
 
 Mask out a specific set of samples.
 
