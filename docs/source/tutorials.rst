@@ -28,7 +28,7 @@ These commands can be freely mixed and matched, allowing us to perform operation
 
   ./matUtils extract -i input.pb -v output.vcf
 
-Rr as complex as multiple levels of selection of samples and writing of multiple output files by using parameters from all four categories.
+Or as complex as multiple levels of selection of samples and writing of multiple output files by using parameters from all four categories.
 
 .. code-block:: shell-session
 
@@ -148,7 +148,7 @@ The newick attribute is simply the newick string representing the tree, as store
 
 .. code-block:: python
 
-    print(my_mat.newick.count(":")
+    print(my_mat.newick.count(":"))
     print(my_mat.newick[:100])
 
 The metadata attribute is a list of metadata message objects, which each have a single attribute which is a list of strings.
