@@ -26,7 +26,28 @@ extract
 Subtrees can be queried in a number of ways, including by sample certainty or clade membership. Output formats include newick and VCF.
 A detailed explanation and examples usage can be found here INSERT LINK TO MATUTILS EXTRACT TUTORIAL.
 
-Options
+Example Usage
+----------
+
+Write a vcf representing all samples within a clade.
+
+.. code-block:: shell-session
+
+  ./matUtils extract -i input.pb -c my_clade -v my_clade.vcf
+
+Write a newick tree of all samples which contain either of two mutations of interest.
+
+.. code-block:: shell-session
+
+  ./matUtils extract -i input.pb -m my_mutation,my_other_mutation -t my_mutations.txt
+
+Remove samples with a parsimony score greater than five and save a new pb without these samples.
+
+.. code-block:: shell-session
+
+  ./matUtils extract -i input.pb -a 5 -o filtered.pb
+
+Specific Options
 -----------
 
 .. code-block:: shell-session
@@ -58,7 +79,22 @@ summary
 If no specific arguments are set, prints the number of nodes, number of samples, number of condensed nodes, 
 and total tree parsimony of the input mat to standard output.
 
-Options
+Example Usage
+-----------
+
+Get a tsv containing all sample names and parsimony scores.
+
+.. code-block:: shell-session
+
+  ./matUtils summary -i input.pb --samples all_samples.text
+
+Write all possible summary output files to a specific directory.
+
+.. code-block:: shell-session
+
+  ./matUtils summary -i input.pb -A -d input_summary/
+
+Specific Options
 -----------
 
 .. code-block:: shell-session
@@ -74,7 +110,19 @@ Options
 annotate
 -----------
 
-`matUtils annotate` is used to add clade assignment metadata.
+`matUtils annotate` is used to add clade assignment metadata. 
+Generally this will use a simple algorithm to identify the clade root node when given a 
+text file of samples associated with that clade. The input file is expected to be a two column tsv of sample and clade assignment.
+A more detailed explanation and tutorial can be found at INSERT LINK HERE.
+
+Example Usage
+-----------
+
+Assign a new set of custom clade annotations to the tree.
+
+.. code-block:: shell-session
+
+  ./matUtils annotate -i input.pb -c my_clade_info.txt -o annotated.pb
 
 Options
 -----------
@@ -95,6 +143,15 @@ uncertainty
 `matUtils uncertainty` is used to calculate sample placement and tree quality metrics. 
 Detailed explanations of these metrics and usage tutorial can be found here INSERT LINK HERE.
 
+Example Usage
+-----------
+
+Calculate uncertainty metrics for a specific set of samples.
+
+.. code-block:: shell-session
+
+  ./matUtils uncertainty -i input.pb -s my_samples.txt -e my_epps.tsv -n my_neighborhood.tsv
+
 Options
 -----------
 
@@ -109,7 +166,16 @@ Options
 mask [EXPERIMENTAL]
 -----------
 
-`matUtils mask` is used to mask specific samples out of the pb.
+`matUtils mask` is used to mask specific samples out of the pb, removing their mutations from visibility.
+
+Example Usage
+-----------
+
+Mask out a specific set of samples.
+
+.. code-block:: shell-session
+
+  ./matUtils -i input.pb -s private_samples.txt -o masked.pb 
 
 Options
 -----------
