@@ -8,6 +8,7 @@ Welcome to the manual for UShER, matUtils, strain_phylogenetics, and other relat
    QuickStart.rst
    UShER.rst
    matUtils.rst
+   tutorials.rst
    Strain_Phylogenetics.rst
 
 .. _UShER:
