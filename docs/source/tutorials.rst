@@ -57,9 +57,9 @@ This does not guarantee that every sample that is member in the clade in the inp
 The other option is simpler and more direct. Internal node identifiers can be passed directly through a two-column tsv and those nodes will be assigned as clade roots. 
 
 .. warning::
-    Internal node names are not maintained when saving and loading from a .pb file. It is not guaranteed that internal node names will correspond directly between two .pb files, so use the latter method with caution.
+    Internal node names are not maintained when saving and loading from a .pb file. It is not guaranteed that internal node names will correspond directly between two .pb files, so use the direct assignment method with caution.
 
-An example matUtils annotate workflow is included in the :ref:`Usher Quickstart <matUtils-quickstart>`
+An example matUtils annotate workflow is included in the :ref:`Usher Quickstart <matutils-quickstart>`.
 
 .. _uncertainty:
 --------------------------------------------
@@ -97,7 +97,7 @@ on this can be found `here <https://docs.nextstrain.org/projects/auspice/en/late
 Example Workflow
 ----------
 
-In this example we will calculate uncertainty metrics for samples belonging to clade A.2.4 and visualize them on `auspice <auspice.us>`_.
+In this example we will calculate uncertainty metrics for samples belonging to clade A.2.4 and visualize them on `auspice <https://auspice.us/>`_.
 
 Download the example protobuf file `public-2021-03-02.all.masked.nextclade.pangolin.pb <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/public-2021-03-02.all.masked.nextclade.pangolin.pb>`_ (protobuf file containing the mutation annotated tree with clade annotations)
 
@@ -115,7 +115,7 @@ This is because its going to search for placements all along the original tree; 
 
     matUtils uncertainty -i public-2021-03-02.all.masked.nextclade.pangolin.pb -s a24_samples.txt -e a24_epps.tsv -n a24_ns.tsv
 
-These can now be uploaded for visualization by drag and drop onto the `auspice <auspice.us>`_ website. Drag and drop the a24_viz.json first, then a24_epps.tsv second.
+These can now be uploaded for visualization by drag and drop onto the `auspice <https://auspice.us/>`_ website. Drag and drop the a24_viz.json first, then a24_epps.tsv second.
 
 .. _protobuf:
 -----------

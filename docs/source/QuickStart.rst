@@ -45,6 +45,8 @@ This command will output three files:
 * `uncondensed-final-tree.nh` (newick-formatted tree containing all samples)
 * `mutation-paths.txt` (tab-separated file containing each sample, the nodes leading to that sample in the final tree, and the mutations at those nodes)
 
+.. _matutils-quickstart:
+
 matUtils
 ------------------------
 
