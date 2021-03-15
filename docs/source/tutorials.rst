@@ -11,18 +11,18 @@ This document contains detailed explanations and example workflows for Usher and
 matUtils extract Explanation
 --------------------------------------------
 
-`matUtils extract` serves as a flexible prebuilt pipeline, which can quickly subset and convert an input MAT .pb file. 
+`matUtils extract` serves as a flexible prebuilt pipeline, which can quickly subset and convert an input MAT protobuf file. 
 Generally, its parameters can be grouped into four categories: 
 
-1. Selection- these parameters define a subtree to use for further processing. If none are set, the whole input tree is used. Includes -c, -s, -m, and others.
+1. Selection- these parameters define a set of samples constituting a subtree to use for downstream analysis. If none are set, the whole input tree is used. Includes -c, -s, -m, and others.
 
-2. Processing- these parameters, usually boolean in nature, apply specific processing steps to the subtree after selection. These can include selecting clade representative samples or collapsing the tree. Includes -O and -r among others.
+2. Processing- these parameters, usually boolean, apply specific processing steps to the subtree after sample selection. These can include selecting clade representative samples or collapsing the tree. Includes -O and -r among others.
 
 3. Information- these parameters save information about the subtree which is not a direct representation of that subtree, such as mutations defining each clade in the subtree. Includes -C and -S among others.
 
 4. Conversion- these parameters are used to request subtree representations in the indicated formats. Includes -v and -t among others.
 
-These commands can be freely mixed and matched, allowing us to perform operations as simple as a direct vcf conversion by using a single conversion parameter:
+These parameters can be freely mixed and matched, allowing us to perform operations as simple as a direct vcf conversion by using a single conversion parameter:
 
 .. code-block:: shell-session
 
@@ -59,6 +59,8 @@ The other option is simpler and more direct. Internal node identifiers can be pa
 .. warning::
     Internal node names are not maintained when saving and loading from a .pb file. It is not guaranteed that internal node names will correspond directly between two .pb files, so use the latter method with caution.
 
+An example matUtils annotate workflow is included in the :ref:`Usher Quickstart <matUtils-quickstart>`
+
 .. _uncertainty:
 --------------------------------------------
 matUtils uncertainty Explanation
@@ -72,19 +74,19 @@ An EPPs score of 1 is a "perfect score", indicating that there is a single best 
 phylogeny have an EPPs of 1. 
 
 `matUtils uncertainty` calculates this metric by, for each sample in the input, remapping the sample against the same tree (disallowing it from mapping to itself) with Usher's optimized mapper function.
-This function reports the number of best placements as part of the output, which is recorded by `matUtils uncertainty` and saved to the output.
+This function reports the number of best placements as part of the output, which is recorded by `matUtils uncertainty` and saved to the text file.
 
 The second metric is "neighborhood size score" (NSS), which is the longest direct traversable path between any two equally parsimonious placement locations for a given sample.
 This metric is complementary to EPPs. When EPPs is 1, NSS is necessarily 0, as there are no traversable paths between pairs of placements when there's only one placement.
 
 On an intuitive level, NSS is a representation of the distribution of equally parsimonious placements. For example, lets say we have two samples of interest. 
-The first has five equally parsimonious placements, but they're all quite nearby each other on the tree with an LCA two nodes back.
-The second has two equally parsimonious placements, but they're on opposite sides of the tree with an LCA at the root.
+The first has five equally parsimonious placements, but they're all quite nearby each other on the tree with the LCA two nodes back.
+The second has two equally parsimonious placements, but they're on opposite sides of the tree with the LCA at the root.
 If we only looked at EPPs, we might assume that the second sample is more certain than the first. This is absolutely not the case-
 the second sample could have originated from two different continents, while the first is likely from a specific local region. 
-This is reflected in their NSS, which in the first case should be about 4, but in the latter could be in the tens to hundreds.
+This is reflected in their NSS, which in the first case should be less than five, but in the latter case could be in the dozens.
 
-The most confident samples are ones which have an EPPs of 1 and an NSS of 0, followed by ones with low EPPS values and low NSS, followed by ones with higher EPPS and low NSS, and finally ones that are high on both metrics are least certain.
+The most confident samples are ones which have an EPPs of 1 and an NSS of 0, followed by ones with low EPPS values and low NSS, followed by ones with higher EPPS and low NSS, and finally ones that are high on both metrics.
 
 NSS is calculated by taking the set of equally parsimonious placements indicated by Usher's mapper function and identifying the LCA of all placements.
 The two longest distances from the LCA to two placements are then summed and the result is reported as NSS- the longest direct path between two placements for the sample.
