@@ -57,11 +57,13 @@ Specific Options
   --mutation (-m): Select samples by whether they contain any of the indicated mutation(s), comma delimited- e.g. -m mutation1,mutation2.
   --max-epps (-e): Select samples by whether they have less than or equal to the maximum number of indicated equally parsimonious placements. Explanation of equally parsimonious placements is here INSERT LINK.
   --max-parsimony (-a): Select samples by whether they have less than or equal to the indicated maximum parsimony score (terminal branch length). 
+  --max-branch-length (-b): Remove samples which have branches of greater than the indicated length in their ancestry.
   --nearest-k (-k): Select a specific sample and X context samples, formatted as "sample_name:X".
   --get-representative (-r): Toggle to automatically select two representative samples per clade currently included in the tree, pruning all other samples from the tree. Applies after other selection steps.
   --prune (-p): Toggle to instead exclude all indicated samples from the subtree output.
   --resolve-polytomies (-R): Toggle to resolve all polytomies by assigning new internal nodes with branch length 0. Used for compatibility with other software.
   --output-directory (-D): Write all output files to the target directory. Default is current directory.
+  --used-samples (-S): Write a simple text file containing selected sample names.
   --sample-paths (-S): Write the path of mutations defining all samples in the subtree to the indicated file.
   --clade-paths (-C): Write the path of mutations defining each clade in the subtree to the indicated file.
   --all-paths (-A): Write the mutations assigned to each node in the subtree in depth-first traversal order to the indicated file.
@@ -69,6 +71,7 @@ Specific Options
   --no-genotypes (-n): Do not include sample genotype columns in VCF output. Used only with --write-vcf.
   --write-mat (-o): Write the selected subtree as a new protobuf file to the target file. 
   --collapse-tree (-O): Collapse the MAT before writing it to protobuf output. Used only with the write-mat option.
+  --write-json (-j): Write an Auspice-compatbile json representing the selected subtree.
   --write-tree (-t): Write a newick string representing the selected subtree to the target file. 
 
 -----------

@@ -92,6 +92,29 @@ The two longest distances from the LCA to two placements are then summed and the
 Both values are reported in distinct two-column tsvs, which are compatible with Auspice's metadata annotation for visualizing the samples. Information 
 on this can be found `here <https://docs.nextstrain.org/projects/auspice/en/latest/advanced-functionality/drag-drop-csv-tsv.html>`_.
 
+Example Workflow
+----------
+
+In this example we will calculate uncertainty metrics for samples belonging to clade A.2.4 and visualize them on `auspice <auspice.us>`_.
+
+Download the example protobuf file `public-2021-03-02.all.masked.nextclade.pangolin.pb <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/public-2021-03-02.all.masked.nextclade.pangolin.pb>`_ (protobuf file containing the mutation annotated tree with clade annotations)
+
+The first step is generating a visualizable JSON of the clade of interest, along with getting the names of samples involved.
+This is done with matUtils extract.
+
+.. code-block:: shell-session
+
+    matUtils extract -i public-2021-03-02.all.masked.nextclade.pangolin.pb -c A.2.4 -u a24_samples.txt -j a24_viz.json
+
+The second step is to call matUtils uncertainty. The input PB is the original PB, with the sample selection text file, instead of a subtree pb generated with -o.
+This is because its going to search for placements all along the original tree; if a subtree .pb was passed, it would only search for placements within that subtree.
+
+.. code-block:: shell-session
+
+    matUtils uncertainty -i public-2021-03-02.all.masked.nextclade.pangolin.pb -s a24_samples.txt -e a24_epps.tsv -n a24_ns.tsv
+
+These can now be uploaded for visualization by drag and drop onto the `auspice <auspice.us>`_ website. Drag and drop the a24_viz.json first, then a24_epps.tsv second.
+
 .. _protobuf:
 -----------
 The Mutation Annotated Tree (MAT) Protocol Buffer (.pb)
