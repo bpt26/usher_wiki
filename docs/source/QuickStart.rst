@@ -4,6 +4,22 @@
 Quick Start
 ***************
 
+To quickly install UShER, use the following conda instructions:
+
+.. code-block:: shell-session
+
+  # Create a new environment for UShER
+  conda create -n usher-env
+  # Activate the newly created environment
+  conda activate usher-env
+  # Set up channels
+  conda config --add channels defaults
+  conda config --add channels bioconda
+  conda config --add channels conda-forge
+  # Install the UShER package
+  conda install usher
+
+
 UShER
 ------------------------
 
