@@ -125,6 +125,30 @@ In the **placement phase**, UShER loads the pre-processed mutation-annotated tre
 At the end of the placement phase, UShER allows the user to create another protocol-buffer (protobuf) file containing the mutation-annotated tree object for the newly generated tree including added samples as also shown in the example figure above. This allows for another round of placements to be carried out over and above the newly added samples. 
 
 --------------
+Options
+--------------
+
+.. code-block:: shell-session
+
+  --vcf (-v): Input VCF file (in uncompressed or gzip-compressed .gz format). (REQUIRED)  
+  --tree (-t): Input tree file.  
+  --outdir (-d):  Output directory to dump output and log files.  
+  --load-mutation-annotated-tree (-i): Load mutation-annotated tree object.  
+  --save-mutation-annotated-tree (-o): Save output mutation-annotated tree to the specified filename.  
+  --sort-before-placement-1 (-s): Sort new samples based on computed parsimony score and then number of optimal placements before the actual placement (EXPERIMENTAL).  
+  --sort-before-placement-2 (-S): Sort new samples based on the number of optimal placements and then the parsimony score before the actual placement (EXPERIMENTAL). 
+  --reverse-sort (-r): Reverse the sorting order of sorting options (sort-before-placement-1 or sort-before-placement-2). (EXPERIMENTAL)  
+  --collapse-tree (-c): Collapse internal nodes of the input tree with no mutations and condense identical sequences in polytomies into a single node and the save the tree to file condensed-tree.nh in outdir.  
+  --max-uncertainty-per-sample (-e): Maximum number of equally parsimonious placements allowed per sample beyond which the sample is ignored. Default = 1000000.  
+  --write-uncondensed-final-tree (-u): Write the final tree in uncondensed format and save to file uncondensed-final-tree.nh in outdir.  
+  --write-subtrees-size (-k): Write minimum set of subtrees covering the newly added samples of size equal to or larger than this value. Default = 0.  
+  --write-parsimony-scores-per-node (-p): Write the parsimony scores for adding new samples at each existing node in the tree without modifying the tree in a file names parsimony-scores.tsv in outdir.  
+  --multiple-placements (-M): Create a new tree up to this limit for each possibility of parsimony-optimal placement. Default = 1.
+  --retain-input-branch-lengths (-l): Retain the branch lengths from the input tree in out newick files instead of using number of mutations for the branch lengths.  
+  --threads (-T): Number of threads to use when possible. Default = use all available cores.
+  --help (-h): Print help messages.  
+
+--------------
 Usage
 --------------
 
@@ -189,30 +213,6 @@ Finally, the new mutation-annotated tree object can be stored again using `--sav
 .. code-block:: shell-session
 
   ./build/usher -i global_assignments.pb -v test/new_samples.vcf -u -o new_global_assignments.pb -d output/
-
---------------
-Options
---------------
-
-.. code-block:: shell-session
-
-  --vcf (-v): Input VCF file (in uncompressed or gzip-compressed .gz format). (REQUIRED)  
-  --tree (-t): Input tree file.  
-  --outdir (-d):  Output directory to dump output and log files.  
-  --load-mutation-annotated-tree (-i): Load mutation-annotated tree object.  
-  --save-mutation-annotated-tree (-o): Save output mutation-annotated tree to the specified filename.  
-  --sort-before-placement-1 (-s): Sort new samples based on computed parsimony score and then number of optimal placements before the actual placement (EXPERIMENTAL).  
-  --sort-before-placement-2 (-S): Sort new samples based on the number of optimal placements and then the parsimony score before the actual placement (EXPERIMENTAL). 
-  --reverse-sort (-r): Reverse the sorting order of sorting options (sort-before-placement-1 or sort-before-placement-2). (EXPERIMENTAL)  
-  --collapse-tree (-c): Collapse internal nodes of the input tree with no mutations and condense identical sequences in polytomies into a single node and the save the tree to file condensed-tree.nh in outdir.  
-  --max-uncertainty-per-sample (-e): Maximum number of equally parsimonious placements allowed per sample beyond which the sample is ignored. Default = 1000000.  
-  --write-uncondensed-final-tree (-u): Write the final tree in uncondensed format and save to file uncondensed-final-tree.nh in outdir.  
-  --write-subtrees-size (-k): Write minimum set of subtrees covering the newly added samples of size equal to or larger than this value. Default = 0.  
-  --write-parsimony-scores-per-node (-p): Write the parsimony scores for adding new samples at each existing node in the tree without modifying the tree in a file names parsimony-scores.tsv in outdir.  
-  --multiple-placements (-M): Create a new tree up to this limit for each possibility of parsimony-optimal placement. Default = 1.
-  --retain-input-branch-lengths (-l): Retain the branch lengths from the input tree in out newick files instead of using number of mutations for the branch lengths.  
-  --threads (-T): Number of threads to use when possible. Default = use all available cores.
-  --help (-h): Print help messages.  
 
 --------------
 Features
