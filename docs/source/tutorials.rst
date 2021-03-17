@@ -1,7 +1,7 @@
 .. include:: includes.rst.txt
 
 *********************************************
-Explanations and Tutorials
+Tutorials
 *********************************************
 
 This document contains example workflows for Usher and matUtils.
