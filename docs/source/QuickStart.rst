@@ -20,34 +20,23 @@ To quickly install UShER, use the following conda instructions:
   conda install usher
 
 
-UShER
-------------------------
+To get acquainted with UShER, we provide a simple example of placing 10 samples on an existing phylogeny, and doing basic analyses to assess the placements. First, download the example files.
 
-To get acquainted with UShER, we provide a simple example of placing 10 samples on an existing phylogeny, and doing basic analyses to assess the placements. If you have not yet installed UShER, `please follow the instructions here <https://usher-wiki.readthedocs.io/en/latest/UShER.html#installation>`_ before continuing with this example.
+.. code-block:: shell-session
+  
+  wget https://github.com/yatisht/usher/tree/master/test/global_phylo.nh
+  wget https://github.com/yatisht/usher/tree/master/test/global_samples.vcf
+  wget https://github.com/yatisht/usher/blob/master/test/new_samples.vcf
+  wget https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/public-2021-03-02.all.masked.nextclade.pangolin.pb
+  wget https://github.com/bpt26/usher_wiki/raw/main/docs/source/example.vcf
+  wget https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/lineageToPublicName
+ 
 
-------------------------
-Files you will need
-------------------------
-
-* `global_phylo.nh <https://github.com/yatisht/usher/tree/master/test/global_phylo.nh>`_ (newick file containing the initial phylogeny)
-* `global_samples.vcf <https://github.com/yatisht/usher/tree/master/test/global_samples.vcf>`_ (.vcf file informing the initial phylogeny)
-* `new_samples.vcf <https://github.com/yatisht/usher/blob/master/test/new_samples.vcf>`_ (.vcf file containing samples to be placed)
-
-------------------------
-Making the protobuf
-------------------------
-
-A major part of UShER's speed and memory-efficiency is its usage of .pb protobuf files to encode mutation annotated trees. To create the mutation annotated tree we'll need here, use the following command:
+Then, create a mutation annotated tree object:
 
 .. code-block:: shell-session
 
   usher --tree global_phylo.nh --vcf global_samples.vcf --collapse-tree --save-mutation-annotated-tree global_phylo.pb
-
-This command will read in both the newick file and the .vcf and output a .pb file storing all mutations as well as the structure of the tree.
-
-------------------------
-Placing samples
-------------------------
 
 Now, we want to place the samples from `missing_10.vcf.gz` onto our tree. We can do this by using the following command:
 
@@ -55,7 +44,7 @@ Now, we want to place the samples from `missing_10.vcf.gz` onto our tree. We can
 
   usher --vcf new_samples.vcf --load-mutation-annotated-tree global_phylo.pb --write-uncondensed-final-tree
 
-This command will output three files:
+This yields the following three files:
 
 * `final-tree.nh` (newick-formatted tree with identical samples condensed)
 * `uncondensed-final-tree.nh` (newick-formatted tree containing all samples)
