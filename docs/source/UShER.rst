@@ -14,7 +14,25 @@ UShER is a program for rapid, accurate placement of samples to existing phylogen
 Installation
 --------------
 
-A pre-compiled binary is available for download `here <http://public.gi.ucsc.edu/~yatisht/data/binaries/usher>`_. Otherwise, to download and compile from source, first clone the GitHub repository:
+A pre-compiled binary is available for download `here <http://public.gi.ucsc.edu/~yatisht/data/binaries/usher>`_. 
+
+Another quick method is via `conda`:
+
+.. code-block:: shell-session
+
+  # Create a new environment for UShER
+  conda create -n usher-env
+  # Activate the newly created environment
+  conda activate usher-env
+  # Set up channels
+  conda config --add channels defaults
+  conda config --add channels bioconda
+  conda config --add channels conda-forge
+  # Install the UShER package
+  conda install usher
+
+
+Otherwise, to download and compile from source, first clone the GitHub repository:
 
 .. code-block:: shell-session
 
