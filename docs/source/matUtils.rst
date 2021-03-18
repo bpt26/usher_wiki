@@ -105,6 +105,7 @@ Specific Options
   --write-mat (-o): Write the selected subtree as a new protobuf file to the target file. 
   --collapse-tree (-O): Collapse the MAT before writing it to protobuf output. Used only with the write-mat option.
   --write-json (-j): Write an Auspice-compatbile json representing the selected subtree.
+  --retain-branch-length (-E): Use to not recalculate branch lengths with saving newick output. Used only with -t
   --write-tree (-t): Write a newick string representing the selected subtree to the target file. 
 
 -----------
