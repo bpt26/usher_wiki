@@ -95,8 +95,8 @@ Specific Options
   --get-representative (-r): Toggle to automatically select two representative samples per clade currently included in the tree, pruning all other samples from the tree. Applies after other selection steps.
   --prune (-p): Toggle to instead exclude all indicated samples from the subtree output.
   --resolve-polytomies (-R): Toggle to resolve all polytomies by assigning new internal nodes with branch length 0. Used for compatibility with other software.
-  --output-directory (-D): Write all output files to the target directory. Default is current directory.
-  --used-samples (-S): Write a simple text file containing selected sample names.
+  --output-directory (-d): Write all output files to the target directory. Default is current directory.
+  --used-samples (-u): Write a simple text file containing selected sample names.
   --sample-paths (-S): Write the path of mutations defining all samples in the subtree to the indicated file.
   --clade-paths (-C): Write the path of mutations defining each clade in the subtree to the indicated file.
   --all-paths (-A): Write the mutations assigned to each node in the subtree in depth-first traversal order to the indicated file.
