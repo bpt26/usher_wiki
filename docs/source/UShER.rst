@@ -56,7 +56,7 @@ or
   docker pull yatisht/usher:latest
   docker run -t -i yatisht/usher:latest /bin/bash
 
-git clone and conda environment
+Local Build
 -------
 
 .. code-block:: shell-session
@@ -72,8 +72,6 @@ git clone and conda environment
   cmake  -DTBB_DIR=${PWD}/../oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/../oneTBB/cmake ..
   make -j
   cd ..
-
-
 
 followed by, if on a MacOS system:
 
@@ -92,6 +90,13 @@ or if on a Linux system:
   chmod +x faToVcf
   mv faToVcf scripts  
 
+Executables will be located in the build and scripts directories. Make sure they're on your path for your system as appropriate, 
+or that you modify your commands to indicate their location.
+
+.. code-block:: shell-session
+
+  export PATH=$PATH:/path/to/install/usher/build/
+  export PATH=$PATH:/path/to/install/usher/scripts/
 
 Installation scripts
 ------------------------
