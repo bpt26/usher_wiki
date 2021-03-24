@@ -56,7 +56,7 @@ or
   docker pull yatisht/usher:latest
   docker run -t -i yatisht/usher:latest /bin/bash
 
-conda
+git clone and conda environment
 -------
 
 .. code-block:: shell-session
@@ -177,7 +177,7 @@ To familiarize with the different command-line options of UShER, it would be use
 
 .. code-block:: shell-session
 
-  ./build/usher --help
+  usher --help
 
 
 Pre-processing global phylogeny
@@ -187,7 +187,7 @@ The following example command pre-processes the existing phylogeny (`global_phyl
 
 .. code-block:: shell-session
 
-  ./build/usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -d output/
+  usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -d output/
 
 By default, UShER uses **all available threads** but the user can also specify the number of threads using the `--threads` or `-T` command-line parameter.
 
@@ -195,13 +195,13 @@ UShER also allows an option during the pre-processing phase to collapse nodes (i
 
 .. code-block:: shell-session
 
-  ./build/usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -c -d output/
+  usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -c -d output/
 
 Note the the above command would condense identical sequences, namely S2, S3 and S4, in the example figure above into a single condensed new node (named something like *node_1_condensed_3_leaves*). If you wish to display the collapsed tree without condensing the nodes, also set the `--write-uncondensed-final-tree` or `-u` option, for example, as follows:
 
 .. code-block:: shell-session
 
-  ./build/usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -c -u -d output/
+  usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -c -u -d output/
 
 The above commands saves the collapsed but uncondensed tree as `uncondensed-final-tree.nh` in the output directory. 
 
@@ -212,7 +212,7 @@ Once the pre-processing is complete and a mutation-annotated tree object is gene
 
 .. code-block:: shell-session
 
-  ./build/usher -i global_assignments.pb -v test/new_samples.vcf -u -d output/
+  usher -i global_assignments.pb -v test/new_samples.vcf -u -d output/
 
 Again, by default, UShER uses **all available threads** but the user can also specify the number of threads using the *--threads* command-line parameter.
 
@@ -222,7 +222,7 @@ In addition to the global phylogeny, one often needs to contextualize the newly 
 
 .. code-block:: shell-session
 
-  ./build/usher -i global_assignments.pb -v test/new_samples.vcf -u -k 20 -d output/
+  usher -i global_assignments.pb -v test/new_samples.vcf -u -k 20 -d output/
 
 The above command writes subtrees to files names `subtree-<subtree-number>.nh`. It also write a text file for each subtree (named `subtree-<subtree-number>-mutations.txt` showing mutations at each internal node of the subtree. If the subtrees contain condensed nodes, it writes the expanded leaves for those nodes to text files named `subtree-<subtree-number>-expanded.txt`. 
 
@@ -230,7 +230,7 @@ Finally, the new mutation-annotated tree object can be stored again using `--sav
 
 .. code-block:: shell-session
 
-  ./build/usher -i global_assignments.pb -v test/new_samples.vcf -u -o new_global_assignments.pb -d output/
+  usher -i global_assignments.pb -v test/new_samples.vcf -u -o new_global_assignments.pb -d output/
 
 --------------
 Features
@@ -245,7 +245,7 @@ UShER also allows quantifying the uncertainty in placing new samples by reportin
 
 .. code-block:: shell-session
 
-  ./build/usher -i global_assignments.pb -v test/new_samples.vcf -p -d output/ 
+  usher -i global_assignments.pb -v test/new_samples.vcf -p -d output/ 
 
 The above command writes a file `parsimony-scores.tsv` containing branch parsimony scores to the output directory. Note that because the above command does not perform the sequential placement on the tree, the number of parsimony-optimal placements reported for the second and later samples could differ from those reported with actual placements.
 
@@ -263,13 +263,13 @@ To further aid the user to quantify phylogenetic uncertainty in placement, UShER
 
 .. code-block:: shell-session
 
-  ./build/usher -i global_assignments.pb -v <USER_PROVIDED_VCF> -M -d output/
+  usher -i global_assignments.pb -v <USER_PROVIDED_VCF> -M -d output/
 
 Note that if the number of equally parsimonious placements for the initial samples is large, the tree space can get too large too quickly and slow down the placement for the subsequent samples. Therefore, UShER also provides an option to sort the samples first based on the number of equally parsimonious placements using the `-S` option. 
 
 .. code-block:: shell-session
 
-  ./build/usher -i global_assignments.pb -v <USER_PROVIDED_VCF> -M -S -d output/
+  usher -i global_assignments.pb -v <USER_PROVIDED_VCF> -M -S -d output/
 
 There are many ways to interpret and visualize the forest of trees produced by multiple placements. One method is to use DensiTree, as shown using an example figure (generated using the `phangorn <https://cran.r-project.org/web/packages/phangorn/>`_ package) below:
 
@@ -329,7 +329,7 @@ Users can then use the tool faToVcf, which is also installed via UShER's package
 
 .. code-block:: shell-session
 
-  ./build/faToVcf ./test/myAlignedSequences.fa ./test/test_merged.vcf
+  faToVcf ./test/myAlignedSequences.fa ./test/test_merged.vcf
 
 
 For SARS-CoV-2 data, we recommend downloading `problematic_sites_sarsCov2.vcf` and using it for masking `problematic sites <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/14>`_ as follows:
@@ -337,7 +337,7 @@ For SARS-CoV-2 data, we recommend downloading `problematic_sites_sarsCov2.vcf` a
 .. code-block:: shell-session
 
   wget https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf
-  ./build/faToVcf  -maskSites=problematic_sites_sarsCov2.vcf   ./test/myAlignedSequences.fa ./test/test_merged_masked.vcf
+  aToVcf  -maskSites=problematic_sites_sarsCov2.vcf   ./test/myAlignedSequences.fa ./test/test_merged_masked.vcf
 
 
 The resulting VCF files `test_merged.vcf` and `test_merged_masked.vcf` from the above commands should be compatible with UShER.
