@@ -40,7 +40,7 @@ Advanced users may desire to interface directly with the protobuf. The following
 Google's general tutorial on interacting with protobuf in python can be found `here <https://developers.google.com/protocol-buffers/docs/pythontutorial#compiling-your-protocol-buffers>`_.
 The instructions here can be applied to a number of additional languages supported by google as well, such as java, PHP, and ruby.
 
-The first step is to call the protoc compiler to retrieve a MAT protobuf parser. Navigate to your Usher installation and call:
+The first step is to call the protoc compiler to retrieve a MAT protobuf parser. Navigate to your Usher installation (or clone the github if you installed via conda) and call:
 
 .. code-block:: shell-session
 

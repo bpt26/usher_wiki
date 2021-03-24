@@ -66,19 +66,19 @@ Write a vcf representing all samples within a clade.
 
 .. code-block:: shell-session
 
-  ./matUtils extract -i input.pb -c my_clade -v my_clade.vcf
+  matUtils extract -i input.pb -c my_clade -v my_clade.vcf
 
 Write a newick tree of all samples which contain either of two mutations of interest.
 
 .. code-block:: shell-session
 
-  ./matUtils extract -i input.pb -m my_mutation,my_other_mutation -t my_mutations.txt
+  matUtils extract -i input.pb -m my_mutation,my_other_mutation -t my_mutations.txt
 
 Remove samples with a parsimony score greater than five and save a new pb without these samples.
 
 .. code-block:: shell-session
 
-  ./matUtils extract -i input.pb -a 5 -o filtered.pb
+  matUtils extract -i input.pb -a 5 -o filtered.pb
 
 Specific Options
 ----------------------
@@ -123,13 +123,13 @@ Get a tsv containing all sample names and parsimony scores.
 
 .. code-block:: shell-session
 
-  ./matUtils summary -i input.pb --samples all_samples.text
+  matUtils summary -i input.pb --samples all_samples.text
 
 Write all possible summary output files to a specific directory.
 
 .. code-block:: shell-session
 
-  ./matUtils summary -i input.pb -A -d input_summary/
+  matUtils summary -i input.pb -A -d input_summary/
 
 Specific Options
 ----------------------
@@ -174,7 +174,7 @@ Assign a new set of custom clade annotations to the tree.
 
 .. code-block:: shell-session
 
-  ./matUtils annotate -i input.pb -c my_clade_info.txt -o annotated.pb
+  matUtils annotate -i input.pb -c my_clade_info.txt -o annotated.pb
 
 Options
 -----------
@@ -229,7 +229,7 @@ Calculate uncertainty metrics for a specific set of samples.
 
 .. code-block:: shell-session
 
-  ./matUtils uncertainty -i input.pb -s my_samples.txt -e my_epps.tsv -n my_neighborhood.tsv
+  matUtils uncertainty -i input.pb -s my_samples.txt -e my_epps.tsv -n my_neighborhood.tsv
 
 Options
 -----------
@@ -254,7 +254,7 @@ Mask out a specific set of samples.
 
 .. code-block:: shell-session
 
-  ./matUtils -i input.pb -s private_samples.txt -o masked.pb 
+  matUtils -i input.pb -s private_samples.txt -o masked.pb 
 
 Options
 -----------
