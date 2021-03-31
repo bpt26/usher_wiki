@@ -330,11 +330,25 @@ If you have a large number of sequences, we recommend using Robert Lanfear's `gl
 Converting MSA to VCF
 ------------------------------------------------------
 
-Users can then use the tool faToVcf, which is also installed via UShER's package, to then convert the fasta file containing multiple alignment of input sequences into a VCF.
+Users can then use the tool faToVcf, which is also installed via UShER's package, to then convert the fasta file containing multiple alignment of input sequences into a VCF.  If the file `./test/myAlignedSequences.fa` includes the reference sequence (for SARS-CoV-2, `NC_045512.2 <https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2>`_) as its first sequence, then faToVcf can be run like this:
 
 .. code-block:: shell-session
 
   faToVcf ./test/myAlignedSequences.fa ./test/test_merged.vcf
+
+
+If the reference sequence is included in `./test/myAlignedSequences.fa` but is not the first sequence, then its name needs to be specified using the `-ref=...` option:
+
+.. code-block:: shell-session
+
+  faToVcf -ref=NC_045512.2 ./test/myAlignedSequences.fa ./test/test_merged.vcf
+
+
+If the reference sequence is not included in `./test/myAlignedSequences.fa` then it can be added in the bash shell using a named pipe like this:
+
+.. code-block:: shell-session
+
+  faToVcf <(cat NC_045512.2.fa ./test/myAlignedSequences.fa) ./test/test_merged.vcf
 
 
 For SARS-CoV-2 data, we recommend downloading `problematic_sites_sarsCov2.vcf` and using it for masking `problematic sites <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/14>`_ as follows:
@@ -342,7 +356,7 @@ For SARS-CoV-2 data, we recommend downloading `problematic_sites_sarsCov2.vcf` a
 .. code-block:: shell-session
 
   wget https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf
-  aToVcf  -maskSites=problematic_sites_sarsCov2.vcf   ./test/myAlignedSequences.fa ./test/test_merged_masked.vcf
+  faToVcf  -maskSites=problematic_sites_sarsCov2.vcf   ./test/myAlignedSequences.fa ./test/test_merged_masked.vcf
 
 
 The resulting VCF files `test_merged.vcf` and `test_merged_masked.vcf` from the above commands should be compatible with UShER.
