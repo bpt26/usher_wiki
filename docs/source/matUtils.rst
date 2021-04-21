@@ -282,9 +282,13 @@ are assigned as in-region if all descendent leaves are in-region, and similarly 
 If their descendents are a mix of samples, we use the following calculation:
 
 Do = the distance in mutations to the nearest descendent leaf that is not in region
+
 Di = the distance in mutations to the nearest descendent leaf that is in the region
+
 No = the number of leaf descendents which are not in the region
+
 Ni = the number of leaf descendents which are in the region
+
 confidence = 1 / (1 + ((Ni/No)/(Di/Do)))
 
 This is essentially a ratio placed under a squash function such that equal numbers of leaves and distance to the nearest leaf for both in and out
