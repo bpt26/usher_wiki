@@ -46,7 +46,7 @@ on the command line and visualize an example introduction of interest with Auspi
 
 Before beginning, download the example protobuf file `public-2021-04-20.all.masked.nextclade.pangolin.pb <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/public-2021-04-20.all.masked.nextclade.pangolin.pb>`_ 
 
-We need a region to analyze; in this example, we are going to use Spain, as it has a few hundred samples represented in the public data
+We need a region to analyze; in this example, we are going to use Spain, as it has a few hundred associated samples in the public data
 and is a solid representative example. We need to generate the two-column tab-separated file we use as input to `matUtils introduce`.
 
 .. code-block:: shell-session
@@ -73,8 +73,10 @@ We can count the number of unique introductions into our region of interest- in 
 
     awk '{print $2}' spanish_introductions.tsv | sort | uniq -c | sort -r | head -25 
 
-In this case, we see that many samples are unique single introductions (the point of introduction is the sample itself- the parent is probably not in region).
-This may suggest that Spain has a lot of movement in and out of the country, or that sampling is biased towards travelers.
+We find 216 unique introductions into Spain, of which 175 are associated with only a single sample, from 295 total samples.
+This may suggest that Spain has a lot of movement in and out of the country, or that sampling is biased towards travelers. 
+It may also simply reflect that Spain is undersampled and the relative number of introductions is high enough that most
+new regional clades are sampled only once or not at all. 
 
 There are some interesting cases of clades from a single introduction, however. The clade introduced at the internal node "96055" 
 contains 9 closely related samples from Spain and are all members of the variant of concern B.1.1.7.
@@ -112,7 +114,7 @@ This JSON can be drag-and-dropped onto the Auspice web inferface. The resulting 
 
 We can see from this image that our group of 9 B.1.1.7 samples forms a clear clade that was likely introduced into Spain from England.
 
-Additional steps we could include are the generation of metadata tsv/csv for Auspice and the inclusion of phylogeographic statistics with
+Additional steps we could include are the generation of metadata tsv/csv for Auspice, the inclusion of more regions, and the inclusion of phylogeographic statistics with
 -a on our call to `matUtils introduce`. The latter increases the runtime of the introduce command from a few seconds to about two minutes in this case.
 
 In the specific case of Spain, it has an overall association index of 10.4 with a 95% confidence interval of (28.95,40.19) for the null that 
@@ -121,6 +123,11 @@ are more closely related to one another. The largest monophyletic clade size is 
 
 Our specific introduction of interest itself also has a monophyletic clade size of 9 (being pure with 9 samples) and an association index of 0,
 representing that it is purely in-region and is maximally associated. 
+
+Including additional public region information in the input two-column tsv would also allow us to explore potential origins of each introduction,
+such as how England appears to be the origin in our example, or estimate relative levels of migration to and from Spain to other countries across the world.
+Origin and migration must be interpreted cautiously, however, due to extensive sampling bias by country (England and the UK contribute a large part
+of publicly available sequence information, and are therefore more likely to be identified as the origin of an introduction, et cetera).
 
 .. _protobuf-tutorial:
 
