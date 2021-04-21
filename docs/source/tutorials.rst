@@ -89,7 +89,9 @@ contains 9 closely related samples from Spain and are all members of the variant
 
 The first entry of this output is reproduced here, sans the mutation path.
 
-ESP/hCoV-19_Spain_CT-HUVH-76622_2021/2021|MW769758.1|21-01-19	96055	1	0.0431655	2	20I/501Y.V1,B.1.1.7,B.1.1.28,20B,B.1.1,20A,B.1.1.171,B.1,19A,B	
+.. code-block:: shell-session
+
+    ESP/hCoV-19_Spain_CT-HUVH-76622_2021/2021|MW769758.1|21-01-19	96055	1	0.0431655	2	20I/501Y.V1,B.1.1.7,B.1.1.28,20B,B.1.1,20A,B.1.1.171,B.1,19A,B	
 
 We can see that this introduction point is very confidently in Spain (confidence of 1 in column 3, as every descendent is from Spain) but that 
 the parent of that introduction point is very confidently NOT from Spain (confidence of 0.043 to be in Spain). This makes this a strongly supported introduction
