@@ -273,6 +273,11 @@ given a set of samples known to be from that region. It requires a two-column ts
 and associated regions. Multiple regions can be processed simultaneously; in this mode, introduction points will be checked for whether 
 they have significant support for originating from another input region.
 
+An example workflow for inferring and visualizing geographic introductions can be found :ref:`here <introduce-tutorial>`.
+
+Heuristic
+-----------
+
 The heuristic we use is a confidence metric which weights both the number and distance to the nearest descendent leaf which is a member of the input region
 to infer whether each internal node is likely to represent sequences from that region. When the confidence metric is greater than 0.5, 
 it is considered to be in the region. 
@@ -294,6 +299,9 @@ confidence = 1 / (1 + ((Di/Ni)/(Do/No)))
 This is essentially a ratio placed under a squash function such that equal numbers of leaves and distance to the nearest leaf for both in and out
 of the region yield a confidence of 0.5, while descendents nearly being purely either in or out of the region will yield ~1 and ~0 respectively.
 
+Introductions
+-----------
+
 Introduction points are identified as the point along a sample's history where the confidence of the 
 relevant node being in the region drops below 0.5. In many sample's cases, this may be the direct parent of the sample, implying that the
 sample is a novel introduction to a region; in other cases, it may share the introduction point with a number of other samples from that region.
@@ -302,8 +310,10 @@ Introductions are calculated for each region independently with multiple region 
 the origin point for membership in each other region is checked. Origins with a confidence of >0.5 membership in other regions are recorded
 in the output, and if none are found the origin is labeled as indeterminate.
 
-Optionally, `matUtils introduce` supports inference of the region of origin for all annotated clade roots currently in the tree based on 
-these confidence metrics. It also supports the calculation and recording of maximum monophyletic clade size and association index, statistics
+Phylogeographic Statistics and Other Options
+-----------
+
+`matUtils introduce` supports the calculation and recording of maximum monophyletic clade size and association index, statistics
 for phylogeographic trait association, on a per-region and per-introduction basis. Maximum monophyletic clade size is simply the largest 
 monophyletic clade of samples which are in the region; it is larger for regions which have relatively fewer introductions per sample and 
 correlates with overall sample number (Parker et al 2008). Association index is a more complex metric, related to our heuristic,
@@ -315,6 +325,9 @@ association indices can be informative for the overall level of isolation or rel
 
 Calculating these statistics adds significantly to runtime, so they are optional to calculate and intended for users who want a 
 stronger statistical grounding for their results.
+
+Finally, it supports inference of the region of origin for all annotated clade roots currently in the tree based on 
+these confidence metrics, though only from among input regions. 
 
 Example Usage
 ----------------------
