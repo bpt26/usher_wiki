@@ -87,9 +87,9 @@ contains 9 closely related samples from Spain and are all members of the variant
     Internal node names are not maintained in the protobuf and are not guaranteed to be consistent between protobufs with differing content.
     The path of mutations to the point of introduction will generally be consistent, however.
 
-The first entry of this output is reproduced here.
+The first entry of this output is reproduced here, sans the mutation path.
 
-ESP/hCoV-19_Spain_CT-HUVH-76622_2021/2021|MW769758.1|21-01-19	96055	1	0.0431655	2	20I/501Y.V1,B.1.1.7,B.1.1.28,20B,B.1.1,20A,B.1.1.171,B.1,19A,B	A2510G<C22208T<C28706T<A17615G<C27972T<G28048T<C14676T<C5388A<C3267T<T24506G<T16176C<C23271A<G24914C<A28281T<T6954C<C5986T<T28281A<C23604A,C23709T<T28048G<C913T<C28977T<G28048T<A28111G<C15279T<A23063T<G28280C,A28281T,T28282A<G28881A<G28882A,G28883C<C3037T<A23403G<C14408T<C241T<<
+ESP/hCoV-19_Spain_CT-HUVH-76622_2021/2021|MW769758.1|21-01-19	96055	1	0.0431655	2	20I/501Y.V1,B.1.1.7,B.1.1.28,20B,B.1.1,20A,B.1.1.171,B.1,19A,B	
 
 We can see that this introduction point is very confidently in Spain (confidence of 1 in column 3, as every descendent is from Spain) but that 
 the parent of that introduction point is very confidently NOT from Spain (confidence of 0.043 to be in Spain). This makes this a strongly supported introduction
