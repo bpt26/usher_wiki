@@ -254,7 +254,7 @@ Mask out a specific set of samples.
 
 .. code-block:: shell-session
 
-  matUtils -i input.pb -s private_samples.txt -o masked.pb 
+  matUtils mask -i input.pb -s private_samples.txt -o masked.pb 
 
 Options
 -----------
@@ -263,3 +263,71 @@ Options
 
   --output-mat (-o): Path to output processed mutation-annotated tree file (REQUIRED)
   --restricted-samples (-s): Sample names to restrict. Use to perform masking. 
+
+----------------------
+introduce [EXPERIMENTAL]
+----------------------
+
+`matUtils introduce` uses simple heuristics to rapidly identify likely novel introductions into a geographic region
+given a set of samples known to be from that region. It requires a two-column tsv as input alongside the protobuf containing names of samples
+and associated regions. Multiple regions can be processed simultaneously; in this mode, introduction points will be checked for whether 
+they have significant support for originating from another input region.
+
+The heuristic we use is a confidence metric which weights both the number and distance to the nearest descendent leaf which is a member of the input region
+to infer whether each internal node is likely to represent sequences from that region. When the confidence metric is greater than 0.5, 
+it is considered to be in the region. 
+
+Leaves have their confidence heuristic as either 0 or 1 based on whether they are included in the regional input list. Internal nodes
+are assigned as in-region if all descendent leaves are in-region, and similarly out if all descendent leaves are out-region. 
+If their descendents are a mix of samples, we use the following calculation:
+
+Do = the distance in mutations to the nearest descendent leaf that is not in region
+Di = the distance in mutations to the nearest descendent leaf that is in the region
+No = the number of leaf descendents which are not in the region
+Ni = the number of leaf descendents which are in the region
+confidence = 1 / (1 + ((Ni/No)/(Di/Do)))
+
+This is essentially a ratio placed under a squash function such that equal numbers of leaves and distance to the nearest leaf for both in and out
+of the region yield a confidence of 0.5, while descendents nearly being purely either in or out of the region will yield ~1 and ~0 respectively.
+
+Introduction points are identified as the point along a sample's history where the confidence of the 
+relevant node being in the region drops below 0.5. In many sample's cases, this may be the direct parent of the sample, implying that the
+sample is a novel introduction to a region; in other cases, it may share the introduction point with a number of other samples from that region.
+
+Introductions are calculated for each region independently with multiple region input, but after introductions are identified the support for 
+the origin point for membership in each other region is checked. Origins with a confidence of >0.5 membership in other regions are recorded
+in the output, and if none are found the origin is labeled as indeterminate.
+
+Optionally, `matUtils introduce` supports inference of the region of origin for all annotated clade roots currently in the tree based on 
+these confidence metrics. It also supports the calculation and recording of maximum monophyletic clade size and association index, statistics
+for phylogeographic trait association, on a per-region and per-introduction basis. Maximum monophyletic clade size is simply the largest 
+monophyletic clade of samples which are in the region; it is larger for regions which have relatively fewer introductions per sample and 
+correlates with overall sample number (Parker et al 2008). Association index is a more complex metric, related to our heuristic,
+which performs a weighted summation across the tree account for the number of child nodes and the frequency of the most common trait (Wang et al 2005). 
+Association index is smaller for stronger phylogeographic association; it increases with the relative number of introductions into a region.
+For association index, `matUtils introduce` also performs a series of permutations to establish an expected range of values for the random distribution of samples across the tree.
+Most proper regions will have association indeces significantly smaller than this range; the ratio between the actual and mean expected
+association indices can be informative for the overall level of isolation or relative level of community spread for a region.
+
+Calculating these statistics adds significantly to runtime, so they are optional to calculate and intended for users who want a 
+stronger statistical grounding for their results.
+
+Example Usage
+----------------------
+
+Generate a tsv containing inferred introduction information, one sample per row.
+
+.. code-block:: shell-session
+
+  matUtils introduce -i public.pb -s my_region_samples.txt -o my_region_introductions.tsv
+
+Options
+-----------
+
+.. code-block:: shell-session
+
+  --population-samples (-s): Two-column tab-separated text file containing sample names and region membership (REQUIRED)
+  --output (-o): Name of the output tab-separated table containing inferred introductions, one sample per row (REQUIRED)
+  --additional-info (-a): Use to calculate additional phylogeographic statistics about your region and inferred introductions.
+  --clade-regions (-c): Set to optionally write a tab-separated table containing inferred origins for each clade currently annotated in the tree from among your regions.
+  --origin-confidence (-C): Set to a confidence value between 0 and 1 at which to state that a node is in-region. Default is 0.5
