@@ -29,7 +29,8 @@ To get acquainted with UShER, we provide a simple example of placing 10 samples 
   wget https://raw.githubusercontent.com/yatisht/usher/master/test/new_samples.vcf
   wget https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/public-2021-03-02.all.masked.nextclade.pangolin.pb
   wget https://raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/example.vcf
-  wget https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/lineageToPublicName
+  wget https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/lineageToPublicName.gz
+  gzip -dc lineageToPublicName.gz > lineageToPublicName
  
 
 Then, create a mutation annotated tree object:
