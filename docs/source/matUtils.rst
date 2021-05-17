@@ -320,9 +320,10 @@ Phylogeographic Statistics and Other Options
 for phylogeographic trait association, on a per-region and per-introduction basis. Maximum monophyletic clade size is simply the largest 
 monophyletic clade of samples which are in the region; it is larger for regions which have relatively fewer introductions per sample and 
 correlates with overall sample number (Parker et al 2008). Association index is a more complex metric, related to our heuristic,
-which performs a weighted summation across the tree account for the number of child nodes and the frequency of the most common trait (Wang et al 2005). 
+which performs a weighted summation across the tree account for the number of child nodes and the frequency of the most common trait (Wang et al 2001). 
 Association index is smaller for stronger phylogeographic association; it increases with the relative number of introductions into a region.
 For association index, `matUtils introduce` also performs a series of permutations to establish an expected range of values for the random distribution of samples across the tree.
+
 Most proper regions will have association indeces significantly smaller than this range; the ratio between the actual and mean expected
 association indices can be informative for the overall level of isolation or relative level of community spread for a region.
 
@@ -331,6 +332,10 @@ stronger statistical grounding for their results.
 
 Finally, it supports inference of the region of origin for all annotated clade roots currently in the tree based on 
 these confidence metrics, though only from among input regions. 
+
+Parker, J., Rambaut, A., and Pybus, O.G. (2008). Correlating viral phenotypes with phylogeny: Accounting for phylogenetic uncertainty. Infection, Genetics and Evolution 8, 239–246.
+
+Wang, T.H., Donaldson, Y.K., Brettle, R.P., Bell, J.E., and Simmonds, P. (2001). Identification of Shared Populations of Human Immunodeficiency Virus Type 1 Infecting Microglia and Tissue Macrophages outside the Central Nervous System. Journal of Virology 75, 11686–11699.
 
 Example Usage
 ----------------------
