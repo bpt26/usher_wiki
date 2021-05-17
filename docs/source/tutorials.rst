@@ -108,7 +108,7 @@ by selecting one of our samples and extracting the context to a JSON with `matUt
 
 This JSON can be drag-and-dropped onto the Auspice web inferface. The resulting image is reproduced here.
 
-.. image:: spanish_introduction.png
+.. image:: colored_spanish_introduction.png
     :width: 1500px
     :align: center
 
