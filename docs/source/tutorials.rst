@@ -112,7 +112,7 @@ This JSON can be drag-and-dropped onto the Auspice web inferface. The resulting 
     :width: 1500px
     :align: center
 
-We can see from this image that our group of 9 B.1.1.7 samples forms a clear clade that was likely introduced into Spain from England.
+Samples from England appear in blue, Spain in green, and Wales in yellow in this image. We can see that our group of 9 B.1.1.7 samples forms a clear clade that was likely introduced into Spain from England.
 
 Additional steps we could include are the generation of metadata tsv/csv for Auspice, the inclusion of more regions, and the inclusion of phylogeographic statistics with
 -a on our call to `matUtils introduce`. The latter increases the runtime of the introduce command from a few seconds to about two minutes in this case.
