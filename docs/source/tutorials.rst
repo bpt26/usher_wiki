@@ -117,8 +117,9 @@ Samples from England appear in blue, Spain in green, and Wales in yellow in this
 Additional steps we could include are the generation of metadata tsv/csv for Auspice, the inclusion of more regions, and the inclusion of phylogeographic statistics with
 -a on our call to `matUtils introduce`. The latter increases the runtime of the introduce command from a few seconds to about two minutes in this case.
 
-In the specific case of Spain, it has an overall association index of 10.4 with a 95% confidence interval of (28.95,40.19) for the null that 
-samples from this region are not phylogenetically associated. This is normal for geographic regions, as naturally samples from the same region
+Spain has an overall association index of 10.4 under a 95% confidence interval of (28.95,40.19) for the null that 
+samples from this region are not phylogenetically associated.
+This is a very, very significant association score, which is normal for geographic regions, as naturally samples from the same region
 are more closely related to one another. The largest monophyletic clade size is 9, representing our specific introduction of interest.
 
 Our specific introduction of interest itself also has a monophyletic clade size of 9 (being pure with 9 samples) and an association index of 0,
