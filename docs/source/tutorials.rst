@@ -11,26 +11,32 @@ This document contains example workflows for Usher and matUtils.
 Example Uncertainty Workflow
 ----------
 
-In this example we will calculate uncertainty metrics for samples belonging to clade A.2.4 and visualize them on `auspice <https://auspice.us/>`_.
+In this example we will calculate uncertainty metrics for samples belonging to clade B.1.500 and visualize them on `auspice <https://auspice.us/>`_.
 
-Download the example protobuf file `public-2021-03-02.all.masked.nextclade.pangolin.pb <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/public-2021-03-02.all.masked.nextclade.pangolin.pb>`_ (protobuf file containing the mutation annotated tree with clade annotations)
+Download the example protobuf file `public-2021-05-17.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/05/17/public-2021-05-17.all.masked.nextclade.pangolin.pb.gz>`_ (protobuf file containing the mutation annotated tree with clade annotations)
 
 The first step is generating a visualizable JSON of the clade of interest, along with getting the names of samples involved.
-This is done with matUtils extract.
+This is done with matUtils extract. In our example, we will get the samples associated with a small pangolin clade.
 
 .. code-block:: shell-session
 
-    matUtils extract -i public-2021-03-02.all.masked.nextclade.pangolin.pb -c A.2.4 -u a24_samples.txt -j a24_viz.json
+    matUtils extract -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -c B.1.500 -u b1500_samples.txt -j b1500_viz.json
 
 The second step is to call matUtils uncertainty. The input PB is the original PB, with the sample selection text file, instead of a subtree pb generated with -o.
 This is because its going to search for placements all along the original tree; if a subtree .pb was passed, it would only search for placements within that subtree.
 
 .. code-block:: shell-session
 
-    matUtils uncertainty -i public-2021-03-02.all.masked.nextclade.pangolin.pb -s a24_samples.txt -e a24_epps.tsv -n a24_ns.tsv
+    matUtils uncertainty -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -s b1500_samples.txt -e b1500_epps.tsv -n b1500_ns.tsv
 
-These can now be uploaded for visualization by drag and drop onto the `auspice <https://auspice.us/>`_ website. Drag and drop the a24_viz.json first, then a24_epps.tsv second.
+These can now be uploaded for visualization by drag and drop onto the `auspice <https://auspice.us/>`_ website. Drag and drop the b1500_viz.json first, then the tsv files second.
+Alternatively, the metadata can be included in JSON generation by matUtils extract. The metadata must be combined into a single tsv/csv first.
 
+.. code-block:: shell-session
+
+    awk '{print $2}' b1500_ns.tsv | paste b1500_epps.tsv - > b1500_combined.tsv
+    matUtils extract -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -s b1500_samples.txt -M b1500_combined.tsv -j b1500_annotated.json
+    
 .. _introduce-tutorial:
 
 Example Introduce Workflow
