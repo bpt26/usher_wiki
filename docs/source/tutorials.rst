@@ -4,7 +4,65 @@
 Tutorials
 *********************************************
 
-This document contains example workflows for Usher and matUtils.
+This document contains example workflows for UShER and matUtils.
+
+.. _basic-matUtils-workflow:
+
+Though it is bundled and installed alongside UShER, matUtils is more than an output processor for UShER commands. 
+It can be used in independent workflows that begin with one of our `publicly-provided MAT protobuf files <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/>`_, 
+or an Augur-formatted MAT JSON file as used by Nextstrain. matUtils can be used to explore large trees in deep detail, parsing and manipulating trees of a size
+few other tools can manage efficiently.
+The first step to using one of these public files is `matUtils summary`, which can calculate basic statistics or summarize sample, clade, or mutation-level frequency information.
+
+.. code-block:: shell-session
+
+  matUtils summary -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz 
+
+This particular tree has 757500 unique samples represented in it. We can further explore this dataset with another `matUtils summary` command:
+
+.. code-block:: shell-session
+
+  matUtils summary -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -A -d summary_out
+
+Let's say we're interested in recurrent, or homoplasic, mutations across this tree. The mutations summary file contains the number of independent occurrences of a 
+mutation across the tree. 
+
+.. code-block:: shell-session
+
+  awk '$2 >= 500' summary_out/mutations.tsv
+
+C>T mutations are very overrepresented in this set, being a common mutation and error type. We're concerned about correctly identifying real homoplasic mutations,
+instead of coincident or erroneous mutations, so we filter the dataset down to higher-quality placements and samples.
+
+.. code-block:: shell-session
+
+  matUtils extract -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -a 3 -b 5 -o filtered.pb
+  matUtils summary -i filtered.pb
+
+After filtering, our tree contains 701375 samples, which is 92% of the original tree size. Let's see how our homoplasic mutation output looks.
+
+.. code-block:: shell-session
+
+  matUtils summary -i filtered.pb -m filtered_mutations.tsv
+  awk '$2 > 500' filtered_mutations.tsv
+
+By filtering 8% of our tree, we have removed most of the mutations with more than five hundred unique occurrences. The C>T bias is still present, 
+but we can more comfortably proceed to analyze these mutations. The most homoplasic mutation, a significant outlier with more than a thousand occurrences
+after filtering, is G7328T. This is a mutation in ORF1A, part of the replicase protein which the virus uses to duplicate itself in the host, which causes
+an amino acid change from alanine to serine at position 2355.
+
+If we were interested in following up on this potential homoplasy, we have a few options. We may want to generate a new protobuf file containing only 
+samples with this specific mutation, along with a JSON for visualization and additional sample path information. We can perform all these operations with
+a single command.
+
+.. code-block:: shell-session
+
+  matUtils extract -i filtered.pb -m G7328T -o G7328T.pb -j G7328T.json -S G7328T_sample_paths.txt 
+
+If we upload this JSON to `Auspice <https://auspice.us/>`_, we can choose to highlight each branch and node by whether they contained our query mutation.
+We can see that the majority of occurrences of G7328T are single nodes- having just occurred- and that the majority are from the USA, though from all across the phylogenetic tree.
+Further analysis would be required to validate or interpet these results, but this procedure clearly demonstrates the potential for matUtils for 
+rapid exploratory analysis using large public datasets.
 
 .. _uncertainty-tutorial:
 
@@ -36,7 +94,7 @@ Alternatively, the metadata can be included in JSON generation by matUtils extra
 
     awk '{print $2}' b1500_ns.tsv | paste b1500_epps.tsv - > b1500_combined.tsv
     matUtils extract -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -s b1500_samples.txt -M b1500_combined.tsv -j b1500_annotated.json
-    
+
 .. _introduce-tutorial:
 
 Example Introduce Workflow
