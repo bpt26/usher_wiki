@@ -52,6 +52,7 @@ Quick Start matUtils
 
 matUtils is a package for rapid exploratory analysis and management of `large publicly-provided MAT files <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/>`_.
 The full manual page including detailed parameter information can be found `here <https://usher-wiki.readthedocs.io/en/latest/matUtils.html>`_.
+It is installed alongside UShER (see above conda commands), as they are complementary tools.
 
 .. code-block:: shell-session
 
