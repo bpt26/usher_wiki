@@ -74,11 +74,17 @@ Write a newick tree of all samples which contain either of two mutations of inte
 
   matUtils extract -i input.pb -m my_mutation,my_other_mutation -t my_mutations.txt
 
-Remove samples with a parsimony score greater than five and save a new pb without these samples.
+Convert a MAT JSON into a .pb file, while removing branches with length greater than 7.
 
 .. code-block:: shell-session
 
-  matUtils extract -i input.pb -a 5 -o filtered.pb
+  matUtils extract -i input.json -b 7 -o filtered.pb
+
+Generate a MAT JSON representing a subtree of size 250 around a sample of interest.
+
+.. code-block:: shell-session
+
+  matUtils extract -i input.pb -k my_sample:250 -j my_sample_context.json
 
 Specific Options
 ----------------------
@@ -167,8 +173,6 @@ The other option is more direct. Internal node identifiers can be passed directl
 
 .. warning::
     Internal node names are not maintained when saving and loading from a .pb file. It is not guaranteed that internal node names will correspond directly between two .pb files, so use the direct assignment method with caution.
-
-An example matUtils annotate workflow is included in the :ref:`Usher Quickstart <matutils-quickstart>`.
 
 Example Usage
 ----------------------
