@@ -85,14 +85,17 @@ This is because its going to search for placements all along the original tree; 
 
 .. code-block:: shell-session
 
-    matUtils uncertainty -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -s b1500_samples.txt -e b1500_uncertainty.tsv
+    matUtils uncertainty -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -s b1500_samples.txt -e b1500_uncertainty.tsv -o b1500_placements.tsv
 
 These can now be uploaded for visualization by drag and drop onto the `auspice <https://auspice.us/>`_ website. Drag and drop the b1500_viz.json first, then the tsv files second.
-Alternatively, the metadata can be included in JSON generation by matUtils extract. The metadata must be combined into a single tsv/csv first.
+Alternatively, one of the metadata files can be included in JSON generation by matUtils extract.
 
 .. code-block:: shell-session
 
-    matUtils extract -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -s b1500_samples.txt -z 50 -M b1500_uncertainty.tsv -j b1500_annotated.json
+    matUtils extract -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -s b1500_placements.txt -z 100 -M b1500_placements.tsv -j b1500_annotated.json
+
+The placement metadata file in this example is also passed into -s as well as -M to ensure that all samples with placement information are included in the output. 
+-z fills out additional random samples to contextualize the data. b1500_uncertainty.tsv can be drag-and-dropped onto the Auspice view to display additional colorings.
 
 .. _introduce-tutorial:
 
