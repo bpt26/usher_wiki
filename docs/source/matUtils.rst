@@ -248,7 +248,6 @@ Options
 .. code-block:: shell-session
 
   --samples (-s): File containing samples to calculate metrics for.
-  --get-parsimony (-g): Calculate and print the total tree parsimony score.
   --find-epps (-e): Writes an Auspice-compatible two-column tsv of the number of equally parsimonious placements and neighborhood sizes for each sample to the target file. 
   --record-placements (-o): Name for an Auspice-compatible two-column tsv which records potential parents for each sample in the query set.
 
