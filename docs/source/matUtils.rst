@@ -96,11 +96,13 @@ Specific Options
   --metadata (-M): Name of a tsv or csv containing sample identifiers and an arbitrary number of categorical metadata values in separate columns, with a header line. Used only with -j and -K.
   --clade (-c): Select samples by membership in any of the indicated clade(s), comma delimited- e.g. -c clade1,clade2.
   --mutation (-m): Select samples by whether they contain any of the indicated mutation(s), comma delimited- e.g. -m mutation1,mutation2.
+  --match (-H): Select samples by whether their identifier matches the indicated regex pattern.
   --max-epps (-e): Select samples by whether they have less than or equal to the maximum number of indicated equally parsimonious placements. Explanation of equally parsimonious placements is here INSERT LINK.
   --max-parsimony (-a): Select samples by whether they have less than or equal to the indicated maximum parsimony score (terminal branch length). 
   --max-branch-length (-b): Remove samples which have branches of greater than the indicated length in their ancestry.
   --nearest-k (-k): Select a specific sample and X context samples, formatted as "sample_name:X".
   --nearest-k-batch (-K): Pass a text file of sample IDs and a number of the number of context samples, formatted as sample_file.txt:k. These will be automatically written to a series of json files named "*sample-name*_context.json". Used for special large-scale operations.
+  --set-size (-z): Automatically add or remove samples at random from the selected sample set until it is the indicated size.
   --get-representative (-r): Toggle to automatically select two representative samples per clade currently included in the tree, pruning all other samples from the tree. Applies after other selection steps.
   --prune (-p): Toggle to instead exclude all indicated samples from the subtree output.
   --resolve-polytomies (-R): Toggle to resolve all polytomies by assigning new internal nodes with branch length 0. Used for compatibility with other software.
@@ -245,8 +247,8 @@ Options
 
   --samples (-s): File containing samples to calculate metrics for.
   --get-parsimony (-g): Calculate and print the total tree parsimony score.
-  --find-epps (-e): Writes an Auspice-compatible two-column tsv of the number of equally parsimonious placements for each sample to the target file. 
-  --find-neighborhood (-n): Writes an Auspice-compatible two-column tsv of the neighborhood size scores to the target file.
+  --find-epps (-e): Writes an Auspice-compatible two-column tsv of the number of equally parsimonious placements and neighborhood sizes for each sample to the target file. 
+  --record-placements (-o): Name for an Auspice-compatible two-column tsv which records potential parents for each sample in the query set.
 
 ----------------------
 mask [EXPERIMENTAL]
