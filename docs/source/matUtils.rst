@@ -118,6 +118,8 @@ Specific Options
   --write-json (-j): Write an Auspice-compatbile json representing the selected subtree.
   --retain-branch-length (-E): Use to not recalculate branch lengths with saving newick output. Used only with -t
   --write-tree (-t): Write a newick string representing the selected subtree to the target file. 
+  --single_subtree_size (-X): (EXPERIMENTAL) Use to produce a single sample subtree of the indicated size with all selected samples plus random samples to fill. Produces .nh and .txt files in the output directory.
+  --minimum_subtrees_size(-x): (EXPERIMENTAL) Use to produce the minimum set of subtrees of the indicated size which include all of the selected samples. Produces .nh and .txt files in the output directory.
 
 -----------
 summary
