@@ -118,8 +118,9 @@ Specific Options
   --write-json (-j): Write an Auspice-compatbile json representing the selected subtree.
   --retain-branch-length (-E): Use to not recalculate branch lengths with saving newick output. Used only with -t
   --write-tree (-t): Write a newick string representing the selected subtree to the target file. 
-  --single_subtree_size (-X): (EXPERIMENTAL) Use to produce a single sample subtree of the indicated size with all selected samples plus random samples to fill. Produces .nh and .txt files in the output directory.
-  --minimum_subtrees_size(-x): (EXPERIMENTAL) Use to produce the minimum set of subtrees of the indicated size which include all of the selected samples. Produces .nh and .txt files in the output directory.
+  --minimum_subtrees_size (-N): Use to generate a series of JSON or Newick format files representing subtrees of the indicated size covering all queried samples. Uses and overrides -j and -t output arguments.
+  --usher_single_subtree_size (-X): Use to produce an usher-style single sample subtree of the indicated size with all selected samples plus random samples to fill. Produces .nh and .txt files in the output directory.
+  --usher_minimum_subtrees_size(-x): Use to produce an usher-style minimum set of subtrees of the indicated size which include all of the selected samples. Produces .nh and .txt files in the output directory.
 
 -----------
 summary
@@ -154,6 +155,7 @@ Specific Options
   --clades (-c): Write a tsv listing all clades and the count of associated samples in the tree.
   --mutations (-m): Write a tsv listing all mutations in the tree and their occurrence count.
   --aberrant (-a): Write a tsv listing potentially problematic nodes, including duplicates and internal nodes with no mutations and/or branch length 0.
+  --sample-clades (-C): Write a tsv listing all samples and their closest associated clade root in each annotation type column. 
   --get-all (-A): Write all possible tsv outputs with default file names (samples.txt, clades.txt, etc).
 
 -----------
@@ -363,3 +365,5 @@ Options
   --additional-info (-a): Use to calculate additional phylogeographic statistics about your region and inferred introductions.
   --clade-regions (-c): Set to optionally write a tab-separated table containing inferred origins for each clade currently annotated in the tree from among your regions.
   --origin-confidence (-C): Set to a confidence value between 0 and 1 at which to state that a node is in-region. Default is 0.5
+  --evaluate-metadata (-E): Set to assign each leaf a confidence value based on distance-weighted ancestor confidence.
+  --dump-assignments (-D): Indicate a directory to which to write two-column text files containing node-confidence assignments for downstream processing.
