@@ -230,9 +230,6 @@ The most confident samples are ones which have an EPPs of 1 and an NSS of 0, fol
 NSS is calculated by taking the set of equally parsimonious placements indicated by Usher's mapper function and identifying the LCA of all placements.
 The two longest distances from the LCA to two placements are then summed and the result is reported as NSS- the longest direct path between two placements for the sample.
 
-Both values are reported in distinct two-column tsvs, which are compatible with Auspice's metadata annotation for visualizing the samples. Information 
-on this can be found `here <https://docs.nextstrain.org/projects/auspice/en/latest/advanced-functionality/drag-drop-csv-tsv.html>`_.
-
 An example workflow for calculating and visualizing uncertainty metrics can be found :ref:`here <uncertainty-tutorial>`.
 
 Example Usage
@@ -242,7 +239,7 @@ Calculate uncertainty metrics for a specific set of samples.
 
 .. code-block:: shell-session
 
-  matUtils uncertainty -i input.pb -s my_samples.txt -e my_epps.tsv -n my_neighborhood.tsv
+  matUtils uncertainty -i input.pb -s my_samples.txt -e my_uncertainty.tsv
 
 Options
 -----------
