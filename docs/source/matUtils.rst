@@ -42,6 +42,44 @@ All matUtils subcommands include these parameters.
   --threads (-T): Number of threads to use when possible. Default = use all available cores.
   --help (-h): Print help messages.
 
+-----------
+summary
+-----------
+
+`matUtils summary` is used to get basic statistics and attribute information about the mat. 
+If no specific arguments are set, prints the number of nodes, number of samples, number of condensed nodes, 
+and total tree parsimony of the input mat to standard output.
+
+Example Usage
+----------------------
+
+Get a tsv containing all sample names and parsimony scores.
+
+.. code-block:: shell-session
+
+  matUtils summary -i input.pb --samples all_samples.text
+
+Write all possible summary output files to a specific directory.
+
+.. code-block:: shell-session
+
+  matUtils summary -i input.pb -A -d input_summary/
+
+Specific Options
+----------------------
+
+.. code-block:: shell-session
+
+  --input-mat (-i): Input mutation-annotated tree file [REQUIRED]. If only this argument is set, print the count of samples and nodes in the tree.
+  --output-directory (-d): Write all output files to the target directory. Default is current directory
+  --samples (-s): Write a two-column tsv listing all samples in the tree and their parsimony score (terminal branch length). Auspice-compatible.
+  --clades (-c): Write a tsv listing all clades and the count of associated samples in the tree.
+  --mutations (-m): Write a tsv listing all mutations in the tree and their occurrence count.
+  --aberrant (-a): Write a tsv listing potentially problematic nodes, including duplicates and internal nodes with no mutations and/or branch length 0.
+  --sample-clades (-C): Write a tsv listing all samples and their closest associated clade root in each annotation type column. 
+  --get-all (-A): Write all possible tsv outputs with default file names (samples.txt, clades.txt, etc).
+
+
 ----------
 extract
 ----------
@@ -122,41 +160,6 @@ Specific Options
   --usher_single_subtree_size (-X): Use to produce an usher-style single sample subtree of the indicated size with all selected samples plus random samples to fill. Produces .nh and .txt files in the output directory.
   --usher_minimum_subtrees_size(-x): Use to produce an usher-style minimum set of subtrees of the indicated size which include all of the selected samples. Produces .nh and .txt files in the output directory.
 
------------
-summary
------------
-
-`matUtils summary` is used to get basic statistics and attribute information about the mat. 
-If no specific arguments are set, prints the number of nodes, number of samples, number of condensed nodes, 
-and total tree parsimony of the input mat to standard output.
-
-Example Usage
-----------------------
-
-Get a tsv containing all sample names and parsimony scores.
-
-.. code-block:: shell-session
-
-  matUtils summary -i input.pb --samples all_samples.text
-
-Write all possible summary output files to a specific directory.
-
-.. code-block:: shell-session
-
-  matUtils summary -i input.pb -A -d input_summary/
-
-Specific Options
-----------------------
-
-.. code-block:: shell-session
-
-  --output-directory (-d): Write all output files to the target directory. Default is current directory
-  --samples (-s): Write a two-column tsv listing all samples in the tree and their parsimony score (terminal branch length). Auspice-compatible.
-  --clades (-c): Write a tsv listing all clades and the count of associated samples in the tree.
-  --mutations (-m): Write a tsv listing all mutations in the tree and their occurrence count.
-  --aberrant (-a): Write a tsv listing potentially problematic nodes, including duplicates and internal nodes with no mutations and/or branch length 0.
-  --sample-clades (-C): Write a tsv listing all samples and their closest associated clade root in each annotation type column. 
-  --get-all (-A): Write all possible tsv outputs with default file names (samples.txt, clades.txt, etc).
 
 -----------
 annotate
@@ -249,36 +252,14 @@ Options
   --samples (-s): File containing samples to calculate metrics for.
   --find-epps (-e): Writes an Auspice-compatible two-column tsv of the number of equally parsimonious placements and neighborhood sizes for each sample to the target file. 
   --record-placements (-o): Name for an Auspice-compatible two-column tsv which records potential parents for each sample in the query set.
-
+  
 ----------------------
-mask [EXPERIMENTAL]
-----------------------
-
-`matUtils mask` is used to mask specific samples out of the pb, removing their mutations from visibility.
-
-Example Usage
+introduce 
 ----------------------
 
-Mask out a specific set of samples.
+`matUtils introduce` is used aid the analysis of the number of new introductions of the virus genome into a geographic region. `matUtils introduce` can calculate the association index (Wang et al. 2001) or the maximum monophyletic clade size statistic (Salemi et al. 2005; Parker et al. 2008) for arbitrary sets of samples, and also uses a new heuristic (currently experimental and described below) for estimating the points of introduction.
 
-.. code-block:: shell-session
-
-  matUtils mask -i input.pb -s private_samples.txt -o masked.pb 
-
-Options
------------
-
-.. code-block:: shell-session
-
-  --output-mat (-o): Path to output processed mutation-annotated tree file (REQUIRED)
-  --restricted-samples (-s): Sample names to restrict. Use to perform masking. 
-
-----------------------
-introduce [EXPERIMENTAL]
-----------------------
-
-`matUtils introduce` uses simple heuristics to rapidly identify likely novel introductions into a geographic region
-given a set of samples known to be from that region. It requires a two-column tsv as input alongside the protobuf containing names of samples
+It requires a two-column tsv as input alongside the protobuf containing names of samples
 and associated regions. Multiple regions can be processed simultaneously; in this mode, introduction points will be checked for whether 
 they have significant support for originating from another input region.
 
@@ -308,6 +289,7 @@ confidence = 1 / (1 + ((Di/Ni)/(Do/No)))
 This is essentially a ratio placed under a squash function such that equal numbers of leaves and distance to the nearest leaf for both in and out
 of the region yield a confidence of 0.5, while descendents nearly being purely either in or out of the region will yield ~1 and ~0 respectively.
 
+-----------
 Introductions
 -----------
 
@@ -339,9 +321,11 @@ stronger statistical grounding for their results.
 Finally, it supports inference of the region of origin for all annotated clade roots currently in the tree based on 
 these confidence metrics, though only from among input regions. 
 
-Parker, J., Rambaut, A., and Pybus, O.G. (2008). Correlating viral phenotypes with phylogeny: Accounting for phylogenetic uncertainty. Infection, Genetics and Evolution 8, 239–246.
-
 Wang, T.H., Donaldson, Y.K., Brettle, R.P., Bell, J.E., and Simmonds, P. (2001). Identification of Shared Populations of Human Immunodeficiency Virus Type 1 Infecting Microglia and Tissue Macrophages outside the Central Nervous System. Journal of Virology 75, 11686–11699.
+
+Salemi M, Lamers SL, Yu S, de Oliveira T, Fitch WM, McGrath MS. 2005. Phylodynamic Analysis of Human Immunodeficiency Virus Type 1 in Distinct Brain Compartments Provides a Model for the Neuropathogenesis of AIDS. J Virol 79:11343–11352.
+
+Parker, J., Rambaut, A., and Pybus, O.G. (2008). Correlating viral phenotypes with phylogeny: Accounting for phylogenetic uncertainty. Infection, Genetics and Evolution 8, 239–246.
 
 Example Usage
 ----------------------
@@ -364,3 +348,26 @@ Options
   --origin-confidence (-C): Set to a confidence value between 0 and 1 at which to state that a node is in-region. Default is 0.5
   --evaluate-metadata (-E): Set to assign each leaf a confidence value based on distance-weighted ancestor confidence.
   --dump-assignments (-D): Indicate a directory to which to write two-column text files containing node-confidence assignments for downstream processing.
+
+----------------------
+mask [EXPERIMENTAL]
+----------------------
+
+`matUtils mask` is used to mask specific samples out of the pb, removing their mutations from visibility.
+
+Example Usage
+----------------------
+
+Mask out a specific set of samples.
+
+.. code-block:: shell-session
+
+  matUtils mask -i input.pb -s private_samples.txt -o masked.pb 
+
+Options
+-----------
+
+.. code-block:: shell-session
+
+  --output-mat (-o): Path to output processed mutation-annotated tree file (REQUIRED)
+  --restricted-samples (-s): Sample names to restrict. Use to perform masking. 
