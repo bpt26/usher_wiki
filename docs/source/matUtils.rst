@@ -27,9 +27,6 @@ and the final step of loading is to uncondense these nodes back into full polyto
 This structure allows us to perform both classical phylogenetic processes, such as traversing the tree and calculating parsimony scores,
 while also being able to query the structure as if it was a database of sequences, extracting a vcf of samples which contain a specific mutation for example.
 
-Google also maintains a suite of general tools for working with protocol buffer format files, including interacting with protobufs across multiple languages. 
-A tutorial in using these tools to analyze the MAT protobuf in Python can be found :ref:`here <protobuf-tutorial>`.
-
 ----------------------
 matUtils Common Options
 ----------------------
