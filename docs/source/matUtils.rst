@@ -167,8 +167,7 @@ annotate
 
 `matUtils annotate` is a function for adding clade annotation information to the pb. This information can be accessed downstream by `matUtils extract` or other tools.
 
-It has two general ways to add this information. The first, recommended fashion is to pass a simple two-column tsv containing clade and sample names. 
-`matUtils annotate` will automatically identify the best clade root from this information with a three-step process.
+It has two general ways to add this information. The first, recommended fashion is to pass node identifiers to be be assigned as clade roots for each clade directly through a two-column tsv. In the second way, the user can provide a set of names for the representative sequences for each clade in a two-column tsv from which the clade roots can be automatically inferred by the `matUtils annotate` using the algorithm described below:
 
 1. It collects the set of mutations which are at at least -f allele frequency across the input samples; these represent the clade's likely defining mutations.
 
@@ -176,12 +175,9 @@ It has two general ways to add this information. The first, recommended fashion 
 
 3. For each of the candidate roots, the algorithm calculates the number of samples which are actually descendent of that node. The node which is ancestral to the most samples and which is not already assigned to another clade is assigned as the best clade root.
 
-This does not guarantee that every sample that is member in the clade in the input will be a member of the clade at the end of assignment, but assignments are generally high quality.
+This method does not guarantee that every sample that is member in the clade in the input will be a member of the clade at the end of assignment, but assignments are generally high quality.
 
-The other option is more direct. Internal node identifiers can be passed directly through a two-column tsv and those nodes will be assigned as clade roots. 
 
-.. warning::
-    Internal node names are not maintained when saving and loading from a .pb file. It is not guaranteed that internal node names will correspond directly between two .pb files, so use the direct assignment method with caution.
 
 Example Usage
 ----------------------
