@@ -128,7 +128,7 @@ Specific Options
 
   --input-mat (-i): For this specific command, the input can either be a standard MAT protobuf or an Augur-v2-formatted MAT JSON, ala Nextstrain.
   --samples (-s): Select samples by explicitly naming them, one per line in a plain text file.
-  --metadata (-M): Name of a tsv or csv containing sample identifiers and an arbitrary number of categorical metadata values in separate columns, with a header line. Used only with -j and -K.
+  --metadata (-M): Comma delimited names of tsvs or csvs containing sample identifiers in the first column and an arbitrary number of metadata values in separate columns, including a header line in each file. Used only with -j and -K.
   --clade (-c): Select samples by membership in any of the indicated clade(s), comma delimited- e.g. -c clade1,clade2.
   --mutation (-m): Select samples by whether they contain any of the indicated mutation(s), comma delimited- e.g. -m mutation1,mutation2.
   --match (-H): Select samples by whether their identifier matches the indicated regex pattern.
@@ -164,7 +164,11 @@ annotate
 
 `matUtils annotate` is a function for adding clade annotation information to the pb. This information can be accessed downstream by `matUtils extract` or other tools.
 
-It has two general ways to add this information. The first, recommended fashion is to pass node identifiers to be be assigned as clade roots for each clade directly through a two-column tsv. In the second way, the user can provide a set of names for the representative sequences for each clade in a two-column tsv from which the clade roots can be automatically inferred by the `matUtils annotate` using the algorithm described below:
+It has two general ways to add this information. The first, recommended fashion is to pass node identifiers to be be assigned as clade roots for each clade directly through a two-column tsv.
+
+With the second method, the user can provide a set of names for the representative sequences for each clade in a two-column tsv from which the clade roots can be automatically inferred.
+Specifically, `matUtils annotate` expects clades in the first column and sample identifiers in the second, as in the lineageToPublicName files available in our `database <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/>`_.
+The algorithm is described below:
 
 1. It collects the set of mutations which are at at least -f allele frequency across the input samples; these represent the clade's likely defining mutations.
 
@@ -253,7 +257,7 @@ introduce
 `matUtils introduce` is used aid the analysis of the number of new introductions of the virus genome into a geographic region. `matUtils introduce` can calculate the association index (Wang et al. 2001) or the maximum monophyletic clade size statistic (Salemi et al. 2005; Parker et al. 2008) for arbitrary sets of samples, and also uses a new heuristic (currently experimental and described below) for estimating the points of introduction.
 
 It requires a two-column tsv as input alongside the protobuf containing names of samples
-and associated regions. Multiple regions can be processed simultaneously; in this mode, introduction points will be checked for whether 
+and associated regions in the first and second columns respectively. Multiple regions can be processed simultaneously; in this mode, introduction points will be checked for whether 
 they have significant support for originating from another input region.
 
 An example workflow for inferring and visualizing geographic introductions can be found :ref:`here <introduce-tutorial>`.
@@ -334,7 +338,7 @@ Options
 
 .. code-block:: shell-session
 
-  --population-samples (-s): Two-column tab-separated text file containing sample names and region membership (REQUIRED)
+  --population-samples (-s): Two-column tab-separated text file containing sample names and region membership respectively (REQUIRED)
   --output (-o): Name of the output tab-separated table containing inferred introductions, one sample per row (REQUIRED)
   --additional-info (-a): Use to calculate additional phylogeographic statistics about your region and inferred introductions.
   --clade-regions (-c): Set to optionally write a tab-separated table containing inferred origins for each clade currently annotated in the tree from among your regions.
