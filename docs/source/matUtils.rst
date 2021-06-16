@@ -115,11 +115,11 @@ Convert a MAT JSON into a .pb file, while removing branches with length greater 
 
   matUtils extract -i input.json -b 7 -o filtered.pb
 
-Generate a MAT JSON representing a subtree of size 250 around a sample of interest.
+Generate a MAT JSON representing a subtree of size 250 around a sample of interest, including multiple metadata files and filtering low-scoring samples.
 
 .. code-block:: shell-session
 
-  matUtils extract -i input.pb -k my_sample:250 -j my_sample_context.json
+  matUtils extract -i input.pb -a 5 -M my_metadata_1.tsv,my_metadata_2.tsv -k my_sample:250 -j my_sample_context.json
 
 Specific Options
 ----------------------
