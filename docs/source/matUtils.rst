@@ -294,7 +294,7 @@ Example Syntax and Usage
 
 Example Files
 
-a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.pb.gz>`_
+a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
 b. :download:`eng_samples.txt<./eng_samples.txt>`
 
@@ -396,7 +396,7 @@ Example Syntax and Usage
 
 Example Files
 
-a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.pb.gz>`_
+a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
 b. :download:`regional-samples.txt <./regional-samples.txt>`
 
@@ -434,7 +434,7 @@ Example Syntax and Usage
 
 Example Files
 
-a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.pb.gz>`_
+a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
 b. :download:`private.txt<./private.txt>`
 
