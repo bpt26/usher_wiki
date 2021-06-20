@@ -103,7 +103,7 @@ Example Introduce Workflow
 ----------
 
 .. note:: 
-    THIS FEATURE IS EXPERIMENTAL. We are actively soliciting feedback on the usefulness of the current implementation, additional features
+    This feature is currently under active development! We are actively soliciting feedback on the usefulness of the current implementation, additional features
     that would be valuable, or directions to take this type of analysis. Please reach out on the GitHub or directly to me via my email, 
     jmcbroom@ucsc.edu.
 

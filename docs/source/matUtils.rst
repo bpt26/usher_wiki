@@ -50,17 +50,29 @@ and total tree parsimony of the input mat to standard output.
 Example Usage
 ----------------------
 
-Get a tsv containing all sample names and parsimony scores.
+1. Get a tsv containing all sample names and parsimony scores.
 
 .. code-block:: shell-session
 
-  matUtils summary -i input.pb --samples all_samples.text
+  matUtils summary -i input.pb --samples samples.txt
 
-Write all possible summary output files to a specific directory.
+.. code-block:: shell-session
+
+  matUtils summary -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz --samples 06-09_samples.txt
+
+2. Write all possible summary output files to a specific directory.
 
 .. code-block:: shell-session
 
   matUtils summary -i input.pb -A -d input_summary/
+
+.. code-block:: shell-session
+
+  matUtils summary -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -A -d 06-09_summary/
+
+Example Files:
+
+a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
 Specific Options
 ----------------------
@@ -94,32 +106,58 @@ Generally, its parameters can be grouped into four categories:
 
 `matUtils extract` is the workhorse function for manipulating MAT .pb files, particularly for any operations involving removing part of the .pb and converting .pb to other file formats.
 
-Example Usage
+Example Syntax and Usage
 ---------------------
 
-Write a vcf representing all samples within a clade.
+1. Write a vcf representing all samples within a clade.
 
 .. code-block:: shell-session
 
   matUtils extract -i input.pb -c my_clade -v my_clade.vcf
 
-Write a newick tree of all samples which contain either of two mutations of interest.
+.. code-block:: shell-session
+
+  matUtils extract -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -c B.1.351 -v 351_samples.vcf
+
+2. Write a newick tree of all samples which contain either of two mutations of interest.
 
 .. code-block:: shell-session
 
-  matUtils extract -i input.pb -m my_mutation,my_other_mutation -t my_mutations.txt
+  matUtils extract -i input.pb -m my_mutation,my_other_mutation -t my_mutations.nwk
 
-Convert a MAT JSON into a .pb file, while removing branches with length greater than 7.
+.. code-block:: shell-session
+
+  matUtils extract -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -m G7328T,A8653G -t double_mutant.nwk
+
+3. Convert a MAT JSON into a .pb file, while removing branches with length greater than 7.
 
 .. code-block:: shell-session
 
   matUtils extract -i input.json -b 7 -o filtered.pb
 
-Generate a MAT JSON representing a subtree of size 250 around a sample of interest, including multiple metadata files and filtering low-scoring samples.
+.. code-block:: shell-session
+
+  matUtils extract -i usa_group.json -b 7 -o filtered_usa_group.pb
+
+4. Generate a MAT JSON representing a subtree of size 25 around a sample of interest, including multiple metadata files and filtering low-scoring samples.
 
 .. code-block:: shell-session
 
-  matUtils extract -i input.pb -a 5 -M my_metadata_1.tsv,my_metadata_2.tsv -k my_sample:250 -j my_sample_context.json
+  matUtils extract -i input.pb -a 5 -M my_metadata_1.tsv,my_metadata_2.tsv -k my_sample:25 -j my_sample_context.json
+
+.. code-block:: shell-session
+
+  matUtils extract -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -a 5 -M meta_1.tsv,meta_2.tsv -k "Scotland/CVR6436/2020|2020-12-30:25" -j cluster.json
+
+Example Files 
+
+a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
+
+b. :download:`usa_group.json <./usa_group.json>`
+
+c. :download:`region.tsv <./meta_1.tsv>`
+
+d. :download:`misc.tsv <./meta_2.tsv>`
 
 Specific Options
 ----------------------
@@ -178,18 +216,27 @@ The algorithm is described below:
 
 This method does not guarantee that every sample that is member in the clade in the input will be a member of the clade at the end of assignment, but assignments are generally high quality.
 
-
-
-Example Usage
+Example Syntax and Usage
 ----------------------
 
-Assign a new set of custom clade annotations to the tree.
+1. Assign a new set of custom clade annotations to the tree.
 
 .. code-block:: shell-session
 
   matUtils annotate -i input.pb -c my_clade_info.txt -o annotated.pb
 
-Options
+.. code-block:: shell-session
+
+  gunzip -c cladeToPublicName.gz > clade_info.txt
+  matUtils annotate -i public-2021-06-09.all.masked.pb.gz -c clade_info.txt -o nxts_annotated.pb
+
+Example Files
+
+a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.pb.gz>`_
+
+b. `cladeToPublicName.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/cladeToPublicName.gz>`_
+
+Specific Options
 -----------
 
 .. code-block:: shell-session
@@ -232,14 +279,24 @@ The two longest distances from the LCA to two placements are then summed and the
 
 An example workflow for calculating and visualizing uncertainty metrics can be found :ref:`here <uncertainty-tutorial>`.
 
-Example Usage
+Example Syntax and Usage
 ----------------------
 
-Calculate uncertainty metrics for a specific set of samples.
+1. Calculate uncertainty metrics for a specific set of samples.
 
 .. code-block:: shell-session
 
   matUtils uncertainty -i input.pb -s my_samples.txt -e my_uncertainty.tsv
+
+.. code-block:: shell-session
+
+  matUtils uncertainty -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -s eng_samples.txt -e eng_uncertainty.tsv
+
+Example Files
+
+a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.pb.gz>`_
+
+b. :download:`eng_samples.txt<./eng_samples.txt>`
 
 Options
 -----------
@@ -324,14 +381,24 @@ Salemi M, Lamers SL, Yu S, de Oliveira T, Fitch WM, McGrath MS. 2005. Phylodynam
 
 Parker, J., Rambaut, A., and Pybus, O.G. (2008). Correlating viral phenotypes with phylogeny: Accounting for phylogenetic uncertainty. Infection, Genetics and Evolution 8, 239–246.
 
-Example Usage
+Example Syntax and Usage
 ----------------------
 
-Generate a tsv containing inferred introduction information, one sample per row.
+1. Generate a tsv containing inferred introduction information, one sample per row.
 
 .. code-block:: shell-session
 
   matUtils introduce -i public.pb -s my_region_samples.txt -o my_region_introductions.tsv
+  
+.. code-block:: shell-session
+
+  matUtils introduce -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -s regional-samples.txt -o regional-introductions.tsv
+
+Example Files
+
+a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.pb.gz>`_
+
+b. :download:`regional-samples.txt <./regional-samples.txt>`
 
 Options
 -----------
@@ -352,14 +419,24 @@ mask [EXPERIMENTAL]
 
 `matUtils mask` is used to mask specific samples out of the pb, removing their mutations from visibility.
 
-Example Usage
+Example Syntax and Usage
 ----------------------
 
-Mask out a specific set of samples.
+1. Mask out a specific set of samples.
 
 .. code-block:: shell-session
 
   matUtils mask -i input.pb -s private_samples.txt -o masked.pb 
+
+.. code-block:: shell-session
+
+  matUtils mask -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -s private.txt -o public-2021-06-09.all.moremasked.masked.nextclade.pangolin.pb
+
+Example Files
+
+a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.pb.gz>`_
+
+b. :download:`private.txt<./private.txt>`
 
 Options
 -----------
