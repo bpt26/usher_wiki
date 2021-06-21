@@ -69,7 +69,7 @@ Example Usage
 
 **Example command**
 
-Files:
+Files needed:
 
 a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
@@ -151,7 +151,7 @@ Example Syntax and Usage
 
 **Example command**
 
-Files:
+Files needed:
 
 a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
@@ -234,7 +234,7 @@ Example Syntax and Usage
 
 **Example command**
 
-Files:
+Files needed:
 
 a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.pb.gz>`_
 
@@ -300,7 +300,7 @@ Example Syntax and Usage
 
 **Example command**
 
-Files:
+Files needed:
 
 a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
@@ -405,7 +405,7 @@ Example Syntax and Usage
   
 **Example command**
 
-Files:
+Files needed:
 
 a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
@@ -446,7 +446,7 @@ Example Syntax and Usage
   
 **Example command**
 
-Files:
+Files needed:
 
 
 a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
