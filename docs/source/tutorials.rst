@@ -177,7 +177,11 @@ by selecting one of our samples and extracting the context to a JSON with `matUt
 
     matUtils extract -i public-2021-04-20.all.masked.nextclade.pangolin.pb -k "ESP/hCoV-19_Spain_CT-HUVH-76622_2021/2021|MW769758.1|21-01-19:50" -j spanish_introduction.json
 
-This JSON can be drag-and-dropped onto the Auspice web interface. `You can view the expected output in full here. <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/spanish_introduction.json>`_
+This JSON can be drag-and-dropped onto the Auspice web interface. `You can view the expected output interactively here. <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/spanish_introduction.json>`_
+
+.. image:: colored_spanish_introduction.png
+    :width: 1500px
+    :align: center
 
 Samples from England appear in blue, Spain in green, and Wales in yellow in this image. We can see that our group of 9 B.1.1.7 samples forms a clear clade that was likely introduced into Spain from England.
 
