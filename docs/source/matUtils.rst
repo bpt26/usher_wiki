@@ -66,13 +66,16 @@ Example Usage
 
   matUtils summary -i input.pb -A -d input_summary/
 
+
+**Example command**
+
+Files needed:
+
+a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
+
 .. code-block:: shell-session
 
   matUtils summary -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -A -d 06-09_summary/
-
-Example Files:
-
-a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
 Specific Options
 ----------------------
@@ -145,11 +148,10 @@ Example Syntax and Usage
 
   matUtils extract -i input.pb -a 5 -M my_metadata_1.tsv,my_metadata_2.tsv -k my_sample:25 -j my_sample_context.json
 
-.. code-block:: shell-session
 
-  matUtils extract -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -a 5 -M meta_1.tsv,meta_2.tsv -k "Scotland/CVR6436/2020|2020-12-30:25" -j cluster.json
+**Example command**
 
-Example Files 
+Files needed:
 
 a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
@@ -158,6 +160,11 @@ b. :download:`usa_group.json <./usa_group.json>`
 c. :download:`region.tsv <./meta_1.tsv>`
 
 d. :download:`misc.tsv <./meta_2.tsv>`
+
+.. code-block:: shell-session
+
+  matUtils extract -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -a 5 -M meta_1.tsv,meta_2.tsv -k "Scotland/CVR6436/2020|2020-12-30:25" -j cluster.json
+
 
 Specific Options
 ----------------------
@@ -225,16 +232,19 @@ Example Syntax and Usage
 
   matUtils annotate -i input.pb -c my_clade_info.txt -o annotated.pb
 
+**Example command**
+
+Files needed:
+
+a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.pb.gz>`_
+
+b. `cladeToPublicName.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/cladeToPublicName.gz>`_
+
 .. code-block:: shell-session
 
   gunzip -c cladeToPublicName.gz > clade_info.txt
   matUtils annotate -i public-2021-06-09.all.masked.pb.gz -c clade_info.txt -o nxts_annotated.pb
 
-Example Files
-
-a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.pb.gz>`_
-
-b. `cladeToPublicName.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/cladeToPublicName.gz>`_
 
 Specific Options
 -----------
@@ -288,15 +298,18 @@ Example Syntax and Usage
 
   matUtils uncertainty -i input.pb -s my_samples.txt -e my_uncertainty.tsv
 
-.. code-block:: shell-session
+**Example command**
 
-  matUtils uncertainty -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -s eng_samples.txt -e eng_uncertainty.tsv
-
-Example Files
+Files needed:
 
 a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
 b. :download:`eng_samples.txt<./eng_samples.txt>`
+
+.. code-block:: shell-session
+
+  matUtils uncertainty -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -s eng_samples.txt -e eng_uncertainty.tsv
+
 
 Options
 -----------
@@ -390,15 +403,18 @@ Example Syntax and Usage
 
   matUtils introduce -i public.pb -s my_region_samples.txt -o my_region_introductions.tsv
   
-.. code-block:: shell-session
+**Example command**
 
-  matUtils introduce -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -s regional-samples.txt -o regional-introductions.tsv
-
-Example Files
+Files needed:
 
 a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
 b. :download:`regional-samples.txt <./regional-samples.txt>`
+
+.. code-block:: shell-session
+
+  matUtils introduce -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -s regional-samples.txt -o regional-introductions.tsv
+
 
 Options
 -----------
@@ -427,16 +443,20 @@ Example Syntax and Usage
 .. code-block:: shell-session
 
   matUtils mask -i input.pb -s private_samples.txt -o masked.pb 
+  
+**Example command**
+
+Files needed:
+
+
+a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
+
+b. :download:`private.txt<./private.txt>`
 
 .. code-block:: shell-session
 
   matUtils mask -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -s private.txt -o public-2021-06-09.all.moremasked.masked.nextclade.pangolin.pb
 
-Example Files
-
-a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
-
-b. :download:`private.txt<./private.txt>`
 
 Options
 -----------
