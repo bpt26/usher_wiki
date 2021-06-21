@@ -164,11 +164,12 @@ The first entry of this output is reproduced here, sans the mutation path.
 
 .. code-block:: shell-session
 
-    ESP/hCoV-19_Spain_CT-HUVH-76622_2021/2021|MW769758.1|21-01-19	96055	1	0.0431655	2	20I/501Y.V1,B.1.1.7,B.1.1.28,20B,B.1.1,20A,B.1.1.171,B.1,19A,B	
+    ESP/hCoV-19_Spain_CT-HUVH-32938_2021/2021|MW769763.1|21-01-14	96055	2	4.5	2021-Jan-14	2021-Jan-21	9	51		1	0.0431655	3
 
-We can see that this introduction point is very confidently in Spain (confidence of 1 in column 3, as every descendent is from Spain) but that 
+We can see that this introduction point is very confidently in Spain (confidence of 1 in column 9, as every descendent is from Spain) but that 
 the parent of that introduction point is very confidently NOT from Spain (confidence of 0.043 to be in Spain). This makes this a strongly supported introduction
-of a variant of concern into our region. Let's take a closer look by visualizing it on the `Auspice <https://auspice.us/>`_ web interface.
+of a variant of concern into our region. Samples in this cluster span the week from the 14th to the 21st of January 2021, meaning that it has a cluster
+growth score of 9/(1+1) or 4.5, which puts it second on our ranked cluster list. Let's take a closer look by visualizing it on the `Auspice <https://auspice.us/>`_ web interface.
 
 To do this, first we will need to generate an auspice-compatible JSON containing our introduction set and some context samples. We can do this 
 by selecting one of our samples and extracting the context to a JSON with `matUtils extract`.

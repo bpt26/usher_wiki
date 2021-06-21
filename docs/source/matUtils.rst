@@ -182,6 +182,7 @@ Specific Options
   --max-branch-length (-b): Remove samples which have branches of greater than the indicated length in their ancestry.
   --nearest-k (-k): Select a specific sample and X context samples, formatted as "sample_name:X".
   --nearest-k-batch (-K): Pass a text file of sample IDs and a number of the number of context samples, formatted as sample_file.txt:k. These will be automatically written to a series of json files named "*sample-name*_context.json". Used for special large-scale operations.
+  --get-internal-descendents (-I): Select the set of samples descended from the indicated internal node.
   --set-size (-z): Automatically add or remove samples at random from the selected sample set until it is the indicated size.
   --get-representative (-r): Toggle to automatically select two representative samples per clade currently included in the tree, pruning all other samples from the tree. Applies after other selection steps.
   --prune (-p): Toggle to instead exclude all indicated samples from the subtree output.
@@ -368,6 +369,11 @@ Introductions are calculated for each region independently with multiple region 
 the origin point for membership in each other region is checked. Origins with a confidence of >0.5 membership in other regions are recorded
 in the output, and if none are found the origin is labeled as indeterminate.
 
+`matUtils introduce` yields a by-sample output table which includes cluster level statistics in the first few columns. Notable among these is
+cluster growth score, which is simply the number of samples from the cluster divided by one plus the number of weeks separating the oldest and most
+recent samples of the cluster, rounded down. Clusters are printed in order of their rank by this score, putting putative outbreaks and groups 
+of most concern at the top of the output file.
+
 Phylogeographic Statistics and Other Options
 -----------
 
@@ -425,6 +431,7 @@ Options
   --output (-o): Name of the output tab-separated table containing inferred introductions, one sample per row (REQUIRED)
   --additional-info (-a): Use to calculate additional phylogeographic statistics about your region and inferred introductions.
   --clade-regions (-c): Set to optionally write a tab-separated table containing inferred origins for each clade currently annotated in the tree from among your regions.
+  --date-metadata (-M): Pass a TSV or CSV containing a 'date' column to use for date information. If not used, date will be inferred from the sample name where possible.
   --origin-confidence (-C): Set to a confidence value between 0 and 1 at which to state that a node is in-region. Default is 0.5
   --evaluate-metadata (-E): Set to assign each leaf a confidence value based on distance-weighted ancestor confidence.
   --dump-assignments (-D): Indicate a directory to which to write two-column text files containing node-confidence assignments for downstream processing.
