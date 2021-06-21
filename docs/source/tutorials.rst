@@ -59,7 +59,7 @@ a single command.
 
   matUtils extract -i filtered.pb -m G7328T -o G7328T.pb -j G7328T.json -S G7328T_sample_paths.txt 
 
-The expected output can be viewed `here <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/G7328T.json>`_
+`The expected output can be viewed here <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/G7328T.json>`_
 or you can upload your generated JSON at `Auspice <https://auspice.us/>`_.
 
 In this view, we can choose to highlight each branch and node by whether they contained our query mutation.
@@ -100,7 +100,7 @@ Alternatively, one of the metadata files can be included in JSON generation by m
 The placement metadata file in this example is also passed into -s as well as -M to ensure that all samples with placement information are included in the output. 
 -z fills out additional random samples to contextualize the data. b1500_uncertainty.tsv can be drag-and-dropped onto the Auspice view to display additional colorings.
 
-The expected output can be viewed `here. <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/b1500_annotated.json>`_
+`The expected output can be viewed in full here. <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/b1500_annotated.json>`_
 
 .. _introduce-tutorial:
 
@@ -177,7 +177,7 @@ by selecting one of our samples and extracting the context to a JSON with `matUt
 
     matUtils extract -i public-2021-04-20.all.masked.nextclade.pangolin.pb -k "ESP/hCoV-19_Spain_CT-HUVH-76622_2021/2021|MW769758.1|21-01-19:50" -j spanish_introduction.json
 
-This JSON can be drag-and-dropped onto the Auspice web interface. You can view the expected output `here. <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/spanish_introduction.json>`_
+This JSON can be drag-and-dropped onto the Auspice web interface. `You can view the expected output in full here. <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/spanish_introduction.json>`_
 
 Samples from England appear in blue, Spain in green, and Wales in yellow in this image. We can see that our group of 9 B.1.1.7 samples forms a clear clade that was likely introduced into Spain from England.
 
