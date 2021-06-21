@@ -59,7 +59,10 @@ a single command.
 
   matUtils extract -i filtered.pb -m G7328T -o G7328T.pb -j G7328T.json -S G7328T_sample_paths.txt 
 
-If we upload this JSON to `Auspice <https://auspice.us/>`_, we can choose to highlight each branch and node by whether they contained our query mutation.
+The expected output can be viewed `here <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/G7328T.json>`_
+or you can upload your generated JSON at `Auspice <https://auspice.us/>`_.
+
+In this view, we can choose to highlight each branch and node by whether they contained our query mutation.
 We can see that the majority of occurrences of G7328T are single nodes- having just occurred- and that the majority are from the USA, though from all across the phylogenetic tree.
 Further analysis would be required to validate or interpet these results, but this procedure clearly demonstrates the potential for matUtils for 
 rapid exploratory analysis using large public datasets.
@@ -96,6 +99,8 @@ Alternatively, one of the metadata files can be included in JSON generation by m
 
 The placement metadata file in this example is also passed into -s as well as -M to ensure that all samples with placement information are included in the output. 
 -z fills out additional random samples to contextualize the data. b1500_uncertainty.tsv can be drag-and-dropped onto the Auspice view to display additional colorings.
+
+The expected output can be viewed `here. <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/b1500_annotated.json>`_
 
 .. _introduce-tutorial:
 
@@ -172,11 +177,7 @@ by selecting one of our samples and extracting the context to a JSON with `matUt
 
     matUtils extract -i public-2021-04-20.all.masked.nextclade.pangolin.pb -k "ESP/hCoV-19_Spain_CT-HUVH-76622_2021/2021|MW769758.1|21-01-19:50" -j spanish_introduction.json
 
-This JSON can be drag-and-dropped onto the Auspice web inferface. The resulting image is reproduced here.
-
-.. image:: colored_spanish_introduction.png
-    :width: 1500px
-    :align: center
+This JSON can be drag-and-dropped onto the Auspice web interface. You can view the expected output `here. <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/spanish_introduction.json>`_
 
 Samples from England appear in blue, Spain in green, and Wales in yellow in this image. We can see that our group of 9 B.1.1.7 samples forms a clear clade that was likely introduced into Spain from England.
 
