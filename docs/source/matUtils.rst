@@ -50,7 +50,8 @@ and total tree parsimony of the input mat to standard output.
 Additionally, `matUtils summary` can quickly calculate the RoHo score and related values described in `van Dorp et al 2020 <10.1038/s41467-020-19818-2>`_.
 Briefly, the RoHo or Ratio of Homoplasic Offspring is the ratio of the number of descendents in sister clades with or without a specific mutation over the occurrence of 
 all mutations; homoplasic and positively-selected mutations will recur with increased descendent clade sizes at each occurrence. It is used to 
-quickly scan for potential variants of concern.
+quickly scan for potential variants of concern. The output table of summary is by-occurrence, so distributions of values associated with a specific homoplasic 
+mutation can be selected by finding all rows with that mutation in the first column.
 
 Example Usage
 ----------------------
