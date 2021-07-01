@@ -47,6 +47,11 @@ summary
 If no specific arguments are set, prints the number of nodes, number of samples, number of condensed nodes, 
 and total tree parsimony of the input mat to standard output.
 
+Additionally, `matUtils summary` can quickly calculate the RoHo score and related values described in `van Dorp et al 2020 <10.1038/s41467-020-19818-2>`_.
+Briefly, the RoHo or Ratio of Homoplasic Offspring is the ratio of the number of descendents in sister clades with or without a specific mutation over the occurrence of 
+all mutations; homoplasic and positively-selected mutations will recur with increased descendent clade sizes at each occurrence. It is used to 
+quickly scan for potential variants of concern.
+
 Example Usage
 ----------------------
 
@@ -89,6 +94,7 @@ Specific Options
   --mutations (-m): Write a tsv listing all mutations in the tree and their occurrence count.
   --aberrant (-a): Write a tsv listing potentially problematic nodes, including duplicates and internal nodes with no mutations and/or branch length 0.
   --sample-clades (-C): Write a tsv listing all samples and their closest associated clade root in each annotation type column. 
+  --calculate-roho (-R): Write a tsv listing, for each mutation occurrence that is valid, the number of offspring and other numbers for RoHo calculation.
   --get-all (-A): Write all possible tsv outputs with default file names (samples.txt, clades.txt, etc).
 
 
