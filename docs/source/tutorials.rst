@@ -9,7 +9,7 @@ This document contains example workflows for UShER and matUtils.
 .. _basic-matUtils-workflow:
 
 Though it is bundled and installed alongside UShER, matUtils is more than an output processor for UShER commands. 
-It can be used in independent workflows that begin with one of our `publicly-provided MAT protobuf files <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/>`_, 
+It can be used in independent workflows that begin with one of our `publicly-provided MAT protobuf files <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/>`_, 
 or an Augur-formatted MAT JSON file as used by Nextstrain. matUtils can be used to explore large trees in deep detail, parsing and manipulating trees of a size
 few other tools can manage efficiently.
 The first step to using one of these public files is `matUtils summary`, which can calculate basic statistics or summarize sample, clade, or mutation-level frequency information.
@@ -201,6 +201,60 @@ Including additional public region information in the input two-column tsv would
 such as how England appears to be the origin in our example, or estimate relative levels of migration to and from Spain to other countries across the world.
 Origin and migration must be interpreted cautiously, however, due to extensive sampling bias by country (England and the UK contribute a large part
 of publicly available sequence information, and are therefore more likely to be identified as the origin of an introduction, et cetera).
+
+.. _roho-tutorial: 
+
+Calculating by-mutation RoHo with `matUtils summary` and Python
+----------
+
+The Ratio of Homoplasic Offspring (RoHo) is the log10 of the ratio of the descendents of a clade with a specific mutation to a sister clade without a mutation. 
+It is negative when the clade with the mutation is smaller than its sister, and positive when it is larger. 
+
+As originally formulated, this metric assumes a bifurcating, fully resolved tree. As the MAT is not a resolved tree and contains many 
+internal polytomies, we use the median size of all sister clades for calculation. The number of sister clades for each occurrence is included in the output table. 
+The output table of summary is by-occurrence, so distributions of values associated with a specific homoplasic mutation can be selected by finding all rows with that mutation in the first column. 
+
+Before beginning, download the example protobuf file `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2//2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_ 
+
+.. code-block:: shell-session
+
+    matUtils summary -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -R roho_scores.tsv
+
+The resulting table contains the following columns:
+
+.. code-block:: shell-session
+
+    mutation	parent_node	child_count	occurrence_node	offspring_with	median_offspring_without	single_roho
+
+Mutation is the encoding string for a given nucleotide mutation (ReferenceLocationAlternative, e.g. A235G). The parent_node is the identifier 
+of the parent of the node on which this mutation occurred and the occurrence_node is the identifier of that node proper; these numbers are used 
+for downstream QC and analysis with matUtils extract. Child_count is the number of sister clades associated with the parent of 
+the clade of interest. Offspring_with is simply the number of descendents from the clade with this mutation.
+Median_offspring_without is the median value of the number of descendents of each sister clade to this clade (they all share the same parent_node). 
+Single_roho is the log10 of offspring_with divided by median_offspring_without.
+
+Using the standard data analysis Python packages Pandas and Seaborn, we can calculate and visualize the genome-wide distribution of RoHo 
+values, specifically the mean RoHo value belonging to each homoplasic mutation with >3 occurrences.
+
+.. code-block:: python
+
+    import pandas as pd
+    import seaborn as sns
+    import numpy as np
+    rdf = pd.read_csv('roho_scores.tsv',sep='\t')
+    by_mut_rohos = []
+    for m, sdf in rdf.groupby("mutation"):
+        if sdf.shape[0] >= 3:
+            by_mut_rohos.append(np.mean(sdf.single_roho))
+    print(np.mean(by_mut_rohos))
+    sns.displot(by_mut_rohos)
+
+The mean RoHo of this distribution is 0.005, suggesting very little bias, though the negative tail is longer than the positive tail. 
+The resulting plot is replicated below. 
+
+.. image:: roho-distribution.png
+    :width: 1500px
+    :align: center
 
 .. _protobuf-tutorial:
 
