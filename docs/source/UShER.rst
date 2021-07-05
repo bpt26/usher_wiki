@@ -381,4 +381,4 @@ Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meet
 Publications
 --------------
 
-- Turakhia Y, Thornlow B, Hinrichs A, De Maio N, Gozashti L, Lanfear R, Haussler D, and Corbett-Detig R. `Ultrafast Sample Placement on Existing Trees (UShER) Empowers Real-Time Phylogenetics for the SARS-CoV-2 Pandemic., <https://www.biorxiv.org/content/10.1101/2020.09.26.314971v1.abstract>`_ *Nature Genetics*. In Press.
+- Turakhia Y, Thornlow B, Hinrichs A, De Maio N, Gozashti L, Lanfear R, Haussler D, and Corbett-Detig R. `Ultrafast Sample placement on Existing tRees (UShER) enables real-time phylogenetics for the SARS-CoV-2 pandemic., <https://www.nature.com/articles/s41588-021-00862-7>`_ *Nature Genetics*. 2021. 1-8.
