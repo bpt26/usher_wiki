@@ -14,9 +14,7 @@ UShER is a program for rapid, accurate placement of samples to existing phylogen
 Installation
 --------------
 
-A pre-compiled binary is available for download `here <http://public.gi.ucsc.edu/~yatisht/data/binaries/usher>`_. 
-
-Another quick method is via `conda`:
+A quick method is via `conda`:
 
 .. code-block:: shell-session
 
