@@ -7,6 +7,13 @@ matUtils
 matUtils is a suite of tools used to analyze, edit, and manipulate mutation annotated tree (.pb) files. 
 
 .. _protobuf:
+
+----------
+Installation
+----------
+
+_`To install matUtils, simply follow the directions for installing UShER, and matUtils will be included in your installation. <https://usher-wiki.readthedocs.io/en/latest/UShER.html#installation>`_
+
 -----------
 The Mutation Annotated Tree (MAT) Protocol Buffer (.pb)
 -----------
