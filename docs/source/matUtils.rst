@@ -93,8 +93,10 @@ Specific Options
   --clades (-c): Write a tsv listing all clades and the count of associated samples in the tree.
   --mutations (-m): Write a tsv listing all mutations in the tree and their occurrence count.
   --aberrant (-a): Write a tsv listing potentially problematic nodes, including duplicates and internal nodes with no mutations and/or branch length 0.
+  --haplotype (-H): Write a tsv listing haplotypes represented by comma-delimited lists of mutations and their count across the tree.
   --sample-clades (-C): Write a tsv listing all samples and their closest associated clade root in each annotation type column. 
   --calculate-roho (-R): Write a tsv listing, for each mutation occurrence that is valid, the number of offspring and other numbers for RoHo calculation.
+  --expanded-roho (-E): Use to include date and other contextual information in the RoHO output. Significantly slows calculation time.
   --get-all (-A): Write all possible tsv outputs with default file names (samples.txt, clades.txt, etc).
 
 
@@ -205,10 +207,10 @@ Specific Options
   --write-json (-j): Write an Auspice-compatbile json representing the selected subtree.
   --retain-branch-length (-E): Use to not recalculate branch lengths with saving newick output. Used only with -t
   --write-tree (-t): Write a newick string representing the selected subtree to the target file. 
-  --minimum_subtrees_size (-N): Use to generate a series of JSON or Newick format files representing subtrees of the indicated size covering all queried samples. Uses and overrides -j and -t output arguments.
-  --usher_single_subtree_size (-X): Use to produce an usher-style single sample subtree of the indicated size with all selected samples plus random samples to fill. Produces .nh and .txt files in the output directory.
-  --usher_minimum_subtrees_size(-x): Use to produce an usher-style minimum set of subtrees of the indicated size which include all of the selected samples. Produces .nh and .txt files in the output directory.
-
+  --minimum-subtrees-size (-N): Use to generate a series of JSON or Newick format files representing subtrees of the indicated size covering all queried samples. Uses and overrides -j and -t output arguments.
+  --usher-single-subtree-size (-X): Use to produce an usher-style single sample subtree of the indicated size with all selected samples plus random samples to fill. Produces .nh and .txt files in the output directory.
+  --usher-minimum-subtrees-size(-x): Use to produce an usher-style minimum set of subtrees of the indicated size which include all of the selected samples. Produces .nh and .txt files in the output directory.
+  --usher-clades-txt: Use to write an usher-style clades.txt alongside an usher-style subtree with -x or -X.
 
 -----------
 annotate
@@ -261,9 +263,13 @@ Specific Options
   --output-mat (-o): Path to output processed mutation-annotated tree file (REQUIRED)
   --clade-names (-c): Path to a file containing clade asssignments of samples. An algorithm automatically locates and annotates clade root nodes.
   --clade-to-nid (-C): Path to a tsv file mapping clades to their respective internal node identifiers. Use with caution.
+  --clade-paths (-P): Path to a tsv file mapping clades to mutation paths which must exist in the tree.  Format is the same as the first and third columns of the output of matUtils extract --clade-paths.
   --allele-frequency (-f): Minimum allele frequency in input samples for finding the best clade root. Used only with -l. Default = 0.8.
+  --mask-frequency (-m): Minimum allele frequency below -f in input samples that should be masked for finding the best clade root. Used only with -c.
   --set-overlap (-s): Minimum fraction of the lineage samples that should be desecendants of the assigned clade root. Defualt = 0.6.
   --clear-current (-l): Use to remove current annotations before applying new annotations.
+  --output-directory (-d): Write output files to the target directory.
+  --write-mutations (-u): Write a tsv listing each clade and the mutations found in at least [-f] of the samples. Used only with -c.
 
 ----------------------
 uncertainty
@@ -326,7 +332,8 @@ Options
   --samples (-s): File containing samples to calculate metrics for.
   --find-epps (-e): Writes an Auspice-compatible two-column tsv of the number of equally parsimonious placements and neighborhood sizes for each sample to the target file. 
   --record-placements (-o): Name for an Auspice-compatible two-column tsv which records potential parents for each sample in the query set.
-  
+  --dropout-mutations (-d): Name a file to calculate and store locally-recurrent mutations which may be associated with primer dropout. [EXPERIMENTAL]
+
 ----------------------
 introduce 
 ----------------------
@@ -476,4 +483,6 @@ Options
 .. code-block:: shell-session
 
   --output-mat (-o): Path to output processed mutation-annotated tree file (REQUIRED)
+  --simplify (-S): Use to automatically remove all identifying mutations from the tree, including all sample names and private mutations.
   --restricted-samples (-s): Sample names to restrict. Use to perform masking. 
+  --rename-samples (-r): Name of a tsv file containing names of samples to be renamed and their new names in the first two columns. 
