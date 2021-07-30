@@ -4,6 +4,10 @@
 Quick Start
 ***************
 
+--------------
+Quick install
+--------------
+
 To quickly install the UShER package, use the following conda instructions:
 
 .. code-block:: shell-session
