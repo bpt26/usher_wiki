@@ -6,8 +6,11 @@ Welcome to the manual for UShER package, that includes SARS-CoV-2 Phylogenetics 
 
 .. toctree::
    QuickStart.rst
+   Installation.rst
    UShER.rst
    matUtils.rst
+   matOptimize.rst
+   ripples.rst
    tutorials.rst
    Strain_Phylogenetics.rst
 
