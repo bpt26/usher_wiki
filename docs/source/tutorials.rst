@@ -4,9 +4,65 @@
 Tutorials
 *********************************************
 
-This document contains example workflows for UShER and matUtils.
+This document contains example workflows for UShER, matUtils, and RIPPLES.
+
+
+.. _ripples-tutorial:
+
+Using RIPPLES to detect recombination in new sequences
+----------
+
+Users interested in recombination may want to use RIPPLES to search for recombination events in their set of samples. In this example, we will place a set of 10 samples on a public tree, and then determine whether any of them appear to be recombinants.
+
+First, download the latest public tree, and an example .vcf for this session, using the following code:
+
+.. code-block:: shell-session
+
+    wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb
+    wget https://raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/batch_1.fa 
+
+Use faToVcf to convert the .fa into a .vcf:
+
+.. code-block:: shell-session
+
+    faToVcf batch_1.fa batch_1.vcf
+
+Then, place the samples on the tree using UShER:
+
+.. code-block:: shell-session
+
+    usher -v batch_1.vcf -i ../public-latest.all.masked.pb -o batch_1.pb -T 32
+
+Then, to deterine whether any of the samples are recombinants, use the following command:
+
+.. code-block:: shell-session
+
+    ripples -i batch_1.pb -s batch_1.txt -T 32
+
+The -s flag here takes in a list of the samples added in the .vcf and searches these samples and their ancestors specifically for evidence of recombination. This command produces two output files: recombination.tsv and descendants.tsv.
+
+.. code-block:: shell-session
+
+    head recombination.tsv
+    #recomb_node_id breakpoint-1_interval breakpoint-2_interval donor_node_id donor_is_sibling  donor_parsimony acceptor_node_id  acceptor_is_sibling acceptor_parsimony  original_parsimony  min_starting_parsimony  recomb_parsimony
+    166599  (0,913) (3267,11296)  100088  n 16  251455  y 2 12  2 2
+    166599  (0,913) (28881,28883) 251455  y 2 100005  n 19  12  2 1
+    166599  (0,913) (16176,20154) 111532  n 14  181754  n 7 12  7 0
+    166599  (0,913) (15279,20154) 111532  n 14  181754  n 7 12  7 0
+    166599  (0,913) (14676,20154) 111532  n 14  181754  n 7 12  7 1
+    166599  (0,913) (14408,20154) 111532  n 14  181754  n 7 12  7 2
+    166599  (0,913) (6954,11296)  100088  n 16  181754  n 7 12  7 2
+    166599  (0,241) (3037,11296)  100088  n 16  251455  y 2 12  2 2
+    166599  (0,913) (5388,11296)  100088  n 16  251455  y 2 12  2 2
+
+
+This example recombination file finds evidence of recombination at node 166599, with several predictions for parents and breakpoint intervals. The difference between the last two columns (min_starting_parsimony and recomb_parsimony) represent the parsimony score improvement upon partial placement of the recombinant node using the assigned breakpoints. Note that your exact results may be slightly different than what is shown here, as the public tree is updated daily.
 
 .. _basic-matUtils-workflow:
+
+
+Basic matUtils Workflow
+----------
 
 Though it is bundled and installed alongside UShER, matUtils is more than an output processor for UShER commands. 
 It can be used in independent workflows that begin with one of our `publicly-provided MAT protobuf files <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/>`_, 
@@ -327,59 +383,3 @@ which is the string naming that node and another container which is essentially 
 
 These are the essentials for writing a custom analysis directly interacting with the protobuf. For most user's purposes, however,
 matUtils should provide the tools necessary for interacting with a MAT .pb file.
-
-
-.. _ripples-tutorial:
-
-Using RIPPLES to detect recombination
-----------
-
-Users interested in recombination may want to use RIPPLES to search for recombination events in their set of samples. In this example, we will place a set of 10 samples on a public tree, and then determine whether any of them appear to be recombinants.
-
-First, download the latest public tree, and an example .vcf for this session, using the following code:
-
-.. code-block:: shell-session
-
-    wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb
-    wget https://raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/batch_1.fa 
-
-Use faToVcf to convert the .fa into a .vcf:
-
-.. code-block:: shell-session
-
-    faToVcf batch_1.fa batch_1.vcf
-
-Then, place the samples on the tree using UShER:
-
-.. code-block:: shell-session
-
-    usher -v batch_1.vcf -i ../public-latest.all.masked.pb -o batch_1.pb -T 32
-
-Then, to deterine whether any of the samples are recombinants, use the following command:
-
-.. code-block:: shell-session
-
-    ripples -i batch_1.pb -s batch_1.txt -T 32
-
-The -s flag here takes in a list of the samples added in the .vcf and searches these samples and their ancestors specifically for evidence of recombination. This command produces two output files: recombination.tsv and descendants.tsv.
-
-.. code-block:: shell-session
-
-    head recombination.tsv
-    #recomb_node_id breakpoint-1_interval breakpoint-2_interval donor_node_id donor_is_sibling  donor_parsimony acceptor_node_id  acceptor_is_sibling acceptor_parsimony  original_parsimony  min_starting_parsimony  recomb_parsimony
-    166599  (0,913) (3267,11296)  100088  n 16  251455  y 2 12  2 2
-    166599  (0,913) (28881,28883) 251455  y 2 100005  n 19  12  2 1
-    166599  (0,913) (16176,20154) 111532  n 14  181754  n 7 12  7 0
-    166599  (0,913) (15279,20154) 111532  n 14  181754  n 7 12  7 0
-    166599  (0,913) (14676,20154) 111532  n 14  181754  n 7 12  7 1
-    166599  (0,913) (14408,20154) 111532  n 14  181754  n 7 12  7 2
-    166599  (0,913) (6954,11296)  100088  n 16  181754  n 7 12  7 2
-    166599  (0,241) (3037,11296)  100088  n 16  251455  y 2 12  2 2
-    166599  (0,913) (5388,11296)  100088  n 16  251455  y 2 12  2 2
-
-
-This example recombination file finds evidence of recombination at node 166599, with several predictions for parents and breakpoint intervals. The difference between the last two columns (min_starting_parsimony and recomb_parsimony) represent the parsimony score improvement upon partial placement of the recombinant node using the assigned breakpoints. Note that your exact results may be slightly different than what is shown here, as the public tree is updated daily.
-
-
-
-
