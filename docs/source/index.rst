@@ -12,7 +12,6 @@ Welcome to the manual for UShER package, that includes SARS-CoV-2 Phylogenetics 
    matOptimize.rst
    ripples.rst
    tutorials.rst
-   Strain_Phylogenetics.rst
 
 .. _UShER:
 
@@ -33,13 +32,17 @@ UShER is a program for rapid, accurate placement of samples to existing phylogen
 matUtils
 ============
 
-matUtils is a set of tools to be used for analyses relating to **m**\ utation\  **a**\ nnotated\  **t**\ rees, such as the protobuf (.pb) files used in UShER. `Information on its usage can be found here <https://usher-wiki.readthedocs.io/en/latest/matUtils.html>`_.
+matUtils is a toolkit for querying, interpreting and manipulating the mutation-annotated trees (MATs). `Information on its usage can be found here <https://usher-wiki.readthedocs.io/en/latest/matUtils.html>`_.
 
 
-.. _Strain_Phylogenetics:
+
+matOptimize
+============
+
+matOptimize is a program to rapidly and effectively optimize a mutation-annotated tree (MAT) for parsimony using subtree pruning and regrafting (SPR) moves within a user-defined radius. `Information on its usage can be found here <https://usher-wiki.readthedocs.io/en/latest/matOptimize.html>`_.
 
 
-Strain_Phylogenetics Package
-================================
+RIPPLES
+============
 
-We have developed several auxiliary tools for phylogenetic analysis in the *strain_phylogenetics* package, `which is available here <https://github.com/yatisht/strain_phylogenetics>`_. Information on `its constituent programs and their usage can be found here <https://usher-wiki.readthedocs.io/en/latest/Strain_Phylogenetics.html>`_.
+RIPPLES is a program that uses a phylogenomic technique to rapidly and sensitively detect recombinant nodes and their ancestors in a mutation-annotated tree (MAT). `Information on its usage can be found here <https://usher-wiki.readthedocs.io/en/latest/ripples.html>`_.
