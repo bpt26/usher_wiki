@@ -343,6 +343,12 @@ First, download the latest public tree, and an example .vcf for this session, us
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb
     wget XXX (edit after uploading vcf) 
 
+Use faToVcf to convert the .fa into a .vcf:
+
+.. code-block:: shell-session
+
+    faToVcf batch_1.fa batch_1.vcf
+
 Then, place the samples on the tree using UShER:
 
 .. code-block:: shell-session
