@@ -341,7 +341,7 @@ First, download the latest public tree, and an example .vcf for this session, us
 .. code-block:: shell-session
 
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb
-    wget XXX (edit after uploading vcf) 
+    wget https://raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/batch_1.fa 
 
 Use faToVcf to convert the .fa into a .vcf:
 
