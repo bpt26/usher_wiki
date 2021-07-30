@@ -377,9 +377,6 @@ confidence = 1 / (1 + ((Di/Ni)/(Do/No)))
 This is essentially a ratio placed under a squash function such that equal numbers of leaves and distance to the nearest leaf for both in and out
 of the region yield a confidence of 0.5, while descendents nearly being purely either in or out of the region will yield ~1 and ~0 respectively.
 
-Introductions
------------
-
 Introduction points are identified as the point along a sample's history where the confidence of the 
 relevant node being in the region drops below 0.5. In many sample's cases, this may be the direct parent of the sample, implying that the
 sample is a novel introduction to a region; in other cases, it may share the introduction point with a number of other samples from that region.
