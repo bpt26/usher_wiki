@@ -78,7 +78,6 @@ These outputs include newick, vcf, other pb, and Augur JSON capable of being vis
   matUtils extract -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -a 3 -b 10 -k "Scotland/QEUH-13C22D1/2021|21-03-10:100" -v my_subset.vcf -t my_subset.newick -j my_subset.json
 
 The above command filters samples with higher parsimony scores than 3 and ancestral branches with a greater length than 10, then collects a subtree representing 
-the nearest 100 samples to our indicated sample. From this subtree this command generates a vcf containing all sample mutation information, a newick representing the subtree, and an uploadable
-JSON in mere seconds.
+the nearest 100 samples to our indicated sample. From this subtree this command generates a vcf containing all sample mutation information, a newick representing the subtree, and an Auspice-uploadable JSON in mere seconds.
 
 Tutorials for matUtils, including an example workflow, sample placement uncertainty, and phylogeographic analysis, can be found `here <https://usher-wiki.readthedocs.io/en/latest/tutorials.html>`_.
