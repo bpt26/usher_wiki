@@ -47,4 +47,4 @@ Options
 Usage
 --------------
 
-RIPPLES minimally requires an input MAT to search for recombination events. An example workflow is available here: :ref:`here <ripples-tutorial>`.
+RIPPLES minimally requires an input MAT to search for recombination events. An example workflow is available  :ref:`here <ripples-tutorial>`.

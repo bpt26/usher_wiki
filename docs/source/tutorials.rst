@@ -12,51 +12,68 @@ This document contains example workflows for UShER, matUtils, and RIPPLES.
 Using RIPPLES to detect recombination in new sequences
 ----------
 
-Users interested in recombination may want to use RIPPLES to search for recombination events in their set of samples. In this example, we will place a set of 10 samples on a public tree, and then determine whether any of them appear to be recombinants.
+Users interested in recombination may want to use RIPPLES to search for recombination events in their set of samples. In this example, we will search for recombination events involving any of the samples from `this preprint <https://www.medrxiv.org/content/10.1101/2021.06.18.21258689v1>`_ by Jackson et al.
 
-First, download the latest public tree, and an example .vcf for this session, using the following code:
+First, download the latest public tree and a list of samples identified in the preprint:
 
 .. code-block:: shell-session
 
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb
-    wget https://raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/batch_1.fa 
+    wget https://raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/jackson_et_al_samples.txt 
 
-Use faToVcf to convert the .fa into a .vcf:
-
-.. code-block:: shell-session
-
-    faToVcf batch_1.fa batch_1.vcf
-
-Then, place the samples on the tree using UShER:
+Note that your exact results may be slightly different than what is shown here, as the public tree is updated daily. To get the same tree used in this tutorial, use the following command:
 
 .. code-block:: shell-session
 
-    usher -v batch_1.vcf -i ../public-latest.all.masked.pb -o batch_1.pb -T 32
+  wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/2021/07/29/public-2021-07-29.all.masked.pb
 
-Then, to deterine whether any of the samples are recombinants, use the following command:
-
-.. code-block:: shell-session
-
-    ripples -i batch_1.pb -s batch_1.txt -T 32
-
-The -s flag here takes in a list of the samples added in the .vcf and searches these samples and their ancestors specifically for evidence of recombination. This command produces two output files: recombination.tsv and descendants.tsv.
+Then, use RIPPLES to search for recobination events involving these samples in the tree:
 
 .. code-block:: shell-session
 
-    head recombination.tsv
-    #recomb_node_id breakpoint-1_interval breakpoint-2_interval donor_node_id donor_is_sibling  donor_parsimony acceptor_node_id  acceptor_is_sibling acceptor_parsimony  original_parsimony  min_starting_parsimony  recomb_parsimony
-    166599  (0,913) (3267,11296)  100088  n 16  251455  y 2 12  2 2
-    166599  (0,913) (28881,28883) 251455  y 2 100005  n 19  12  2 1
-    166599  (0,913) (16176,20154) 111532  n 14  181754  n 7 12  7 0
-    166599  (0,913) (15279,20154) 111532  n 14  181754  n 7 12  7 0
-    166599  (0,913) (14676,20154) 111532  n 14  181754  n 7 12  7 1
-    166599  (0,913) (14408,20154) 111532  n 14  181754  n 7 12  7 2
-    166599  (0,913) (6954,11296)  100088  n 16  181754  n 7 12  7 2
-    166599  (0,241) (3037,11296)  100088  n 16  251455  y 2 12  2 2
-    166599  (0,913) (5388,11296)  100088  n 16  251455  y 2 12  2 2
+    mkdir JACKSON
+    ripples -i public-latest.all.masked.pb -p 3 -d JACKSON/ -s jackson_et_al_samples.txt
 
+After a few minutes, RIPPLES produces files `recombination.tsv` and `descendants.tsv`. The last two columns in the `recombination.tsv` file represent the parsimony score improvement. Suppose that we are interested specifically in recombinant nodes with highest parsimony score improvement, as these are more likely to reflect true recombination events. This command yields all recombination events with parsimony improvements greater than 7:
 
-This example recombination file finds evidence of recombination at node 166599, with several predictions for parents and breakpoint intervals. The difference between the last two columns (min_starting_parsimony and recomb_parsimony) represent the parsimony score improvement upon partial placement of the recombinant node using the assigned breakpoints. Note that your exact results may be slightly different than what is shown here, as the public tree is updated daily.
+.. code-block:: shell-session
+
+    awk '$11 - $12 > 7' JACKSON/recombination.tsv
+
+The results should look something like this:
+
+.. code-block:: shell-session
+
+  70551 (0,445) (20410,22227) 234088  n 28  95317 n 20  11  11  2
+  70551 (0,445) (21255,22227) 234088  n 28  95317 n 20  11  11  1
+  70551 (0,445) (23063,23208) 234088  n 28  95317 n 20  11  11  3
+  70551 (445,2019)  (21255,22227) 234088  n 28  95317 n 20  11  11  3
+  70558 (0,241) (18877,23271) 183366  n 26  147249  n 23  13  13  4
+  70558 (0,241) (22444,23063) 183366  n 26  147249  n 23  13  13  3
+  70558 (0,241) (23271,23604) 183366  n 26  147249  n 23  13  13  5
+  70558 (0,241) (23403,23604) 183366  n 26  147249  n 23  13  13  5
+  70558 (241,1947)  (22444,23063) 183366  n 26  135641  n 22  13  13  4
+  70558 (241,1947)  (21123,23271) 183366  n 26  135641  n 22  13  13  5
+  70558 (241,1947)  (18877,21123) 183366  n 26  135717  n 18  13  13  5
+  70558 (1947,2319) (22444,23063) 183366  n 26  135641  n 22  13  13  5
+  70558 (18131,21123) (28977,29742) 89919 n 24  183366  n 26  13  13  5
+  70558 (21779,22444) (28977,29742) 146288  n 27  183366  n 26  13  13  5
+  70558 (22541,23063) (28977,29742) 100336  n 28  183366  n 26  13  13  5
+  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (0,241) (7728,10870)  156010  n 36  234558  n 12  12  12  3
+  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (0,241) (10870,11296) 119582  n 37  234558  n 12  12  12  4
+  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (0,241) (6954,7728) 155321  n 35  234558  n 12  12  12  4
+  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (0,241) (14408,14676) 156010  n 36  234558  n 12  12  12  4
+  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (241,913) (7728,10870)  156010  n 36  234558  n 12  12  12  4
+  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (7728,10870)  (29218,GENOME_SIZE) 234558  n 12  156010  n 36  12  12  4
+
+We can then parse the `descendants.tsv` file to look at the descendants for each of these nodes:
+
+.. code-block:: shell-session
+
+  awk '$1 == 70551' JACKSON/descendants.tsv
+  awk '$1 == 70558' JACKSON/descendants.tsv
+
+These commands yield the descendants for the nodes of interest. We find that 70551 is an ancestor of the samples Wales/ALDP-11CF93B/2021|OD974557.1|2021-01-30, Wales/ALDP-125C4D7/2021|OD983653.1|2021-02-06, and Wales/ALDP-130BB95/2021|OU023575.1|2021-02-21, among others. Node 70558 is an ancestor of the samples England/MILK-126FE1F/2021|OD990978.1|2021-02-07, England/RAND-128FA33/2021|OD985336.1|2021-02-02, and England/RAND-12671E1/2021|OD989802.1|2021-02-02. Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17 is detected as a recombinant by RIPPLES as well. 
 
 .. _basic-matUtils-workflow:
 
