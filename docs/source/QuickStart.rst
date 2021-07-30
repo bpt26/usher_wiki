@@ -1,10 +1,10 @@
 .. include:: /Includes.rst.txt
 
 ***************
-Quick Start Usher
+Quick Start
 ***************
 
-To quickly install UShER, use the following conda instructions:
+To quickly install the UShER package, use the following conda instructions:
 
 .. code-block:: shell-session
 
@@ -18,7 +18,10 @@ To quickly install UShER, use the following conda instructions:
   conda config --add channels conda-forge
   # Install the UShER package
   conda install usher
-
+  
+--------------
+UShER
+--------------
 
 To get acquainted with UShER, we provide a simple example of placing 10 samples on an existing phylogeny. First, download the example files.
 
@@ -46,13 +49,12 @@ This yields the following three files:
 * `uncondensed-final-tree.nh` (newick-formatted tree containing all samples)
 * `mutation-paths.txt` (tab-separated file containing each sample, the nodes leading to that sample in the final tree, and the mutations at those nodes)
 
-***************
-Quick Start matUtils
-***************
+--------------
+matUtils
+--------------
 
-matUtils is a package for rapid exploratory analysis and management of `large publicly-provided MAT files <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/>`_.
-The full manual page including detailed parameter information can be found `here <https://usher-wiki.readthedocs.io/en/latest/matUtils.html>`_.
-It is installed alongside UShER (see above conda commands), as they are complementary tools.
+matUtils is a toolkit for rapid exploratory analysis and manipulation of mutation-annotated trees (MATs).
+The full manual page including detailed parameter information can be found `here <https://usher-wiki.readthedocs.io/en/latest/matUtils.html>`_. matUtils is installed with the UShER package (see above installation instructions using conda).
 
 .. code-block:: shell-session
 
