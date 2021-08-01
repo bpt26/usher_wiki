@@ -81,3 +81,33 @@ The above command filters samples with higher parsimony scores than 3 and ancest
 the nearest 100 samples to our indicated sample. From this subtree this command generates a vcf containing all sample mutation information, a newick representing the subtree, and an Auspice-uploadable JSON in mere seconds.
 
 Tutorials for matUtils, including an example workflow, sample placement uncertainty, and phylogeographic analysis, can be found `here <https://usher-wiki.readthedocs.io/en/latest/tutorials.html>`_.
+
+
+
+--------------
+matOptimize
+--------------
+
+matOptimize is a program that can optimize the topology of mutation-annotated trees (MATs) using subtree pruning and regrating (SPR) moves for parsimony.
+The full manual page including detailed parameter information can be found `here <https://usher-wiki.readthedocs.io/en/latest/matOptimize.html>`_. matOptimize is installed with the UShER package (see above installation instructions using conda).
+
+.. code-block:: shell-session
+
+  wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/2021/05/25/public-2021-05-25.all.masked.pb.gz
+  matOptimize -i public-2021-05-25.all.masked.pb.gz -o optimized-public-2021-05-25.all.masked.pb.gz -T 32 -r 4
+
+The above commands download a public SARS-CoV-2 MAT (`public-2021-05-25.all.masked.pb.gz`) and optimize it using SPR moves of radius 4 and 32 CPU threads to produce an parsimony-optimized output MAT (`optimized-public-2021-05-25.all.masked.pb.gz`).
+
+--------------
+RIPPLES
+--------------
+
+RIPPLES is a program that can detect recombinant nodes and their ancestors in a mutation-annotated tree (MAT). The full manual page including detailed parameter information can be found `here <https://usher-wiki.readthedocs.io/en/latest/ripples.html>`_. RIPPLES is installed with the UShER package (see above installation instructions using conda).
+
+.. code-block:: shell-session
+
+  wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/2021/05/25/public-2021-05-25.all.masked.pb.gz
+  ripples -i public-2021-05-25.all.masked.pb.gz -T 32 -d recomb_dir/
+
+The above commands download a public SARS-CoV-2 MAT (`public-2021-05-25.all.masked.pb.gz`) and putative identify recombinant nodes using 32 CPU threads and store the results in the output directory `recomb_dir`.
+
