@@ -4,7 +4,7 @@
 matUtils
 ***************
 
-matUtils is a suite of tools used to analyze, edit, and manipulate mutation annotated tree (.pb) files. 
+matUtils is a suite of tools used to analyze, edit, and manipulate mutation annotated tree (.pb) files, such as the ones shared in our public SARS-CoV-2 MAT database (http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/) or those shared via UShER. 
 
 .. _protobuf:
 
