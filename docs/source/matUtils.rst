@@ -8,15 +8,15 @@ matUtils is a suite of tools used to analyze, edit, and manipulate mutation anno
 
 .. _protobuf:
 
-----------
+-----------------
 Installation
-----------
+-----------------
 
 To install matUtils, simply follow the directions for `installing UShER <https://usher-wiki.readthedocs.io/en/latest/Installation.html>`_, and matUtils will be included in your installation.
 
------------
+------------------------------------------------------------
 The Mutation Annotated Tree (MAT) Protocol Buffer (.pb)
------------
+------------------------------------------------------------
 
 Google's `protocol buffer format <https://developers.google.com/protocol-buffers>`_ is a highly optimized, flexible binary storage format, with APIs for many languages. 
 We use a specially formatted protocol buffer to store a Mutation Annotated Tree object. The .proto definition file can be found
@@ -34,9 +34,9 @@ and the final step of loading is to uncondense these nodes back into full polyto
 This structure allows us to perform both classical phylogenetic processes, such as traversing the tree and calculating parsimony scores,
 while also being able to query the structure as if it was a database of sequences, extracting a vcf of samples which contain a specific mutation for example.
 
-----------------------
+-----------------------------
 matUtils Common Options
-----------------------
+-----------------------------
 
 All matUtils subcommands include these parameters.
 
@@ -125,7 +125,7 @@ Generally, its parameters can be grouped into four categories:
 `matUtils extract` is the workhorse function for manipulating MAT .pb files, particularly for any operations involving removing part of the .pb and converting .pb to other file formats.
 
 Example Syntax and Usage
----------------------
+----------------------------
 
 1. Write a vcf representing all samples within a clade.
 
@@ -240,7 +240,7 @@ The algorithm is described below:
 This method does not guarantee that every sample that is member in the clade in the input will be a member of the clade at the end of assignment, but assignments are generally high quality.
 
 Example Syntax and Usage
-----------------------
+-----------------------------
 
 1. Assign a new set of custom clade annotations to the tree.
 
@@ -263,7 +263,7 @@ b. `cladeToPublicName.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/202
 
 
 Specific Options
------------
+------------------
 
 .. code-block:: shell-session
 
@@ -310,7 +310,7 @@ The two longest distances from the LCA to two placements are then summed and the
 An example workflow for calculating and visualizing uncertainty metrics can be found :ref:`here <uncertainty-tutorial>`.
 
 Example Syntax and Usage
-----------------------
+-----------------------------
 
 1. Calculate uncertainty metrics for a specific set of samples.
 
@@ -391,7 +391,7 @@ recent samples of the cluster, rounded down. Clusters are printed in order of th
 of most concern at the top of the output file.
 
 Phylogeographic Statistics and Other Options
------------
+----------------------------------------------
 
 `matUtils introduce` supports the calculation and recording of maximum monophyletic clade size and association index, statistics
 for phylogeographic trait association, on a per-region and per-introduction basis. Maximum monophyletic clade size is simply the largest 
@@ -417,7 +417,7 @@ Salemi M, Lamers SL, Yu S, de Oliveira T, Fitch WM, McGrath MS. 2005. Phylodynam
 Parker, J., Rambaut, A., and Pybus, O.G. (2008). Correlating viral phenotypes with phylogeny: Accounting for phylogenetic uncertainty. Infection, Genetics and Evolution 8, 239–246.
 
 Example Syntax and Usage
-----------------------
+-----------------------------
 
 1. Generate a tsv containing inferred introduction information, one sample per row.
 

@@ -10,7 +10,7 @@ This document contains example workflows for UShER, matUtils, and RIPPLES.
 .. _ripples-tutorial:
 
 Using RIPPLES to detect recombination in new sequences
-----------
+-----------------------------------------------------------
 
 Users interested in recombination may want to use RIPPLES to search for recombination events in their set of samples. In this example, we will search for recombination events involving any of the samples from `this preprint <https://www.medrxiv.org/content/10.1101/2021.06.18.21258689v1>`_ by Jackson et al.
 
@@ -79,7 +79,7 @@ These commands yield the descendants for the nodes of interest. We find that 705
 
 
 Basic matUtils Workflow
-----------
+-------------------------------
 
 Though it is bundled and installed alongside UShER, matUtils is more than an output processor for UShER commands. 
 It can be used in independent workflows that begin with one of our `publicly-provided MAT protobuf files <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/>`_, 
@@ -143,7 +143,7 @@ rapid exploratory analysis using large public datasets.
 .. _uncertainty-tutorial:
 
 Example Uncertainty Workflow
-----------
+-------------------------------
 
 In this example we will calculate uncertainty metrics for samples belonging to clade B.1.500 and visualize them on `auspice <https://auspice.us/>`_.
 
@@ -178,7 +178,7 @@ The placement metadata file in this example is also passed into -s as well as -M
 .. _introduce-tutorial:
 
 Example Introduce Workflow
-----------
+-------------------------------
 
 .. note:: 
     This feature is currently under active development! We are actively soliciting feedback on the usefulness of the current implementation, additional features
@@ -278,7 +278,7 @@ of publicly available sequence information, and are therefore more likely to be 
 .. _roho-tutorial: 
 
 Calculating by-mutation RoHo with `matUtils summary` and Python
-----------
+------------------------------------------------------------------
 
 The Ratio of Homoplasic Offspring (RoHo) is the log10 of the ratio of the descendents of a clade with a specific mutation to a sister clade without a mutation. 
 It is negative when the clade with the mutation is smaller than its sister, and positive when it is larger. 
@@ -332,7 +332,7 @@ The resulting plot is replicated below.
 .. _protobuf-tutorial:
 
 Interacting with MAT Protobuf in Python [ADVANCED USERS]
-----------
+-----------------------------------------------------------
 
 Advanced users may desire to interface directly with the protobuf. The following is a brief tutorial on doing so.
 Google's general tutorial on interacting with protobuf in python can be found `here <https://developers.google.com/protocol-buffers/docs/pythontutorial#compiling-your-protocol-buffers>`_.

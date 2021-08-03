@@ -25,7 +25,7 @@ A quick method is via `conda`:
 
    
 Conda Local Build
--------
+---------------------
 
 .. code-block:: shell-session
 
