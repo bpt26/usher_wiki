@@ -10,7 +10,7 @@ matOptimize is a program used to optimize phylogenies by parsimony score. It is 
 Installation
 ----------
 
-To install matOptimize, simply follow the `directions for installing UShER <https://usher-wiki.readthedocs.io/en/latest/UShER.html>`_, and matOptimize will be included in your installation.
+To install matOptimize, simply follow the `directions for installing UShER <https://usher-wiki.readthedocs.io/en/latest/Installation.html>`_, and matOptimize will be included in your installation.
 
 --------------
 Options
