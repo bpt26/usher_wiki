@@ -4,7 +4,7 @@
 matOptimize
 ***************
 
-matOptimize is a program used to optimize phylogenies by parsimony score. It is used on MAT files, which can be created by UShER.
+matOptimize is a program used to optimize phylogenies using parsimony score. It is used on MAT files, which can be created by UShER.
 
 ----------
 Installation
@@ -17,8 +17,6 @@ Options
 --------------
 
 .. code-block:: shell-session
-
-
 
   --vcf (-v): Input VCF file (in uncompressed or gzip-compressed .gz format. 
   --tree (-t): Input tree file.
