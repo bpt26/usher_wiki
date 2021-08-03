@@ -10,7 +10,7 @@ RIPPLES (Recombination Inference using Phylogenetic PLacEmentS) is a program use
 Installation
 ----------
 
-To install RIPPLES, simply follow the `directions for installing UShER <https://usher-wiki.readthedocs.io/en/latest/Installation.html>`_, and RIPPLES will be included in your installation.
+To install RIPPLES, simply follow the directions for `installing UShER <https://usher-wiki.readthedocs.io/en/latest/Installation.html>`_, and RIPPLES will be included in your installation.
 
 --------------
 Methodology
