@@ -4,9 +4,7 @@
 matUtils
 ***************
 
-matUtils is a suite of tools used to analyze, edit, and manipulate mutation annotated tree (.pb) files, such as the ones shared in our public SARS-CoV-2 MAT database (http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/) or those shared via UShER. 
-
-MATs can be construced from an input phylogeny and alignment using UShER (read `this <https://usher-wiki.readthedocs.io/en/latest/UShER.html#converting-raw-sequences-into-vcf-for-usher-input>`_ and `this <https://usher-wiki.readthedocs.io/en/latest/UShER.html#pre-processing-global-phylogeny>`_). 
+matUtils is a suite of tools used to analyze, edit, and manipulate mutation annotated tree (.pb) files, such as the ones shared in our public SARS-CoV-2 MAT database (http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/) or those constructed via UShER (read `this <https://usher-wiki.readthedocs.io/en/latest/UShER.html#converting-raw-sequences-into-vcf-for-usher-input>`_ and `this <https://usher-wiki.readthedocs.io/en/latest/UShER.html#pre-processing-global-phylogeny>`_ for steps to construct a MAT from an input phylogeny and an alignment). 
 
 .. _protobuf:
 
