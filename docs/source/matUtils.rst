@@ -136,6 +136,13 @@ Example Syntax and Usage
 .. code-block:: shell-session
 
   matUtils extract -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -c B.1.351 -v 351_samples.vcf
+  
+The VCF file can be converted to a Fasta files (one for each sequence in the VCF) using vcf2fasta (see installation instructions `here <https://github.com/vcflib/vcflib#install>`_) and the reference sequence (in NC_045512v2.fa) as follows:
+  
+.. code-block:: shell-session
+
+  vcfindex 351_samples.vcf
+  vcf2fasta -f NC_045512v2.fa 351_samples.vcf
 
 2. Write a newick tree of all samples which contain either of two mutations of interest.
 
