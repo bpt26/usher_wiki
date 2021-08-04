@@ -328,6 +328,26 @@ The resulting plot is replicated below.
 .. image:: roho-distribution.png
     :width: 1500px
     :align: center
+    
+.. _translate-tutorial:
+
+Example Amino Acid Translation Workflow
+-------------------------------
+
+As mutations from the reference accumulate in sequenced SARS-CoV-2 samples, there may be multiple nucleotide mutations in a single codon. In this case, protein sequences computed using nucleotide mutations at leaves may be incorrect if another mutation in the same codon occured higher up the tree. `matUtils summary --translate` provides a way to compute the correct amino acid translations at each node.
+
+In this workflow, we will output amino acid mutations at each node of a protobuf, and prepare a JSON suitable for visualization with Auspice.
+
+Download the example protobuf file `[insert]`, GTF file `[insert]`, and reference FASTA `[insert]`.
+
+The example protobuf file is a simple tree with the following structure:
+[insert]
+
+
+.. code-block:: shell-session
+
+    matUtils 
+
 
 .. _protobuf-tutorial:
 
