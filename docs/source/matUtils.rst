@@ -143,6 +143,8 @@ The VCF file can be converted to a Fasta files (one for each sequence in the VCF
 
   vcfindex 351_samples.vcf
   vcf2fasta -f NC_045512v2.fa 351_samples.vcf
+  
+Note that indels are ignored in the above approach since they're not included in the MAT.
 
 2. Write a newick tree of all samples which contain either of two mutations of interest.
 
