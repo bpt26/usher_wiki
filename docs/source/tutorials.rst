@@ -12,68 +12,88 @@ This document contains example workflows for UShER, matUtils, and RIPPLES.
 Using RIPPLES to detect recombination in new sequences
 -----------------------------------------------------------
 
-Users interested in recombination may want to use RIPPLES to search for recombination events in their set of samples. In this example, we will search for recombination events involving any of the samples from `this preprint <https://www.medrxiv.org/content/10.1101/2021.06.18.21258689v1>`_ by Jackson et al.
+Users interested in recombination may want to use RIPPLES to search for recombination events in their set of samples. In this example, we will search for recombination events involving a set of samples based on `this preprint <https://www.medrxiv.org/content/10.1101/2021.06.18.21258689v1>`_ by Jackson et al..
 
-First, download the latest public tree and a list of samples identified in the preprint:
-
-.. code-block:: shell-session
-
-    wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb
-    wget https://raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/jackson_et_al_samples.txt 
-
-Note that your exact results may be slightly different than what is shown here, as the public tree is updated daily. To get the same tree used in this tutorial, use the following command:
+First, download the latest public tree, a set of sample sequences to search for recombination, the reference genome, and sites to mask:
 
 .. code-block:: shell-session
 
-  wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/2021/07/29/public-2021-07-29.all.masked.pb
+    wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb.gz
+    wget https://raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/test_samples.fa
+    wget https://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/wuhCor1.fa.gz
+    wget https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf
+
+.. note:: 
+    Your exact results may be slightly different than what is shown here, as the public tree is updated daily. To get the same tree used in this tutorial, use the following command:
+
+.. code-block:: shell-session
+
+  wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/2021/08/04/public-2021-08-04.all.masked.pb
+
+
+Then, mask problematic sites using the downloaded .vcf:
+
+.. code-block:: shell-session
+    
+    gunzip wuhCor1.fa.gz
+    mafft --thread 10 --auto --keeplength --addfragments test_samples.fa wuhCor1.fa > aligned_seqs.fa
+    faToVcf -maskSites=problematic_sites_sarsCov2.vcf aligned_seqs.fa aligned_seqs.vcf
+
+Then, use UShER to add your samples to the protobuf:
+
+.. code-block:: shell-session
+    
+    usher -T 10 -i public-latest.all.masked.pb.gz -v aligned_seqs.vcf -o user_seqs.pb
 
 Then, use RIPPLES to search for recobination events involving these samples in the tree:
 
 .. code-block:: shell-session
 
-    mkdir JACKSON
-    ripples -i public-latest.all.masked.pb -p 3 -d JACKSON/ -s jackson_et_al_samples.txt
+    mkdir USER_SAMPLES/
+    grep -e '>' test_samples.fa | perl -pi -e 's/>//' > user_samples.txt
+    ripples -i user_seqs.pb -s user_samples.txt -d USER_SAMPLES/ -T 10
 
 After a few minutes, RIPPLES produces files `recombination.tsv` and `descendants.tsv`. The last two columns in the `recombination.tsv` file represent the parsimony score improvement. Suppose that we are interested specifically in recombinant nodes with highest parsimony score improvement, as these are more likely to reflect true recombination events. This command yields all recombination events with parsimony improvements greater than 7:
 
 .. code-block:: shell-session
 
-    awk '$11 - $12 > 7' JACKSON/recombination.tsv
+    awk '$11 - $12 > 7' USER_SAMPLES/recombination.tsv
 
 The results should look something like this:
 
 .. code-block:: shell-session
 
-  70551 (0,445) (20410,22227) 234088  n 28  95317 n 20  11  11  2
-  70551 (0,445) (21255,22227) 234088  n 28  95317 n 20  11  11  1
-  70551 (0,445) (23063,23208) 234088  n 28  95317 n 20  11  11  3
-  70551 (445,2019)  (21255,22227) 234088  n 28  95317 n 20  11  11  3
-  70558 (0,241) (18877,23271) 183366  n 26  147249  n 23  13  13  4
-  70558 (0,241) (22444,23063) 183366  n 26  147249  n 23  13  13  3
-  70558 (0,241) (23271,23604) 183366  n 26  147249  n 23  13  13  5
-  70558 (0,241) (23403,23604) 183366  n 26  147249  n 23  13  13  5
-  70558 (241,1947)  (22444,23063) 183366  n 26  135641  n 22  13  13  4
-  70558 (241,1947)  (21123,23271) 183366  n 26  135641  n 22  13  13  5
-  70558 (241,1947)  (18877,21123) 183366  n 26  135717  n 18  13  13  5
-  70558 (1947,2319) (22444,23063) 183366  n 26  135641  n 22  13  13  5
-  70558 (18131,21123) (28977,29742) 89919 n 24  183366  n 26  13  13  5
-  70558 (21779,22444) (28977,29742) 146288  n 27  183366  n 26  13  13  5
-  70558 (22541,23063) (28977,29742) 100336  n 28  183366  n 26  13  13  5
-  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (0,241) (7728,10870)  156010  n 36  234558  n 12  12  12  3
-  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (0,241) (10870,11296) 119582  n 37  234558  n 12  12  12  4
-  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (0,241) (6954,7728) 155321  n 35  234558  n 12  12  12  4
-  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (0,241) (14408,14676) 156010  n 36  234558  n 12  12  12  4
-  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (241,913) (7728,10870)  156010  n 36  234558  n 12  12  12  4
-  Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17  (7728,10870)  (29218,GENOME_SIZE) 234558  n 12  156010  n 36  12  12  4
+    node_49072  (0,241) (10870,11288) node_111282 n 41  node_49068  n 12  12  12  4
+    node_49072  (0,241) (14408,14676) node_179776 n 36  node_49068  n 12  12  12  4
+    node_49072  (0,241) (7728,10870)  node_179776 n 36  node_49068  n 12  12  12  3
+    node_49072  (0,241) (6954,7728) node_146650 n 40  node_49068  n 12  12  12  4
+    node_49072  (241,913) (7728,10870)  node_179776 n 36  node_49068  n 12  12  12  4
+    node_49072  (7728,10870)  (29218,GENOME_SIZE) node_49068  n 12  node_179776 n 36  12  12  4
+    node_92879  (0,445) (21255,22227) node_48600  n 28  node_151816 n 20  10  10  1
+    node_92879  (0,445) (20410,22227) node_48600  n 28  node_151816 n 20  10  10  2
+    node_92900  (0,241) (23403,23604) node_253479 n 26  node_136388 n 25  13  13  5
+    node_92900  (0,241) (23271,23604) node_253479 n 26  node_136388 n 25  13  13  5
+    node_92900  (0,241) (23063,23271) node_253479 n 26  node_136388 n 25  13  13  4
+    node_92900  (0,241) (22444,23063) node_253479 n 26  node_98962  n 23  13  13  3
+    node_92900  (0,241) (21123,23063) node_253479 n 26  node_98962  n 23  13  13  4
+    node_92900  (0,241) (18877,21123) node_253479 n 26  node_108815 n 25  13  13  4
+    node_92900  (241,1947)  (21123,23271) node_253479 n 26  node_119821 n 22  13  13  5
+    node_92900  (241,1947)  (22444,23063) node_253479 n 26  node_119821 n 22  13  13  4
+    node_92900  (241,1947)  (18877,21123) node_253479 n 26  node_108815 n 25  13  13  5
+    node_92900  (1947,2319) (22444,23063) node_253479 n 26  node_119821 n 22  13  13  5
+    node_92900  (18131,21123) (28977,29742) node_108815 n 25  node_253479 n 26  13  13  5
+    node_92900  (21779,22444) (28977,29742) node_98068  n 27  node_253479 n 26  13  13  5
+    node_92900  (22444,23063) (28977,29742) node_100243 n 23  node_253479 n 26  13  13  5
 
 We can then parse the `descendants.tsv` file to look at the descendants for each of these nodes:
 
 .. code-block:: shell-session
 
-  awk '$1 == 70551' JACKSON/descendants.tsv
-  awk '$1 == 70558' JACKSON/descendants.tsv
+    awk '$1 == "node_49072"' USER_SAMPLES/descendants.tsv
+    awk '$1 == "node_92879"' USER_SAMPLES/descendants.tsv
+    awk '$1 == "node_92900"' USER_SAMPLES/descendants.tsv
 
-These commands yield the descendants for the nodes of interest. We find that 70551 is an ancestor of the samples Wales/ALDP-11CF93B/2021|OD974557.1|2021-01-30, Wales/ALDP-125C4D7/2021|OD983653.1|2021-02-06, and Wales/ALDP-130BB95/2021|OU023575.1|2021-02-21, among others. Node 70558 is an ancestor of the samples England/MILK-126FE1F/2021|OD990978.1|2021-02-07, England/RAND-128FA33/2021|OD985336.1|2021-02-02, and England/RAND-12671E1/2021|OD989802.1|2021-02-02. Scotland/QEUH-1067DEF/2021|OD951805.1|2021-01-17 is detected as a recombinant by RIPPLES as well. 
+These commands yield the descendants for the nodes of interest. We find that node_49072 is an ancestor of the sample s1. node_92879 is an ancestor of the samples s4, s5, and s6. node_92900 is an ancestor of samples s8, s9, and s10. 
 
 .. _basic-matUtils-workflow:
 
