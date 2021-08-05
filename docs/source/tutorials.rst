@@ -340,7 +340,7 @@ In this workflow, we will output amino acid mutations at each node of a protobuf
 
 **Prepare data**
 
-Download the example protobuf file (`translate_example.pb <translate_example.pb>`_), GTF file (`ncbiGenes.gtf <ncbiGenes.gtf>`_), and reference FASTA (`NC_045512v2.fa <https://raw.githubusercontent.com/yatisht/usher/5e83b71829dbe54a37af845fd23d473a8f67b839/test/NC_045512v2.fa>`_).
+Download the example protobuf file (:download:`translate_example.pb <./translate_example.pb>`), GTF file (:download:`ncbiGenes.gtf <./ncbiGenes.gtf>`), and reference FASTA (`NC_045512v2.fa <https://raw.githubusercontent.com/yatisht/usher/5e83b71829dbe54a37af845fd23d473a8f67b839/test/NC_045512v2.fa>`_).
 
 The example protobuf file is a simple tree with the following structure:
 
