@@ -334,13 +334,18 @@ The resulting plot is replicated below.
 Example Amino Acid Translation Workflow
 ---------------------------------------
 
-As mutations from the reference accumulate in sequenced SARS-CoV-2 samples, there may be multiple nucleotide mutations in a single codon. In this case, protein sequences computed using nucleotide mutations at leaves may be incorrect if another mutation in the same codon occured higher up the tree. ``matUtils summary --translate / -t`` provides a way to compute the correct amino acid translations at each node.
+As mutations from the reference accumulate in sequenced SARS-CoV-2 samples, there may be multiple nucleotide mutations in a single codon. In this case, protein sequences computed using nucleotide mutations at leaves may be incorrect if another mutation in the same codon occured higher up the tree. ``matUtils summary --translate`` provides a way to compute the correct amino acid translations at each node.
 
 In this workflow, we will output amino acid mutations at each node of a protobuf, and prepare an annotated JSON suitable for visualization with Auspice.
 
 **Prepare data**
 
 Download the example protobuf file (:download:`translate_example.pb <./translate_example.pb>`), GTF file (:download:`ncbiGenes.gtf <./ncbiGenes.gtf>`), and reference FASTA (`NC_045512v2.fa <https://raw.githubusercontent.com/yatisht/usher/5e83b71829dbe54a37af845fd23d473a8f67b839/test/NC_045512v2.fa>`_).
+
+.. note:: 
+    The input GTF must follow the conventions specified `here <https://mblab.wustl.edu/GTF22.html>`_.
+    If multiple ``CDS`` features are associated with a single ``gene_id``,
+    they must be ordered by start position.
 
 The example protobuf file is a simple tree with the following structure:
 
@@ -424,7 +429,14 @@ To produce a JSON file with the metadata we produced above, run the following co
 
     matUtils extract -i translate_example.pb -M coding_mutations.tsv -j aa_annotated.json
 
-The resulting JSON file can now be loaded into Nextstrain / Auspice. View the expected JSON in Nextstrain `here <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/aa_annotated.json?branchLabel=aa_mutations&c=aa_mutations>`_.
+
+The resulting JSON file can now be loaded into Nextstrain / Auspice. Here is the tree with amino acid annotations:
+
+.. image:: aa_tree.png
+    :width: 1500px
+    :align: center
+
+View the expected JSON in Nextstrain `here <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/aa_annotated.json?branchLabel=aa_mutations&c=aa_mutations>`_.
 
 You can use the ``Branch Labels`` menu in the sidebar to view the annotations.
 

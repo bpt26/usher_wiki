@@ -56,7 +56,16 @@ and total tree parsimony of the input mat to standard output.
 
 **Amino acid translations**
 
-``matUtils summary --translate`` performs phylogenetically informed annotation of amino acid mutations. 
+``matUtils summary --translate <output.tsv> -i <input.pb> -g <annotations.gtf> -f <reference.fasta>`` 
+
+performs phylogenetically informed annotation of amino acid mutations. 
+
+The user provides as input a protobuf file, a GTF file containing gene annotations, and a FASTA reference sequence.
+
+.. note:: 
+    The input GTF must follow the conventions specified `here <https://mblab.wustl.edu/GTF22.html>`_.
+    If multiple ``CDS`` features are associated with a single ``gene_id``,
+    they must be ordered by start position. An example GTF for SARS-CoV-2 can be found `here <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz>`_.
 
 The output format is a TSV file with three columns, with one line per node (only including nodes with mutations), e.g.
 
@@ -73,7 +82,7 @@ The output format is a TSV file with three columns, with one line per node (only
 ``aa_mutations`` are always delimited by a ``;`` character, and can be matched with their corresponding nucleotide mutations in the ``nt_mutations`` column (also delimited by ``;``).
  
  
-If there are mulitple nucleotide mutations in one node affecting a single codon (rare), they will be separated by commas in the ``nt_mutations`` column.
+If there are multiple nucleotide mutations in one node affecting a single codon (rare), they will be separated by commas in the ``nt_mutations`` column.
 
 
 In the case that a single nucleotide mutation affects multiple codons,
@@ -107,6 +116,12 @@ Example Usage
 
   matUtils summary -i input.pb -A -d input_summary/
 
+3. Get amino acid translations of each node in a tree
+
+.. code-block:: shell-session
+
+  matUtils summary -t translate_output.tsv -i input.pb -g annotation.gtf -f reference.fasta
+
 
 **Example command**
 
@@ -124,6 +139,8 @@ Specific Options
 .. code-block:: shell-session
 
   --input-mat (-i): Input mutation-annotated tree file [REQUIRED]. If only this argument is set, print the count of samples and nodes in the tree.
+  --input-gtf (-g): Input GTF annotation file. Required for --translate (-t)
+  --input-fasta (-g): Input FASTA reference sequence. Required for --translate (-t)
   --output-directory (-d): Write all output files to the target directory. Default is current directory
   --samples (-s): Write a two-column tsv listing all samples in the tree and their parsimony score (terminal branch length). Auspice-compatible.
   --clades (-c): Write a tsv listing all clades and the count of associated samples in the tree.
