@@ -54,6 +54,35 @@ summary
 If no specific arguments are set, prints the number of nodes, number of samples, number of condensed nodes, 
 and total tree parsimony of the input mat to standard output.
 
+**Amino acid translations**
+
+``matUtils summary --translate`` performs phylogenetically informed annotation of amino acid mutations. 
+
+The output format is a TSV file with three columns, with one line per node (only including nodes with mutations), e.g.
+
+.. code-block::
+
+    node_id     aa_mutations            nt_mutations        leaves_sharing_mutations
+    Sample1     ORF7a:E121D;ORF7b:M1L   A27756T;A27756T     1
+    Sample2     S:R905R                 G24277A             1
+    Sample5     S:Y756N                 T23828A             1
+    node_2      M:V60G;M:V66A           T26701G;T26719C     2
+    Sample4     M:G60R;M:A66V           G26700C;C26719T     1
+    Sample3     M:T30A                  A26610G             1
+
+``aa_mutations`` are always delimited by a ``;`` character, and can be matched with their corresponding nucleotide mutations in the ``nt_mutations`` column (also delimited by ``;``).
+ 
+ 
+If there are mulitple nucleotide mutations in one node affecting a single codon (rare), they will be separated by commas in the ``nt_mutations`` column.
+
+
+In the case that a single nucleotide mutation affects multiple codons,
+the affected codons are listed sequentially, and the nucleotide mutation is repeated in the ``nt_mutation`` column.
+
+``leaves_sharing_mutations`` indicates the number of descendant leaves of the node that share its set of mutations (including itself, if the node is a leaf).
+
+**RoHo score**
+
 Additionally, `matUtils summary` can quickly calculate the RoHo score and related values described in `van Dorp et al 2020 <10.1038/s41467-020-19818-2>`_.
 Briefly, the RoHo or Ratio of Homoplasic Offspring is the ratio of the number of descendents in sister clades with or without a specific mutation over the occurrence of 
 all mutations; homoplasic and positively-selected mutations will recur with increased descendent clade sizes at each occurrence. This can be used to quickly
@@ -99,6 +128,7 @@ Specific Options
   --samples (-s): Write a two-column tsv listing all samples in the tree and their parsimony score (terminal branch length). Auspice-compatible.
   --clades (-c): Write a tsv listing all clades and the count of associated samples in the tree.
   --mutations (-m): Write a tsv listing all mutations in the tree and their occurrence count.
+  --translate (-t): Write a tsv listing the amino acid and nucleotide mutations at each node.
   --aberrant (-a): Write a tsv listing potentially problematic nodes, including duplicates and internal nodes with no mutations and/or branch length 0.
   --haplotype (-H): Write a tsv listing haplotypes represented by comma-delimited lists of mutations and their count across the tree.
   --sample-clades (-C): Write a tsv listing all samples and their closest associated clade root in each annotation type column. 
