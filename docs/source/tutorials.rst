@@ -328,6 +328,105 @@ The resulting plot is replicated below.
 .. image:: roho-distribution.png
     :width: 1500px
     :align: center
+    
+.. _translate-tutorial:
+
+Example Amino Acid Translation Workflow
+---------------------------------------
+
+As mutations from the reference accumulate in sequenced SARS-CoV-2 samples, there may be multiple nucleotide mutations in a single codon. In this case, protein sequences computed using nucleotide mutations at leaves may be incorrect if another mutation in the same codon occured higher up the tree. ``matUtils summary --translate / -t`` provides a way to compute the correct amino acid translations at each node.
+
+In this workflow, we will output amino acid mutations at each node of a protobuf, and prepare an annotated JSON suitable for visualization with Auspice.
+
+**Prepare data**
+
+Download the example protobuf file (`translate_example.pb <translate_example.pb>`_), GTF file (`ncbiGenes.gtf <ncbiGenes.gtf>`_), and reference FASTA (`NC_045512v2.fa <https://raw.githubusercontent.com/yatisht/usher/5e83b71829dbe54a37af845fd23d473a8f67b839/test/NC_045512v2.fa>`_).
+
+The example protobuf file is a simple tree with the following structure:
+
+.. image:: nt_tree.png
+    :width: 1000px
+    :align: center
+
+**Run matUtils summary to get amino acid translations**
+
+To call amino acid mutations in the mutation-annotated tree, run the following commmand:
+
+.. code-block:: shell-session
+
+    matUtils summary --translate coding_mutations.tsv -i translate_example.pb -g ncbiGenes.gtf -f NC_045512v2.fa
+    
+This will produce a TSV file named ``coding_mutations.tsv``. The contents of the file are shown below
+
+.. code-block::
+
+    (line 1): node_id     aa_mutations            nt_mutations        leaves_sharing_mutations
+    (line 2): Sample1     ORF7a:E121D;ORF7b:M1L   A27756T;A27756T     1
+    (line 3): Sample2     S:R905R                 G24277A             1
+    (line 4): Sample5     S:Y756N                 T23828A             1
+    (line 5): node_2      M:V60G;M:V66A           T26701G;T26719C     2
+    (line 6): Sample4     M:G60R;M:A66V           G26700C;C26719T     1
+    (line 7): Sample3     M:T30A                  A26610G             1
+    
+
+**TSV Output format**
+
+Each line in the file corresponds to a node in the tree. Only nodes with mutations (including synonymous) are included.
+
+``aa_mutations`` are always delimited by a ``;`` character, and can be matched with their corresponding nucleotide mutations in the ``nt_mutations`` column (also delimited by ``;``).
+ 
+ 
+If there are mulitple nucleotide mutations in one node affecting a single codon (rare), they will be separated by commas in the ``nt_mutations`` column.
+
+
+In the case that a single nucleotide mutation affects multiple codons,
+the affected codons are listed sequentially, and the nucleotide mutation is repeated in the ``nt_mutation`` column. An example of this
+case is shown in line 2 of the file above: 
+
+.. code-block:: javascript
+
+    Sample1     ORF7a:E121D;ORF7b:M1L   A27756T;A27756T     1
+
+``A27756T`` mutates both the last codon of Orf7a and the start codon of Orf7b.
+
+``leaves_sharing_mutations`` indicates the number of descendant leaves of the node that share its set of mutations (including itself, if the node is a leaf).
+
+**Synonymous mutations**
+
+Synonymous mutations are included in the output. See the example in line 3 of ``coding_mutations.tsv``:
+
+.. code-block:: javascript
+
+    Sample2     S:R905R                 G24277A             1
+
+
+**Mutation accumulation / Back-mutations**
+
+The following two lines demonstrate how ``matUtils summary --translate`` considers mutations higher in the tree when
+computing protein changes.
+
+.. code-block:: javascript
+
+    node_2      M:V60G;M:V66A           T26701G;T26719C     2
+    Sample4     M:G60R;M:A66V           G26700C;C26719T     1
+    
+``Sample4`` is a child of the internal node ``node_2``. The mutation ``G26700C`` in ``Sample4`` is in the same codon (M:60)
+as ``T26701G``. The protein follows the path ``V (root) -> G (node_2) -> R (Sample4)``.
+
+The above two lines also show an example of a back-mutation. The nucleotide mutation ``T26719C`` yields ``M:V66A`` in ``node_2``, which
+is then back-mutated to V by ``C26719T`` in ``Sample4``.
+
+**Run matUtils extract to annotate a JSON tree for visualization**
+
+To produce a JSON file with the metadata we produced above, run the following command:
+
+.. code-block:: javascript
+
+    matUtils extract -i translate_example.pb -M coding_mutations.tsv -j aa_annotated.json
+
+The resulting JSON file can now be loaded into Nextstrain / Auspice. View the expected JSON in Nextstrain `here <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/aa_annotated.json?branchLabel=aa_mutations&c=aa_mutations>`_.
+
+You can use the ``Branch Labels`` menu in the sidebar to view the annotations.
 
 .. _protobuf-tutorial:
 
