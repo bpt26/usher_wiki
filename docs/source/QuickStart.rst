@@ -94,7 +94,9 @@ The full manual page including detailed parameter information can be found `here
 .. code-block:: shell-session
 
   wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/2021/05/25/public-2021-05-25.all.masked.pb.gz
-  matOptimize -i public-2021-05-25.all.masked.pb.gz -o optimized-public-2021-05-25.all.masked.pb.gz -T 32 -r 4
+  # matOptimize. does not support compressed files
+  gunzip public-2021-05-25.all.masked.pb.gz
+  matOptimize -i public-2021-05-25.all.masked.pb -o optimized-public-2021-05-25.all.masked.pb -T 32 -r 4
 
 The above commands download a public SARS-CoV-2 MAT (`public-2021-05-25.all.masked.pb.gz`) and optimize it using SPR moves of radius 4 and 32 CPU threads to produce an parsimony-optimized output MAT (`optimized-public-2021-05-25.all.masked.pb.gz`).
 
