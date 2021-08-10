@@ -407,6 +407,12 @@ It requires a two-column tsv as input alongside the protobuf containing names of
 and associated regions in the first and second columns respectively. Multiple regions can be processed simultaneously; in this mode, introduction points will be checked for whether 
 they have significant support for originating from another input region.
 
+matUtils introduce uses date ranges to sort the output so that the largest clusters occurring in the shortest timespan are printed first. 
+Date can be automatically parsed from the sample name if the sample has standard formatting or passed in as a separate file with -M. In the 
+latter case, the first row should be a header containing "sample_id" and "date" (other columns will be ignored). Each date included should be formatted as XXXX-XX-XX with 
+zeroes filled in as needed (e.g. 2021-01-03) and samples excluded from this file but included in the sample region input (-s) will have their date 
+ignored for the purposes of establishing active date ranges for their cluster.
+
 An example workflow for inferring and visualizing geographic introductions can be found :ref:`here <introduce-tutorial>`.
 
 Heuristic
