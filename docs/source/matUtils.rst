@@ -513,5 +513,9 @@ Options
   --origin-confidence (-C): Set to a confidence value between 0 and 1 at which to state that a node is in-region. Default is 0.5
   --evaluate-metadata (-E): Set to assign each leaf a confidence value based on distance-weighted ancestor confidence.
   --dump-assignments (-D): Indicate a directory to which to write two-column text files containing node-confidence assignments for downstream processing.
-
+  --cluster-output (-u): Write a one-cluster-per-row version of the output table to the indicated file.
+  --latest-date (-l): Limit reported clusters to ones with at least one sample past the indicated date.
+  --earliest-date (-L): Limit reported clusters to ones with ALL samples past the indicated date.
+  --num-to-report (-r): Report the top r scoring potential origins for each cluster. Set to 0 to report all passing baseline.
+  --minimum-to-report (-R): Report only potential origins with at least the indicated confidence score.
 
