@@ -519,3 +519,8 @@ Options
   --num-to-report (-r): Report the top r scoring potential origins for each cluster. Set to 0 to report all passing baseline.
   --minimum-to-report (-R): Report only potential origins with at least the indicated confidence score.
 
+--------------
+Publications
+--------------
+
+- McBroome J, Thornlow B, Hinrichs AS, Kramer A, De Maio N, Goldman N, Haussler D, Corbett-Detig R, and Turakhia Y. `A daily-updated database and tools for comprehensive SARS-CoV-2 mutation-annotated trees., <https://academic.oup.com/mbe/advance-article/doi/10.1093/molbev/msab264/6361626>`_ *Molecular Biology and Evolution*. 2021.
