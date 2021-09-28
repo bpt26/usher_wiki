@@ -95,6 +95,17 @@ We can then parse the `descendants.tsv` file to look at the descendants for each
 
 These commands yield the descendants for the nodes of interest. We find that node_49072 is an ancestor of the sample s1. node_92879 is an ancestor of the samples s4, s5, and s6. node_92900 is an ancestor of samples s8, s9, and s10. 
 
+-----------------------------------------------------------
+Snakemake Workflow
+-----------------------------------------------------------
+
+Alternatively, after `installing snakemake <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_, the following set of commands may be used to search for evidence of recombination in a user-input set of sequences:
+
+.. code-block:: shell-session
+
+    snakemake --use-conda --cores [num threads] --config FASTA="[user_fa]" RUNTYPE="ripples"
+
+
 .. _basic-matUtils-workflow:
 
 
