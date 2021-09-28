@@ -349,6 +349,18 @@ such as how England appears to be the origin in our example, or estimate relativ
 Origin and migration must be interpreted cautiously, however, due to extensive sampling bias by country (England and the UK contribute a large part
 of publicly available sequence information, and are therefore more likely to be identified as the origin of an introduction, et cetera).
 
+-----------------------------------------------------------
+Snakemake Workflow
+-----------------------------------------------------------
+
+We also provide a `snakemake <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_ workflow to search for unique introductions within a user-input set of samples. This workflow can be run using the following commands:
+
+.. code-block:: shell-session
+
+    cd usher/workflows
+    snakemake --use-conda --cores 4 --config FASTA="/path/to/fasta" RUNTYPE="introduce"
+    
+
 .. _roho-tutorial: 
 
 Calculating by-mutation RoHo with `matUtils summary` and Python
