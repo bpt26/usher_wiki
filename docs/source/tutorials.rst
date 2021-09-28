@@ -503,6 +503,17 @@ View the expected JSON in Nextstrain `here <https://nextstrain.org/fetch/raw.git
 
 You can use the ``Branch Labels`` menu in the sidebar to view the annotations.
 
+-----------------------------------------------------------
+Snakemake Workflow
+-----------------------------------------------------------
+
+We also include a `snakemake <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_ workflow to translate mutations in a user-input .fasta file to amino acid substitutions in a lineage-aware manner. This workflow can be run using the following commands:
+
+.. code-block:: shell-session
+
+    cd usher/workflows
+    snakemake --use-conda --cores 4 --config FASTA="/path/to/fa" RUNTYPE="translate"
+
 .. _protobuf-tutorial:
 
 Interacting with MAT Protobuf in Python [ADVANCED USERS]
