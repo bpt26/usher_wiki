@@ -103,8 +103,40 @@ Alternatively, after `installing snakemake <https://snakemake.readthedocs.io/en/
 
 .. code-block:: shell-session
 
-    snakemake --use-conda --cores [num threads] --config FASTA="[user_fa]" RUNTYPE="ripples"
+    cd usher/workflows
+    snakemake --use-conda --cores 4 --config FASTA="/path/to/fasta" RUNTYPE="ripples"
+    
 
+.. _taxodium-tutorial:
+
+Using Taxodium to visualize phylogenies
+-------------------------------------------------
+
+We recommend using `Cov2Tree <https://cov2tree.org/>`_ develoepd by `Theo Sanderson <https://github.com/theosanderson/taxodium>`_ to visualize these trees. An example of a phylogeny visualized by this software is shown below:
+
+.. image:: taxodium.jpeg
+    :width: 700px
+    :align: center
+
+To accommodate this, we include the -l option in matUtils extract to produce a MAT in a format that is readable by Taxodium. 
+
+.. code-block:: shell-session
+
+    wget https://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/wuhCor1.fa.gz && gunzip wuhCor1.fa.gz
+    wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz && gunzip ncbiGenes.gtf.gz
+    wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.metadata.tsv.gz && gunzip public-latest.metadata.tsv.gz
+    matUtils extract -i input.pb -l output.taxodium.pb -g ncbiGenes.gtf -f wuhCor1.fa -M public-latest.metadata.tsv
+
+-----------------------------------------------------------
+Snakemake Workflow
+-----------------------------------------------------------
+
+For simplicity, we include the above set of commands as a `snakemake <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_ workflow. Here, the user-specified input is a set of sequences to be added to the latest public tree. This workflow can be run using the following commands:
+
+.. code-block:: shell-session
+
+    cd usher/workflows
+    snakemake --use-conda --cores 4 --config FASTA=”path/to/fa/file” RUNTYPE=”taxodium”
 
 .. _basic-matUtils-workflow:
 
