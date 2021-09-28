@@ -53,6 +53,13 @@ This yields the following three files:
 * `uncondensed-final-tree.nh` (newick-formatted tree containing all samples)
 * `mutation-paths.txt` (tab-separated file containing each sample, the nodes leading to that sample in the final tree, and the mutations at those nodes)
 
+A simplified workflow to add user-specified samples in .fasta format to the latest public MAT is available using the following commands:
+
+.. code-block:: shell-session
+
+  cd usher/workflows
+  snakemake --use-conda --cores 4 --config FASTA="/path/to/fasta" RUNTYPE="usher"
+
 --------------
 matUtils
 --------------
