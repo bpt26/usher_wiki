@@ -203,6 +203,17 @@ We can see that the majority of occurrences of G7328T are single nodes- having j
 Further analysis would be required to validate or interpet these results, but this procedure clearly demonstrates the potential for matUtils for 
 rapid exploratory analysis using large public datasets.
 
+-----------------------------------------------------------
+Snakemake Workflow
+-----------------------------------------------------------
+
+We also provide a `snakemake <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_ workflow to add user-input sequences in .fasta format to the latest public tree, and extract subtrees of size 500 for each. These subtrees are output in .json format for simple drag-and-drop visualization with `Auspice <https://auspice.us/>`_. This workflow can be run using the following commands:
+
+.. code-block:: shell-session
+
+    cd usher/workflows
+    snakemake --use-conda --cores 4 --config FASTA=”path/to/fa/file” RUNTYPE=”matUtils”
+
 .. _uncertainty-tutorial:
 
 Example Uncertainty Workflow
