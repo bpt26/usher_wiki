@@ -243,6 +243,8 @@ Specific Options
 .. code-block:: shell-session
 
   --input-mat (-i): For this specific command, the input can either be a standard MAT protobuf or an Augur-v2-formatted MAT JSON, ala Nextstrain.
+  --input-gtf (-g): Input GTF annotation file. Required for --write-taxodium.
+  --input-fasta (-f): Input FASTA reference sequence. Required for --write-taxodium.
   --samples (-s): Select samples by explicitly naming them, one per line in a plain text file.
   --metadata (-M): Comma delimited names of tsvs or csvs containing sample identifiers in the first column and an arbitrary number of metadata values in separate columns, including a header line in each file. Used only with -j and -K.
   --clade (-c): Select samples by membership in any of the indicated clade(s), comma delimited- e.g. -c clade1,clade2.
@@ -270,10 +272,18 @@ Specific Options
   --write-json (-j): Write an Auspice-compatbile json representing the selected subtree.
   --retain-branch-length (-E): Use to not recalculate branch lengths with saving newick output. Used only with -t
   --write-tree (-t): Write a newick string representing the selected subtree to the target file. 
+  --write-taxodium (-l): Write a taxodium-format protobuf to the target file.
+  --title (-B): Title to include in --write-taxodium output.
+  --description (-D): Description to include in --write-taxodium output.
+  --extra-fields (-F): Comma delimited list of additional fields to include in --write-taxodium output.
   --minimum-subtrees-size (-N): Use to generate a series of JSON or Newick format files representing subtrees of the indicated size covering all queried samples. Uses and overrides -j and -t output arguments.
+  --reroot (-y): Indicate an internal node ID to reroot the output tree to. Applied before all other manipulation steps.
   --usher-single-subtree-size (-X): Use to produce an usher-style single sample subtree of the indicated size with all selected samples plus random samples to fill. Produces .nh and .txt files in the output directory.
   --usher-minimum-subtrees-size(-x): Use to produce an usher-style minimum set of subtrees of the indicated size which include all of the selected samples. Produces .nh and .txt files in the output directory.
   --usher-clades-txt: Use to write an usher-style clades.txt alongside an usher-style subtree with -x or -X.
+  --add-random (-W): Add exactly W samples to your selection at random. Affected by -Z and overridden by -z.
+  --select-nearest (-Y): Set to add to the sample selection the nearest Y samples to each of your samples, without duplication.
+  --dump-metadata (-Q): Set to write all final stored metadata as a tsv.
 
 -----------
 annotate
@@ -329,10 +339,12 @@ Specific Options
   --clade-paths (-P): Path to a tsv file mapping clades to mutation paths which must exist in the tree.  Format is the same as the first and third columns of the output of matUtils extract --clade-paths.
   --allele-frequency (-f): Minimum allele frequency in input samples for finding the best clade root. Used only with -l. Default = 0.8.
   --mask-frequency (-m): Minimum allele frequency below -f in input samples that should be masked for finding the best clade root. Used only with -c.
+  --clip-sample-frequency (-p): Maximum proportion of samples in a branch that are exemplars from -c to consider when sorting candidate clade root nodes. Default 0.1
   --set-overlap (-s): Minimum fraction of the lineage samples that should be desecendants of the assigned clade root. Defualt = 0.6.
   --clear-current (-l): Use to remove current annotations before applying new annotations.
   --output-directory (-d): Write output files to the target directory.
   --write-mutations (-u): Write a tsv listing each clade and the mutations found in at least [-f] of the samples. Used only with -c.
+  --write-details (-D): Write a tsv with details about the nodes considered for each clade root. Used only with -c
 
 ----------------------
 uncertainty
@@ -518,6 +530,8 @@ Options
   --earliest-date (-L): Limit reported clusters to ones with ALL samples past the indicated date.
   --num-to-report (-r): Report the top r scoring potential origins for each cluster. Set to 0 to report all passing baseline.
   --minimum-to-report (-R): Report only potential origins with at least the indicated confidence score.
+  --minimum-gap (-G): The minimum number of mutations between the last ancestor inferred to be in region to its parent to use the ancestor to define the cluster instead of the parent. Set to higher values to merge sibling clusters. Default 0.
+  --num-to-look (-X): Additionally require that the next X nodes on the path to the root from the putative introduction point have lower confidences than the introduction point. Set to higher numbers to merge nested clusters. Default 0.
 
 --------------
 Publications
