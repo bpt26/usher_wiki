@@ -18,23 +18,48 @@ Options
 
 .. code-block:: shell-session
 
-  --vcf (-v): Input VCF file (in uncompressed or gzip-compressed .gz format. 
-  --tree (-t): Input tree file.
-  --load-mutation-annotated-tree (-i): Load mutation-annotated tree (MAT) object.
-  --save-mutation-annotated-tree (-o): Save output mutation-annotated tree (MAT) object to the specified filename (REQUIRED).
-  --save-intermediate-mutation-annotated-tree (-m): Save intermediate mutation-annotated tree (MAT) object to the specified filename.
-  --radius (-r): Radius in which to restrict the SPR moves. Default = 10.
-  --profitable-src-log (-S): The file to log from which node a profitable move can be found.
-  --ambi-protobuf (-a): Continue from specified intermediate protobuf.
-  --max-queued-moves (-q): Maximum number of profitable moves found before applying moves. Default = 1000.
-  --minutes-between-save (-s): Length in minutes of intervals after which intermediate protobuf is saved. Default = 10.
-  --do-note-write-intermediate-files (-n): If selected, matOptimize will not write any intermediate files.
-  --exhaustive-mode (-e): Search every non-root node as source node.
-  --max-hours (-M): Maximum number of hours to run.
-  --transposed-vcf-path (-V): Auxiliary transposed VCF for ambiguous bases, used in combination with UShER protobuf (-i).
-  --version: Print version number.
-  --threads (-T): Number of threads to use when possible. Default = use all available cores.
-  --help (-h): Print help messages.  
+ -v [ --vcf ] arg                      Input VCF file (in uncompressed or 
+                                        gzip-compressed .gz format) 
+  -t [ --tree ] arg                     Input tree file
+  -T [ --threads ] arg (=12)            Number of threads to use when possible 
+                                        [DEFAULT uses all available cores, 12 
+                                        detected on this machine]
+  -i [ --load-mutation-annotated-tree ] arg
+                                        Load mutation-annotated tree object
+  -o [ --save-mutation-annotated-tree ] arg
+                                        Save output mutation-annotated tree 
+                                        object to the specified filename 
+                                        [REQUIRED]
+  -r [ --radius ] arg (=-1)             Radius in which to restrict the SPR 
+                                        moves.
+  -S [ --profitable-src-log ] arg (=/dev/null)
+                                        The file to log from which node a 
+                                        profitable move can be found.
+  -a [ --ambi-protobuf ] arg            Continue from intermediate protobuf
+  -s [ --minutes-between-save ] arg (=0)
+                                        Minutes between saving intermediate 
+                                        protobuf
+  -m [ --min-improvement ] arg (=0.000500000024)
+                                        Minimum improvement in the parsimony 
+                                        score as a fraction of the previous 
+                                        score in ordder to perform another 
+                                        iteration.
+  -d [ --drift_iteration ] arg (=0)     Iterations permiting equally 
+                                        parsimonious moves after parsimony 
+                                        score no longer improves
+  -n [ --do-not-write-intermediate-files ] 
+                                        Do not write intermediate files.
+  -N [ --max-iterations ] arg (=1000)   Maximum number of optimization 
+                                        iterations to perform.
+  -M [ --max-hours ] arg (=0)           Maximium number of hours to run
+  -V [ --transposed-vcf-path ] arg      Auxiliary transposed VCF for ambiguous 
+                                        bases, used in combination with usher 
+                                        protobuf (-i)
+  --version                             Print version number
+  -z [ --node_proportion ] arg (=2)     the proportion of nodes to search
+  -y [ --node_sel ] arg                 Random seed for selecting nodes to 
+                                        search
+  -h [ --help ]                         Print help messages
 
 -----------------
 Presentations
