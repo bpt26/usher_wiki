@@ -67,20 +67,19 @@ The user provides as input a protobuf file, a GTF file containing gene annotatio
     If multiple ``CDS`` features are associated with a single ``gene_id``,
     they must be ordered by start position. An example GTF for SARS-CoV-2 can be found `here <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz>`_.
 
-The output format is a TSV file with three columns, with one line per node (only including nodes with mutations), e.g.
+The output format is a TSV file with four columns, with one line per node (only including nodes with mutations), e.g.
 
 .. code-block::
 
-    node_id     aa_mutations            nt_mutations        leaves_sharing_mutations
-    Sample1     ORF7a:E121D;ORF7b:M1L   A27756T;A27756T     1
-    Sample2     S:R905R                 G24277A             1
-    Sample5     S:Y756N                 T23828A             1
-    node_2      M:V60G;M:V66A           T26701G;T26719C     2
-    Sample4     M:G60R;M:A66V           G26700C;C26719T     1
-    Sample3     M:T30A                  A26610G             1
+    node_id     aa_mutations            nt_mutations        codon_changes        leaves_sharing_mutations
+    Sample1     ORF7a:E121D;ORF7b:M1L   A27756T;A27756T     GAG>GTG;GAG>GTG        1
+    Sample2     S:R905R                 G24277A             GGG>AGG        1
+    Sample5     S:Y756N                 T23828A             CCT>CCA        1
+    node_2      M:V60G;M:V66A           T26701G;T26719C     GTA>GGA;ACT>ACC        2
+    Sample4     M:G60R;M:A66V           G26700C;C26719T     GTA>CTA;ACC>ACT        1
+    Sample3     M:T30A                  A26610G             TTA>TTG        1
 
-``aa_mutations`` are always delimited by a ``;`` character, and can be matched with their corresponding nucleotide mutations in the ``nt_mutations`` column (also delimited by ``;``).
- 
+``aa_mutations`` are always delimited by a ``;`` character, and can be matched with their corresponding nucleotide mutations in the ``nt_mutations`` column (also delimited by ``;``). Codon changes are encoded similarly. 
  
 If there are multiple nucleotide mutations in one node affecting a single codon (rare), they will be separated by commas in the ``nt_mutations`` column.
 
@@ -148,7 +147,7 @@ Specific Options
   --translate (-t): Write a tsv listing the amino acid and nucleotide mutations at each node.
   --aberrant (-a): Write a tsv listing potentially problematic nodes, including duplicates and internal nodes with no mutations and/or branch length 0.
   --haplotype (-H): Write a tsv listing haplotypes represented by comma-delimited lists of mutations and their count across the tree.
-  --sample-clades (-C): Write a tsv listing all samples and their closest associated clade root in each annotation type column. 
+  --sample-clades (-C): Write a tsv listing all samples and their clades. 
   --calculate-roho (-R): Write a tsv listing, for each mutation occurrence that is valid, the number of offspring and other numbers for RoHo calculation.
   --expanded-roho (-E): Use to include date and other contextual information in the RoHO output. Significantly slows calculation time.
   --get-all (-A): Write all possible tsv outputs with default file names (samples.txt, clades.txt, etc).
@@ -253,10 +252,13 @@ Specific Options
   --max-epps (-e): Select samples by whether they have less than or equal to the maximum number of indicated equally parsimonious placements. Explanation of equally parsimonious placements is here INSERT LINK.
   --max-parsimony (-a): Select samples by whether they have less than or equal to the indicated maximum parsimony score (terminal branch length). 
   --max-branch-length (-b): Remove samples which have branches of greater than the indicated length in their ancestry.
+  --max-path-length (-P): Select samples which have a total path length (number of mutations different from reference) less than or equal to the indicated value.
   --nearest-k (-k): Select a specific sample and X context samples, formatted as "sample_name:X".
   --nearest-k-batch (-K): Pass a text file of sample IDs and a number of the number of context samples, formatted as sample_file.txt:k. These will be automatically written to a series of json files named "*sample-name*_context.json". Used for special large-scale operations.
   --get-internal-descendents (-I): Select the set of samples descended from the indicated internal node.
+  --from-mrca (-U): Select all samples which are descended from the most recent common ancestor of the indicated set of samples. Applied before filling background with random samples.
   --set-size (-z): Automatically add or remove samples at random from the selected sample set until it is the indicated size.
+  --limit-to-lca (-Z): Use to limit random samples chosen with -z or -W to below the most recent common ancestor of all other samples.
   --get-representative (-r): Toggle to automatically select two representative samples per clade currently included in the tree, pruning all other samples from the tree. Applies after other selection steps.
   --prune (-p): Toggle to instead exclude all indicated samples from the subtree output.
   --resolve-polytomies (-R): Toggle to resolve all polytomies by assigning new internal nodes with branch length 0. Used for compatibility with other software.
@@ -273,8 +275,10 @@ Specific Options
   --retain-branch-length (-E): Use to not recalculate branch lengths with saving newick output. Used only with -t
   --write-tree (-t): Write a newick string representing the selected subtree to the target file. 
   --write-taxodium (-l): Write a taxodium-format protobuf to the target file.
+  --x-scale (-G): Specifies custom X-axis scaling for Taxodium output. Does not affect other output formats.
   --title (-B): Title to include in --write-taxodium output.
   --description (-D): Description to include in --write-taxodium output.
+  --include-nt (-J): Include nucleotide changes in the taxodium output.
   --extra-fields (-F): Comma delimited list of additional fields to include in --write-taxodium output.
   --minimum-subtrees-size (-N): Use to generate a series of JSON or Newick format files representing subtrees of the indicated size covering all queried samples. Uses and overrides -j and -t output arguments.
   --reroot (-y): Indicate an internal node ID to reroot the output tree to. Applied before all other manipulation steps.
@@ -282,8 +286,11 @@ Specific Options
   --usher-minimum-subtrees-size(-x): Use to produce an usher-style minimum set of subtrees of the indicated size which include all of the selected samples. Produces .nh and .txt files in the output directory.
   --usher-clades-txt: Use to write an usher-style clades.txt alongside an usher-style subtree with -x or -X.
   --add-random (-W): Add exactly W samples to your selection at random. Affected by -Z and overridden by -z.
+  --closest-relatives (-V): Write a tsv file of the closest relative(s) (in mutations) of each selected sample to the indicated file. All equidistant closest samples are included unless --break-ties is set.
+  --break-ties (-q): Only output one closest relative per sample (used only with --closest-relatives). If multiple closest relatives are equidistant, the lexicographically smallest sample ID is chosen.
   --select-nearest (-Y): Set to add to the sample selection the nearest Y samples to each of your samples, without duplication.
   --dump-metadata (-Q): Set to write all final stored metadata as a tsv.
+  --whitelist (-L): Pass a list of samples, one per line, to always retain in the output regardless of any other parameters.
 
 -----------
 annotate
@@ -337,6 +344,7 @@ Specific Options
   --clade-names (-c): Path to a file containing clade asssignments of samples. An algorithm automatically locates and annotates clade root nodes.
   --clade-to-nid (-C): Path to a tsv file mapping clades to their respective internal node identifiers. Use with caution.
   --clade-paths (-P): Path to a tsv file mapping clades to mutation paths which must exist in the tree.  Format is the same as the first and third columns of the output of matUtils extract --clade-paths.
+  --clade-mutations (-M): Path to a tsv file mapping clades to sets of mutations (separated by spaces,commas and/or >s) which will be used instead of extracting mutations from samples named in the --clade-names file.  If used together with --clade-names, this takes precedence.
   --allele-frequency (-f): Minimum allele frequency in input samples for finding the best clade root. Used only with -l. Default = 0.8.
   --mask-frequency (-m): Minimum allele frequency below -f in input samples that should be masked for finding the best clade root. Used only with -c.
   --clip-sample-frequency (-p): Maximum proportion of samples in a branch that are exemplars from -c to consider when sorting candidate clade root nodes. Default 0.1
