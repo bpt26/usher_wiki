@@ -10,7 +10,7 @@ Conda
 
 A quick method is via `conda`:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   # Create a new environment for UShER
   conda create -n usher-env
@@ -27,7 +27,7 @@ A quick method is via `conda`:
 Conda Local Build
 ---------------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   git clone https://github.com/yatisht/usher.git
   cd usher/install
@@ -46,7 +46,7 @@ Conda Local Build
 
 followed by, if on a MacOS system:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .
   chmod +x faToVcf
@@ -55,7 +55,7 @@ followed by, if on a MacOS system:
 
 or if on a Linux system:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf . 
   chmod +x faToVcf
@@ -64,7 +64,7 @@ or if on a Linux system:
 Executables will be located in the build and scripts directories. Make sure they're on your path for your system as appropriate, 
 or that you modify your commands to indicate their location.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   export PATH=$PATH:/path/to/install/usher/build/
   export PATH=$PATH:/path/to/install/usher/scripts/
@@ -74,14 +74,14 @@ Docker
 
 From DockerHub:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   docker pull yatisht/usher:latest
   docker run -t -i yatisht/usher:latest /bin/bash
   
 OR locally:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
    git clone https://github.com/yatisht/usher.git
    cd usher
@@ -93,25 +93,25 @@ OR locally:
 Installation scripts
 ------------------------
 
-.. code-block:: shell-session
+.. code-block:: sh
   
   git clone https://github.com/yatisht/usher.git
   cd usher
   
 For MacOS 10.14 or above:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   ./install/installMacOS.sh
 
 For Ubuntu 18.04 and above (requires sudo privileges):
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   ./install/installUbuntu.sh
 
 For CentOS 7 and above (requires sudo privileges):
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   ./install/installCentOS.sh

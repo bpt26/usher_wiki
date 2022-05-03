@@ -30,7 +30,7 @@ In the partial phylogeny shown above, node **f** is the result of a recombinatio
 Options
 --------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --input-mat (-i): Input mutation-annotated tree file [REQUIRED]. If only this argument is set, print the count of samples and nodes in the tree.
   --outdir (-d): Write all output files to the target directory. Default is current directory.
