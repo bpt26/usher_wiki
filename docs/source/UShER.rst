@@ -42,7 +42,7 @@ At the end of the placement phase, UShER allows the user to create another proto
 Options
 --------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --vcf (-v): Input VCF file (in uncompressed or gzip-compressed .gz format). (REQUIRED)  
   --tree (-t): Input tree file.  
@@ -71,7 +71,7 @@ Display help message
 
 To familiarize with the different command-line options of UShER, it would be useful to view its help message using the command below:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   usher --help
 
@@ -81,7 +81,7 @@ Pre-processing global phylogeny
 
 The following example command pre-processes the existing phylogeny (`global_phylo.nh`) and using the genotypes (`global_samples.vcf`) and generates the mutation-annotated tree object that gets stored in a protobuf file (`global_assignments.pb`). Note that UShER would automatically place onto the input global phylogeny any samples in the VCF (to convert a fasta sequence to VCF, consider using Fasta2USHER that are missing in the input global phylogeny using its parsimony-optimal placement algorithm. This final tree is written to a file named `final-tree.nh` in the folder specified by `--outdir` or `-d` option (if not specified, default uses current directory). 
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -d output/
 
@@ -89,13 +89,13 @@ By default, UShER uses **all available threads** but the user can also specify t
 
 UShER also allows an option during the pre-processing phase to collapse nodes (i.e. delete the node after moving its child nodes to its parent node) that are not inferred to contain a mutation through the Fitch-Sankoff algorithm as well as to condense nodes that contain identical sequences into a single representative node. This is the **recommended usage** for UShER as it not only helps in significantly reducing the search space for the placement phase but also helps reduce ambiguities in the placement step and can be done by setting the `--collapse-tree` or `-c` parameter. The collapsed input tree is stored as `condensed-tree.nh` in the output directory. 
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -c -d output/
 
 Note the the above command would condense identical sequences, namely S2, S3 and S4, in the example figure above into a single condensed new node (named something like *node_1_condensed_3_leaves*). If you wish to display the collapsed tree without condensing the nodes, also set the `--write-uncondensed-final-tree` or `-u` option, for example, as follows:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   usher -t test/global_phylo.nh -v test/global_samples.vcf -o global_assignments.pb -c -u -d output/
 
@@ -106,7 +106,7 @@ Placing new samples
 
 Once the pre-processing is complete and a mutation-annotated tree object is generate (e.g. `global_assignments.pb`), UShER can place new sequences whose variants are called in a VCF file (e.g. `new_samples.vcf`) to existing tree as follows:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   usher -i global_assignments.pb -v test/new_samples.vcf -u -d output/
 
@@ -116,7 +116,7 @@ The above command not only places each new sample sequentially, but also reports
 
 In addition to the global phylogeny, one often needs to contextualize the newly added sequences using subtrees of closest *N* neighbouring sequences, where *N* is small. UShER allows this functionality using `--write-subtrees-size` or `-k` option, which can be set to an arbitrary *N*, such as 20 in the example below:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   usher -i global_assignments.pb -v test/new_samples.vcf -u -k 20 -d output/
 
@@ -124,7 +124,7 @@ The above command writes subtrees to files names `subtree-<subtree-number>.nh`. 
 
 Finally, the new mutation-annotated tree object can be stored again using `--save-mutation-annotated-tree` or `-o` option (overwriting the loaded protobuf file is allowed).
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   usher -i global_assignments.pb -v test/new_samples.vcf -u -o new_global_assignments.pb -d output/
 
@@ -139,7 +139,7 @@ Branch Parsimony Score
 
 UShER also allows quantifying the uncertainty in placing new samples by reporting the parsimony scores of adding new samples to all possible nodes in the tree **without** actually modifying the tree (this is because the tree structure, as well as number of possible optimal placements could change with each new sequential placement). In particular, this can help the user explore which nodes of the tree result in a small and optimal or near-optimal parsimony score. This can be done by setting the `--write-parsimony-scores-per-node` or `-p` option, for example, as follows:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   usher -i global_assignments.pb -v test/new_samples.vcf -p -d output/ 
 
@@ -157,13 +157,13 @@ Multiple parsimony-optimal placements
 
 To further aid the user to quantify phylogenetic uncertainty in placement, UShER has an ability to enumerate all possible topologies resulting from equally parsimonious sample placements. UShER does this by maintaining a list of mutation-annotated trees (starting with a single mutation-annotated tree corresponding to the input tree of existing samples) and sequentially adds new samples to each tree in the list while increasing the size of the list as needed to accommodate multiple equally parsimonious placements for a new sample. This feature is available using the `--multiple-placements` or `-M` option in which the user specifies the maximum number of topologies that UShER should maintain before it reverts back to using the default tie-breaking strategy for multiple parsimony-optimal placements in order to keep the runtime and memory usage of UShER reasonable. 
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   usher -i global_assignments.pb -v <USER_PROVIDED_VCF> -M -d output/
 
 Note that if the number of equally parsimonious placements for the initial samples is large, the tree space can get too large too quickly and slow down the placement for the subsequent samples. Therefore, UShER also provides an option to sort the samples first based on the number of equally parsimonious placements using the `-S` option. 
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   usher -i global_assignments.pb -v <USER_PROVIDED_VCF> -M -S -d output/
 
@@ -179,7 +179,7 @@ Finding sister clades
 
 To determine the accuracy of each sample placement, one might be interested in knowing all of the sister clades of that sample on the final tree. `We provide a utility for this calculation here <http://public.gi.ucsc.edu/~yatisht/data/binaries/find_sister_clades>`_. `find_sister_clades` takes the following options:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --tree: Input tree file.  
   --samples: File containing missing samples.  
@@ -188,7 +188,7 @@ To determine the accuracy of each sample placement, one might be interested in k
 
 An example usage of this function is given below:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   find_sister_clades --generations 1 final-tree.nh --samples list-of-samples.txt > sister_clades.txt
 
@@ -211,7 +211,7 @@ Generating Multiple Sequence Alignment (MSA)
 
 Users can generate multiple sequence alignment of the input sequences using `MAFFT <https://mafft.cbrc.jp/alignment/software/>`_ that is already `installed <https://github.com/yatisht/usher#installing-usher>`_ with UShER package. For example, we provide a number of example SARs-CoV-2 sequences in `test/Fasta2UShER` that can be combined in a single fasta file called `combined.fa` and aligned together using the SARS-CoV-2 reference sequence `test/NC_045512v2.fa` as follows:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   cat ./test/Fasta2UShER/* > ./test/combined.fa
   mafft --thread 10 --auto --keeplength --addfragments ./test/combined.fa ./test/NC_045512v2.fa > ./test/myAlignedSequences.fa
@@ -223,28 +223,28 @@ Converting MSA to VCF
 
 Users can then use the tool faToVcf, which is also installed via UShER's package, to then convert the fasta file containing multiple alignment of input sequences into a VCF.  If the file `./test/myAlignedSequences.fa` includes the reference sequence (for SARS-CoV-2, `NC_045512.2 <https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2>`_) as its first sequence, then faToVcf can be run like this:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   faToVcf ./test/myAlignedSequences.fa ./test/test_merged.vcf
 
 
 If the reference sequence is included in `./test/myAlignedSequences.fa` but is not the first sequence, then its name needs to be specified using the `-ref=...` option:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   faToVcf -ref=NC_045512.2 ./test/myAlignedSequences.fa ./test/test_merged.vcf
 
 
 If the reference sequence is not included in `./test/myAlignedSequences.fa` then it can be added in the bash shell using a named pipe like this:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   faToVcf <(cat NC_045512.2.fa ./test/myAlignedSequences.fa) ./test/test_merged.vcf
 
 
 For SARS-CoV-2 data, we recommend downloading `problematic_sites_sarsCov2.vcf` and using it for masking `problematic sites <https://virological.org/t/issues-with-sars-cov-2-sequencing-data/473/14>`_ as follows:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   wget https://raw.githubusercontent.com/W-L/ProblematicSites_SARS-CoV2/master/problematic_sites_sarsCov2.vcf
   faToVcf  -maskSites=problematic_sites_sarsCov2.vcf   ./test/myAlignedSequences.fa ./test/test_merged_masked.vcf
