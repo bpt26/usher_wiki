@@ -76,8 +76,8 @@ From DockerHub:
 
 .. code-block:: sh
 
-  docker pull yatisht/usher:latest
-  docker run -t -i yatisht/usher:latest /bin/bash
+  docker pull pathogengenomics/usher:latest
+  docker run -t -i pathogengenomics/usher:latest /bin/bash
   
 OR locally:
 
