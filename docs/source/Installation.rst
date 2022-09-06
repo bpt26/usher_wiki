@@ -36,11 +36,9 @@ Conda Local Build
   cd ..
   mkdir build
   cd build
-  git clone https://github.com/oneapi-src/oneTBB
-  cd oneTBB
-  git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6
-  cd ..
-  cmake  -DTBB_DIR=${PWD}/oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/oneTBB/cmake ..
+  wget https://github.com/oneapi-src/oneTBB/archive/2019_U9.tar.gz 
+  tar -xvzf 2019_U9.tar.gz
+  cmake  -DTBB_DIR=${PWD}/oneTBB-2019_U9  -DCMAKE_PREFIX_PATH=${PWD}/oneTBB-2019_U9/cmake ..
   make -j
   cd ..
 
