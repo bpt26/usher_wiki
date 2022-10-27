@@ -539,12 +539,15 @@ We also include a `snakemake <https://snakemake.readthedocs.io/en/stable/getting
 
 .. _protobuf-tutorial:
 
-Interacting with MAT Protobuf in Python [ADVANCED USERS]
+Interacting Directly with Protobuf Files in Python [ADVANCED USERS]
 -----------------------------------------------------------
 
 Advanced users may desire to interface directly with the protobuf. The following is a brief tutorial on doing so.
 Google's general tutorial on interacting with protobuf in python can be found `here <https://developers.google.com/protocol-buffers/docs/pythontutorial#compiling-your-protocol-buffers>`_.
 The instructions here can be applied to a number of additional languages supported by google as well, such as java, PHP, and ruby.
+
+Note that this tutorial is specifically for directly manipulating the MAT protobuf file itself in Python; 
+loading a MAT data structure into memory in Python and manipulating that structure is the province of the Cython extension BTE.
 
 The first step is to call the protoc compiler to retrieve a MAT protobuf parser. Navigate to your Usher installation (or clone the github if you installed via conda) and call:
 

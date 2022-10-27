@@ -11,6 +11,7 @@ Welcome to the manual for UShER package, that includes SARS-CoV-2 Phylogenetics 
    matUtils.rst
    matOptimize.rst
    ripples.rst
+   bte.rst
    tutorials.rst
 
 .. _UShER:
@@ -46,3 +47,9 @@ RIPPLES
 ============
 
 RIPPLES is a program that uses a phylogenomic technique to rapidly and sensitively detect recombinant nodes and their ancestors in a mutation-annotated tree (MAT). Information on its usage can be found `here <https://usher-wiki.readthedocs.io/en/latest/ripples.html>`_.
+
+
+BTE
+============
+
+BTE is a separately packaged Cython API that wraps the highly optimized library underlying these other tools, exposing them for use in Python. Information about its usage can be found `here <https://usher-wiki.readthedocs.io/en/latest/bte.html>`_ and at its `repository <https://github.com/jmcbroome/BTE>`_.
