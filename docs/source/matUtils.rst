@@ -40,7 +40,7 @@ matUtils Common Options
 
 All matUtils subcommands include these parameters.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --input-mat (-i): Input mutation-annotated tree file. (REQUIRED)
   --threads (-T): Number of threads to use when possible. Default = use all available cores.
@@ -101,23 +101,23 @@ Example Usage
 
 1. Get a tsv containing all sample names and parsimony scores.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils summary -i input.pb --samples samples.txt
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils summary -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz --samples 06-09_samples.txt
 
 2. Write all possible summary output files to a specific directory.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils summary -i input.pb -A -d input_summary/
 
 3. Get amino acid translations of each node in a tree
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils summary -t translate_output.tsv -i input.pb -g annotation.gtf -f reference.fasta
 
@@ -128,14 +128,14 @@ Files needed:
 
 a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils summary -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -A -d 06-09_summary/
 
 Specific Options
 ----------------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --input-mat (-i): Input mutation-annotated tree file [REQUIRED]. If only this argument is set, print the count of samples and nodes in the tree.
   --input-gtf (-g): Input GTF annotation file. Required for --translate (-t)
@@ -175,17 +175,17 @@ Example Syntax and Usage
 
 1. Write a vcf representing all samples within a clade.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils extract -i input.pb -c my_clade -v my_clade.vcf
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils extract -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -c B.1.351 -v 351_samples.vcf
   
 The VCF file can be converted to a Fasta files (one for each sequence in the VCF) using vcf2fasta (see installation instructions `here <https://github.com/vcflib/vcflib#install>`_) and the reference sequence (in NC_045512v2.fa) as follows:
   
-.. code-block:: shell-session
+.. code-block:: sh
 
   vcfindex 351_samples.vcf
   vcf2fasta -f NC_045512v2.fa 351_samples.vcf
@@ -194,27 +194,27 @@ Note that indels are ignored in the above approach since they're not included in
 
 2. Write a newick tree of all samples which contain either of two mutations of interest.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils extract -i input.pb -m my_mutation,my_other_mutation -t my_mutations.nwk
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils extract -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -m G7328T,A8653G -t double_mutant.nwk
 
 3. Convert a MAT JSON into a .pb file, while removing branches with length greater than 7.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils extract -i input.json -b 7 -o filtered.pb
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils extract -i usa_group.json -b 7 -o filtered_usa_group.pb
 
 4. Generate a MAT JSON representing a subtree of size 25 around a sample of interest, including multiple metadata files and filtering low-scoring samples.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils extract -i input.pb -a 5 -M my_metadata_1.tsv,my_metadata_2.tsv -k my_sample:25 -j my_sample_context.json
 
@@ -231,7 +231,7 @@ c. :download:`region.tsv <./meta_1.tsv>`
 
 d. :download:`misc.tsv <./meta_2.tsv>`
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils extract -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -a 5 -M meta_1.tsv,meta_2.tsv -k "Scotland/CVR6436/2020|2020-12-30:25" -j cluster.json
 
@@ -239,7 +239,7 @@ d. :download:`misc.tsv <./meta_2.tsv>`
 Specific Options
 ----------------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --input-mat (-i): For this specific command, the input can either be a standard MAT protobuf or an Augur-v2-formatted MAT JSON, ala Nextstrain.
   --input-gtf (-g): Input GTF annotation file. Required for --write-taxodium.
@@ -317,7 +317,7 @@ Example Syntax and Usage
 
 1. Assign a new set of custom clade annotations to the tree.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils annotate -i input.pb -c my_clade_info.txt -o annotated.pb
 
@@ -329,7 +329,7 @@ a. `public-2021-06-09.all.masked.pb.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_
 
 b. `cladeToPublicName.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/06/09/cladeToPublicName.gz>`_
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   gunzip -c cladeToPublicName.gz > clade_info.txt
   matUtils annotate -i public-2021-06-09.all.masked.pb.gz -c clade_info.txt -o nxts_annotated.pb
@@ -338,7 +338,7 @@ b. `cladeToPublicName.gz <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/202
 Specific Options
 ------------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --output-mat (-o): Path to output processed mutation-annotated tree file (REQUIRED)
   --clade-names (-c): Path to a file containing clade asssignments of samples. An algorithm automatically locates and annotates clade root nodes.
@@ -390,7 +390,7 @@ Example Syntax and Usage
 
 1. Calculate uncertainty metrics for a specific set of samples.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils uncertainty -i input.pb -s my_samples.txt -e my_uncertainty.tsv
 
@@ -402,7 +402,7 @@ a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucs
 
 b. :download:`eng_samples.txt<./eng_samples.txt>`
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils uncertainty -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -s eng_samples.txt -e eng_uncertainty.tsv
 
@@ -410,7 +410,7 @@ b. :download:`eng_samples.txt<./eng_samples.txt>`
 Options
 -----------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --samples (-s): File containing samples to calculate metrics for.
   --find-epps (-e): Writes an Auspice-compatible two-column tsv of the number of equally parsimonious placements and neighborhood sizes for each sample to the target file. 
@@ -503,7 +503,7 @@ Example Syntax and Usage
 
 1. Generate a tsv containing inferred introduction information, one sample per row.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils introduce -i public.pb -s my_region_samples.txt -o my_region_introductions.tsv
   
@@ -515,7 +515,7 @@ a. `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <https://hgwdev.gi.ucs
 
 b. :download:`regional-samples.txt <./regional-samples.txt>`
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils introduce -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -s regional-samples.txt -o regional-introductions.tsv
 
@@ -523,7 +523,7 @@ b. :download:`regional-samples.txt <./regional-samples.txt>`
 Options
 -----------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --population-samples (-s): Two-column tab-separated text file containing sample names and region membership respectively (REQUIRED)
   --output (-o): Name of the output tab-separated table containing inferred introductions, one sample per row (REQUIRED)

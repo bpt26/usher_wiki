@@ -16,7 +16,7 @@ To install matOptimize, simply follow the directions for `installing UShER <http
 Options
 --------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
  -v [ --vcf ] arg                      Input VCF file (in uncompressed or 
                                         gzip-compressed .gz format) 

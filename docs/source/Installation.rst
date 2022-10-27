@@ -10,7 +10,7 @@ Conda
 
 A quick method is via `conda`:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   # Create a new environment for UShER
   conda create -n usher-env
@@ -27,7 +27,7 @@ A quick method is via `conda`:
 Conda Local Build
 ---------------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   git clone https://github.com/yatisht/usher.git
   cd usher/install
@@ -36,17 +36,15 @@ Conda Local Build
   cd ..
   mkdir build
   cd build
-  git clone https://github.com/oneapi-src/oneTBB
-  cd oneTBB
-  git checkout cc2c04e2f5363fb8b34c10718ce406814810d1e6
-  cd ..
-  cmake  -DTBB_DIR=${PWD}/oneTBB  -DCMAKE_PREFIX_PATH=${PWD}/oneTBB/cmake ..
+  wget https://github.com/oneapi-src/oneTBB/archive/2019_U9.tar.gz 
+  tar -xvzf 2019_U9.tar.gz
+  cmake  -DTBB_DIR=${PWD}/oneTBB-2019_U9  -DCMAKE_PREFIX_PATH=${PWD}/oneTBB-2019_U9/cmake ..
   make -j
   cd ..
 
 followed by, if on a MacOS system:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/faToVcf .
   chmod +x faToVcf
@@ -55,7 +53,7 @@ followed by, if on a MacOS system:
 
 or if on a Linux system:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   rsync -aP rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/linux.x86_64/faToVcf . 
   chmod +x faToVcf
@@ -64,7 +62,7 @@ or if on a Linux system:
 Executables will be located in the build and scripts directories. Make sure they're on your path for your system as appropriate, 
 or that you modify your commands to indicate their location.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   export PATH=$PATH:/path/to/install/usher/build/
   export PATH=$PATH:/path/to/install/usher/scripts/
@@ -74,14 +72,14 @@ Docker
 
 From DockerHub:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
-  docker pull yatisht/usher:latest
-  docker run -t -i yatisht/usher:latest /bin/bash
+  docker pull pathogengenomics/usher:latest
+  docker run -t -i pathogengenomics/usher:latest /bin/bash
   
 OR locally:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
    git clone https://github.com/yatisht/usher.git
    cd usher
@@ -93,25 +91,25 @@ OR locally:
 Installation scripts
 ------------------------
 
-.. code-block:: shell-session
+.. code-block:: sh
   
   git clone https://github.com/yatisht/usher.git
   cd usher
   
 For MacOS 10.14 or above:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   ./install/installMacOS.sh
 
 For Ubuntu 18.04 and above (requires sudo privileges):
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   ./install/installUbuntu.sh
 
 For CentOS 7 and above (requires sudo privileges):
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   ./install/installCentOS.sh

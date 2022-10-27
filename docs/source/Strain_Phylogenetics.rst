@@ -12,7 +12,7 @@ RotTrees enables quick inference of congruence of tanglegrams. This is particula
 
 First, ensure that `tree_1.nh` and `tree_2.nh` have identical sets of samples. Then, use as follows:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   ./build/rotate_trees --T1 tree_1.nh --T2 tree_2.nh --T1_out rot-tree_1.nh --T2_out rot-tree_2.nh
 
@@ -31,7 +31,7 @@ Below is a GIF of approximately 20 frames showing various operations of the tree
 Options
 ------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --T1: Input tree 1 (in Newick format).  
   --T2: Input tree 2 (in Newick format).  
@@ -44,7 +44,7 @@ Options
 TreeMerge
 ----------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   python3 scripts/tree_merge.py -T1 tree_1.nh -T2 tree_2.nh -symmetric 1 -T_out symm-merged-tree_1-tree_2.nh
 
@@ -58,7 +58,7 @@ The above command produces a merged tree (`symm-merged-tree_1-tree_2.nh`) from t
 Options
 ------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   -T1: tree 1 (in Newick format). (REQUIRED)  
   -T2: tree 2 (in Newick format). (REQUIRED)  
@@ -71,13 +71,13 @@ Options
 Find parsimonious assignments
 -----------------------------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   ./build/find_parsimonious_assignments --tree tree/pruned-sumtree-for-cog.nh --vcf vcf/tree_1.vcf > tree_1_PARSIMONY.txt
 
 The above command reads the tree topology of the input Newick file and assigns an internal numeric label for each internal node (ignoring the internal labels and branch lengths if already provided by the input Newick). The first two lines of the output file print the input tree with internal nodes labelled in Newick format. The output is too large to display, so we view the first 1000 characters using the command below.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   head -c 1000 tree_1_PARSIMONY.txt  
 
@@ -86,7 +86,7 @@ For each variant/site in the VCF file, the output file then displays the allele 
 Options
 ------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   --tree: Input tree file.
   --vcf: Input VCF file (in uncompressed or gzip-compressed format).
@@ -98,13 +98,13 @@ Options
 Identify extremal sites
 ----------------------------------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   python3 scripts/identify_extremal_sites.py -in tree_1_PARSIMONY.txt
 
 The above command can be used for identifying and flagging extremal sites i.e. sites having exceptional parsimony scores relative to their allele frequencies and therefore also suspected to contain systematic errors. The above command identifies 6 extremal sites (C11074T, C27046T, T13402G, A3778G, G24390C, G26144T) with a phylogenetic instability value of 3.03. For the precise definition of extremal sites and phylogenetic instability, refer to our manuscript referenced at the bottom. The code also provides an ability to ignore high-frequency C\>T and G\>T mutations using optional flags.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   python3 scripts/identify_extremal_sites.py -in tree_1_PARSIMONY.txt -ignoreCtoT=1 -ignoreGtoT=1
 
@@ -113,7 +113,7 @@ The above command identifies three extremal sites (T13402G, A3778G, G24390C) wit
 Options
 ------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   -in: Input parsimony file.  
   -ignoreCtoT: Set to 1 to ignore C>T sites (default=0)  
@@ -124,13 +124,13 @@ Options
 Plot extremal sites
 ----------------------------------------
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   python3 scripts/generate_plot_extremal_sites_data.py -in tree_1_PARSIMONY.txt > plot_extremal_sites_data.txt
 
 The above commands create raw input data for the extremal sites plot.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   Rscript --vanilla scripts/plot_parsimony.r plot_extremal_sites_data.txt extremal_sites_plot.pdf
 

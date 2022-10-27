@@ -16,7 +16,7 @@ Users interested in recombination may want to use RIPPLES to search for recombin
 
 First, download the latest public tree, a set of sample sequences to search for recombination, the reference genome, and sites to mask:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb.gz
     wget https://raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/test_samples.fa
@@ -26,14 +26,14 @@ First, download the latest public tree, a set of sample sequences to search for 
 .. note:: 
     Your exact results may be slightly different than what is shown here, as the public tree is updated daily. To get the same tree used in this tutorial, use the following command:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/2021/08/04/public-2021-08-04.all.masked.pb
 
 
 Then, mask problematic sites using the downloaded .vcf:
 
-.. code-block:: shell-session
+.. code-block:: sh
     
     gunzip wuhCor1.fa.gz
     mafft --thread 10 --auto --keeplength --addfragments test_samples.fa wuhCor1.fa > aligned_seqs.fa
@@ -41,13 +41,13 @@ Then, mask problematic sites using the downloaded .vcf:
 
 Then, use UShER to add your samples to the protobuf:
 
-.. code-block:: shell-session
+.. code-block:: sh
     
     usher -T 10 -i public-latest.all.masked.pb.gz -v aligned_seqs.vcf -o user_seqs.pb
 
 Then, use RIPPLES to search for recobination events involving these samples in the tree:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     mkdir USER_SAMPLES/
     grep -e '>' test_samples.fa | perl -pi -e 's/>//' > user_samples.txt
@@ -55,13 +55,13 @@ Then, use RIPPLES to search for recobination events involving these samples in t
 
 After a few minutes, RIPPLES produces files `recombination.tsv` and `descendants.tsv`. The last two columns in the `recombination.tsv` file represent the parsimony score improvement. Suppose that we are interested specifically in recombinant nodes with highest parsimony score improvement, as these are more likely to reflect true recombination events. This command yields all recombination events with parsimony improvements greater than 7:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     awk '$11 - $12 > 7' USER_SAMPLES/recombination.tsv
 
 The results should look something like this:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     node_49072  (0,241) (10870,11288) node_111282 n 41  node_49068  n 12  12  12  4
     node_49072  (0,241) (14408,14676) node_179776 n 36  node_49068  n 12  12  12  4
@@ -87,7 +87,7 @@ The results should look something like this:
 
 We can then parse the `descendants.tsv` file to look at the descendants for each of these nodes:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     awk '$1 == "node_49072"' USER_SAMPLES/descendants.tsv
     awk '$1 == "node_92879"' USER_SAMPLES/descendants.tsv
@@ -101,7 +101,7 @@ Snakemake Workflow
 
 Alternatively, after `installing snakemake <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_, the following set of commands may be used to search for evidence of recombination in a user-input set of sequences:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     cd usher/workflows
     snakemake --use-conda --cores 4 --config FASTA="/path/to/fasta" RUNTYPE="ripples"
@@ -120,7 +120,7 @@ We recommend using `Cov2Tree <https://cov2tree.org/>`_ develoepd by `Theo Sander
 
 To accommodate this, we include the -l option in matUtils extract to produce a MAT in a format that is readable by Taxodium. 
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     wget https://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/wuhCor1.fa.gz && gunzip wuhCor1.fa.gz
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz && gunzip ncbiGenes.gtf.gz
@@ -133,7 +133,7 @@ Snakemake Workflow
 
 For simplicity, we include the above set of commands as a `snakemake <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_ workflow. Here, the user-specified input is a set of sequences to be added to the latest public tree. This workflow can be run using the following commands:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     cd usher/workflows
     snakemake --use-conda --cores 4 --config FASTA=”path/to/fa/file” RUNTYPE=”taxodium”
@@ -150,34 +150,34 @@ or an Augur-formatted MAT JSON file as used by Nextstrain. matUtils can be used 
 few other tools can manage efficiently.
 The first step to using one of these public files is `matUtils summary`, which can calculate basic statistics or summarize sample, clade, or mutation-level frequency information.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils summary -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz 
 
 This particular tree has 757500 unique samples represented in it. We can further explore this dataset with another `matUtils summary` command:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils summary -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -A -d summary_out
 
 Let's say we're interested in recurrent, or homoplasic, mutations across this tree. The mutations summary file contains the number of independent occurrences of a 
 mutation across the tree. 
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   awk '$2 >= 500' summary_out/mutations.tsv
 
 C>T mutations are very overrepresented in this set, being a common mutation and error type. We're concerned about correctly identifying real homoplasic mutations,
 instead of coincident or erroneous mutations, so we filter the dataset down to higher-quality placements and samples.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils extract -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -a 3 -b 5 -o filtered.pb
   matUtils summary -i filtered.pb
 
 After filtering, our tree contains 701375 samples, which is 92% of the original tree size. Let's see how our homoplasic mutation output looks.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils summary -i filtered.pb -m filtered_mutations.tsv
   awk '$2 > 500' filtered_mutations.tsv
@@ -191,7 +191,7 @@ If we were interested in following up on this potential homoplasy, we have a few
 samples with this specific mutation, along with a JSON for visualization and additional sample path information. We can perform all these operations with
 a single command.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
   matUtils extract -i filtered.pb -m G7328T -o G7328T.pb -j G7328T.json -S G7328T_sample_paths.txt 
 
@@ -209,7 +209,7 @@ Snakemake Workflow
 
 We also provide a `snakemake <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_ workflow to add user-input sequences in .fasta format to the latest public tree, and extract subtrees of size 500 for each. These subtrees are output in .json format for simple drag-and-drop visualization with `Auspice <https://auspice.us/>`_. This workflow can be run using the following commands:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     cd usher/workflows
     snakemake --use-conda --cores 4 --config FASTA=”path/to/fa/file” RUNTYPE=”matUtils”
@@ -226,21 +226,21 @@ Download the example protobuf file `public-2021-05-17.all.masked.nextclade.pango
 The first step is generating a visualizable JSON of the clade of interest, along with getting the names of samples involved.
 This is done with matUtils extract. In our example, we will get the samples associated with a small pangolin clade.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     matUtils extract -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -c B.1.500 -u b1500_samples.txt -j b1500_viz.json
 
 The second step is to call matUtils uncertainty. The input PB is the original PB, with the sample selection text file, instead of a subtree pb generated with -o.
 This is because its going to search for placements all along the original tree; if a subtree .pb was passed, it would only search for placements within that subtree.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     matUtils uncertainty -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -s b1500_samples.txt -e b1500_uncertainty.tsv -o b1500_placements.tsv
 
 These can now be uploaded for visualization by drag and drop onto the `auspice <https://auspice.us/>`_ website. Drag and drop the b1500_viz.json first, then the tsv files second.
 Alternatively, one of the metadata files can be included in JSON generation by matUtils extract.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     matUtils extract -i public-2021-05-17.all.masked.nextclade.pangolin.pb.gz -s b1500_placements.txt -z 100 -M b1500_placements.tsv -j b1500_annotated.json
 
@@ -267,14 +267,14 @@ Before beginning, download the example protobuf file `public-2021-04-20.all.mask
 We need a region to analyze; in this example, we are going to use Spain, as it has a few hundred associated samples in the public data
 and is a solid representative example. We need to generate the two-column tab-separated file we use as input to `matUtils introduce`.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     matUtils summary -i public-2021-04-20.all.masked.nextclade.pangolin.pb -s 420_sample_parsimony.txt
     grep “Spain” 420_sample_parsimony.txt | awk ‘{print $1”\tSpain”}’ > spanish_samples.txt
 
 We can now apply `matUtils introduce` using this file as input.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     matUtils introduce -i public-2021-04-20.all.masked.nextclade.pangolin.pb -s spanish_samples.txt -o spanish_introductions.txt
 
@@ -287,7 +287,7 @@ marking the point on the history where we stop being confident that the represen
 
 We can count the number of unique introductions into our region of interest- in this case Spain- using awk.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     awk '{print $2}' spanish_introductions.tsv | sort | uniq -c | sort -r | head -25 
 
@@ -299,7 +299,7 @@ new regional clades are sampled only once or not at all.
 There are some interesting cases of clades from a single introduction, however. The clade introduced at the internal node "96055" 
 contains 9 closely related samples from Spain and are all members of the variant of concern B.1.1.7.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     awk '$2 == "96055"' spanish_introductions.tsv
 
@@ -309,7 +309,7 @@ contains 9 closely related samples from Spain and are all members of the variant
 
 The first entry of this output is reproduced here, sans the mutation path.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     ESP/hCoV-19_Spain_CT-HUVH-32938_2021/2021|MW769763.1|21-01-14	96055	2	4.5	2021-Jan-14	2021-Jan-21	9	51		1	0.0431655	3
 
@@ -321,7 +321,7 @@ growth score of 9/(1+1) or 4.5, which puts it second on our ranked cluster list.
 To do this, first we will need to generate an auspice-compatible JSON containing our introduction set and some context samples. We can do this 
 by selecting one of our samples and extracting the context to a JSON with `matUtils extract`.
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     matUtils extract -i public-2021-04-20.all.masked.nextclade.pangolin.pb -k "ESP/hCoV-19_Spain_CT-HUVH-76622_2021/2021|MW769758.1|21-01-19:50" -j spanish_introduction.json
 
@@ -355,7 +355,7 @@ Snakemake Workflow
 
 We also provide a `snakemake <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_ workflow to search for unique introductions within a user-input set of samples. This workflow can be run using the following commands:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     cd usher/workflows
     snakemake --use-conda --cores 4 --config FASTA="/path/to/fasta" RUNTYPE="introduce"
@@ -375,13 +375,13 @@ The output table of summary is by-occurrence, so distributions of values associa
 
 Before beginning, download the example protobuf file `public-2021-06-09.all.masked.nextclade.pangolin.pb.gz <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2//2021/06/09/public-2021-06-09.all.masked.nextclade.pangolin.pb.gz>`_ 
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     matUtils summary -i public-2021-06-09.all.masked.nextclade.pangolin.pb.gz -R roho_scores.tsv
 
 The resulting table contains the following columns:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     mutation	parent_node	child_count	occurrence_node	offspring_with	median_offspring_without	single_roho
 
@@ -443,7 +443,7 @@ The example protobuf file is a simple tree with the following structure:
 
 To call amino acid mutations in the mutation-annotated tree, run the following commmand:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     matUtils summary --translate coding_mutations.tsv -i translate_example.pb -g ncbiGenes.gtf -f NC_045512v2.fa
     
@@ -532,7 +532,7 @@ Snakemake Workflow
 
 We also include a `snakemake <https://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_ workflow to translate mutations in a user-input .fasta file to amino acid substitutions in a lineage-aware manner. This workflow can be run using the following commands:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     cd usher/workflows
     snakemake --use-conda --cores 4 --config FASTA="/path/to/fa" RUNTYPE="translate"
@@ -551,7 +551,7 @@ loading a MAT data structure into memory in Python and manipulating that structu
 
 The first step is to call the protoc compiler to retrieve a MAT protobuf parser. Navigate to your Usher installation (or clone the github if you installed via conda) and call:
 
-.. code-block:: shell-session
+.. code-block:: sh
 
     protoc -I=./ --python_out=./ ./parsimony.proto
 
