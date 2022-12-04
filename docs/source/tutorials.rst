@@ -109,23 +109,24 @@ Alternatively, after `installing snakemake <https://snakemake.readthedocs.io/en/
 
 .. _taxodium-tutorial:
 
-Using Taxodium to visualize phylogenies
+Using Taxonium to visualize phylogenies
 -------------------------------------------------
 
-We recommend using `Cov2Tree <https://cov2tree.org/>`_ develoepd by `Theo Sanderson <https://github.com/theosanderson/taxodium>`_ to visualize these trees. An example of a phylogeny visualized by this software is shown below:
+We recommend using `Taxonium <https://taxonium.org/>`_ develoepd by `Theo Sanderson <https://github.com/theosanderson/taxonium>`_ to visualize these trees. An example of a phylogeny visualized by this software is shown below:
 
 .. image:: taxodium.jpeg
     :width: 700px
     :align: center
 
-To accommodate this, we include the -l option in matUtils extract to produce a MAT in a format that is readable by Taxodium. 
+You can use `Taxoniumtools <https://docs.taxonium.org/en/latest/taxoniumtools.html>` to convert from UShER to Taxonium format.
 
 .. code-block:: sh
 
-    wget https://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/wuhCor1.fa.gz && gunzip wuhCor1.fa.gz
-    wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz && gunzip ncbiGenes.gtf.gz
+    pip install taxoniumtools
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.metadata.tsv.gz && gunzip public-latest.metadata.tsv.gz
-    matUtils extract -i input.pb -l output.taxodium.pb -g ncbiGenes.gtf -f wuhCor1.fa -M public-latest.metadata.tsv
+    wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb.gz  && gunzip public-latest.all.masked.pb.gz
+    wget https://raw.githubusercontent.com/theosanderson/taxonium/master/taxoniumtools/test_data/hu1.gb
+    taxoniumtools --input public-latest.all.masked.pb --output public-latest-taxonium.jsonl.gz --metadata public-latest.metadata.tsv.gz --genbank hu1.gb --columns genbank_accession,country,date,pangolin_lineage
 
 -----------------------------------------------------------
 Snakemake Workflow
