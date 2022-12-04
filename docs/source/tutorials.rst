@@ -126,7 +126,7 @@ You can use `Taxoniumtools <https://docs.taxonium.org/en/latest/taxoniumtools.ht
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.metadata.tsv.gz && gunzip public-latest.metadata.tsv.gz
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb.gz  && gunzip public-latest.all.masked.pb.gz
     wget https://raw.githubusercontent.com/theosanderson/taxonium/master/taxoniumtools/test_data/hu1.gb
-    taxoniumtools --input public-latest.all.masked.pb --output public-latest-taxonium.jsonl.gz --metadata public-latest.metadata.tsv.gz --genbank hu1.gb --columns genbank_accession,country,date,pangolin_lineage
+    usher_to_taxonium --input public-latest.all.masked.pb --output public-latest-taxonium.jsonl.gz --metadata public-latest.metadata.tsv.gz --genbank hu1.gb --columns genbank_accession,country,date,pangolin_lineage
 
 -----------------------------------------------------------
 Snakemake Workflow
