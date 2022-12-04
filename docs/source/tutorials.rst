@@ -112,7 +112,7 @@ Alternatively, after `installing snakemake <https://snakemake.readthedocs.io/en/
 Using Taxonium to visualize phylogenies
 -------------------------------------------------
 
-We recommend using `Taxonium <https://taxonium.org/>`_ develoepd by `Theo Sanderson <https://github.com/theosanderson/taxonium>`_ to visualize these trees. An example of a phylogeny visualized by this software is shown below:
+We recommend using `Taxonium <https://taxonium.org/>` to visualize these trees. An example of a phylogeny visualized by this software is shown below:
 
 .. image:: taxodium.jpeg
     :width: 700px
