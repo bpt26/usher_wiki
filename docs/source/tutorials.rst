@@ -122,6 +122,7 @@ You can use `Taxoniumtools <https://docs.taxonium.org/en/latest/taxoniumtools.ht
 
 .. code-block:: sh
 
+    conda install -c conda-forge python
     pip install taxoniumtools
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.metadata.tsv.gz && gunzip public-latest.metadata.tsv.gz
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb.gz  && gunzip public-latest.all.masked.pb.gz
