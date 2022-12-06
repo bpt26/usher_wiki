@@ -112,13 +112,13 @@ Alternatively, after `installing snakemake <https://snakemake.readthedocs.io/en/
 Using Taxonium to visualize phylogenies
 -------------------------------------------------
 
-We recommend using `Taxonium <https://taxonium.org/>` to visualize these trees. An example of a phylogeny visualized by this software is shown below:
+We recommend using `Taxonium <https://taxonium.org/>`_ to visualize these trees. An example of a phylogeny visualized by this software is shown below:
 
 .. image:: taxodium.jpeg
     :width: 700px
     :align: center
 
-You can use `Taxoniumtools <https://docs.taxonium.org/en/latest/taxoniumtools.html>` to convert from UShER to Taxonium format.
+You can use `Taxoniumtools <https://docs.taxonium.org/en/latest/taxoniumtools.html>`_ to convert from UShER to Taxonium format.
 
 .. code-block:: sh
 
@@ -129,7 +129,7 @@ You can use `Taxoniumtools <https://docs.taxonium.org/en/latest/taxoniumtools.ht
     wget https://raw.githubusercontent.com/theosanderson/taxonium/master/taxoniumtools/test_data/hu1.gb
     usher_to_taxonium --input public-latest.all.masked.pb.gz --output public-latest-taxonium.jsonl.gz --metadata public-latest.metadata.tsv --genbank hu1.gb --columns genbank_accession,country,date,pangolin_lineage
     
-You then open that `.jsonl.gz` file on `Taxonium <https://taxonium.org>` directly, or with the `Taxonium desktop app <https://docs.taxonium.org/en/latest/app.html>` which may handle large trees better
+You then open that `.jsonl.gz` file on `Taxonium <https://taxonium.org/>`_  directly, or with the `Taxonium desktop app <https://docs.taxonium.org/en/latest/app.html>`_ which may handle large trees better
 
 
 -----------------------------------------------------------
