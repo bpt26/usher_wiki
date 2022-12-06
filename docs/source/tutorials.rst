@@ -128,6 +128,9 @@ You can use `Taxoniumtools <https://docs.taxonium.org/en/latest/taxoniumtools.ht
     wget http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/public-latest.all.masked.pb.gz
     wget https://raw.githubusercontent.com/theosanderson/taxonium/master/taxoniumtools/test_data/hu1.gb
     usher_to_taxonium --input public-latest.all.masked.pb.gz --output public-latest-taxonium.jsonl.gz --metadata public-latest.metadata.tsv --genbank hu1.gb --columns genbank_accession,country,date,pangolin_lineage
+    
+You then open that `.jsonl.gz` file on `Taxonium <https://taxonium.org>` directly, or with the `Taxonium desktop app <https://docs.taxonium.org/en/latest/app.html>` which may handle large trees better
+
 
 -----------------------------------------------------------
 Snakemake Workflow
