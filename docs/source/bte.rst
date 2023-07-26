@@ -40,7 +40,7 @@ Download the latest public SARS-CoV-2 tree:
 
 And proceed directly to your analysis in Python!
 
-.. code-black::
+.. code-block::
 
   import bte
   tree = bte.MATree("public-latest.all.masked.pb.gz")
