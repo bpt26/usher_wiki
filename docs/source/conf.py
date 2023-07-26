@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
+#
 # Configuration file for the Sphinx documentation builder.
 #
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+# This file does only contain a selection of the most common options. For a
+# full list see the documentation:
+# https://www.sphinx-doc.org/en/master/config
 
 # -- Path setup --------------------------------------------------------------
 
@@ -23,19 +25,39 @@ author = 'Bryan Thornlow'
 
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '0.0.2'
 
 
 # -- General configuration ---------------------------------------------------
 
+# https://github.com/sphinx-doc/sphinx/issues/7369 403 blocks by support.orcid.org
+user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'
+
+
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [ ]
-
+extensions = [ 'myst_parser' ]
 
 pygments_style = 'sphinx'
 
+linkcheck_anchors = False
+
+# Put in URLs you want to ignore for linkcheck below. Common problematic URLs include:
+# * doi.org 
+# * any docs website that uses ZenDesk
+# * websites with expired certs
+# * internal links which are not resolved before compile time (ex: a clickable image with an internal link)
+#linkcheck_ignore = [ ] 
+
+# The suffix(es) of source filenames.
+# You can specify multiple suffix as a list of string:
+#
+# source_suffix = ['.rst', '.md']
+#
+# Note that if you have the myst_parser extension, .md files we will
+# be rendered too, even though they are not listed below!
+source_suffix = '.rst'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -43,7 +65,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['build', 'Thumbs.db', '.DS_Store']
 
 
 # -- Options for HTML output -------------------------------------------------
