@@ -65,7 +65,7 @@ matUtils
 --------------
 
 matUtils is a toolkit for rapid exploratory analysis and manipulation of mutation-annotated trees (MATs).
-The full manual page including detailed parameter information can be found `here <https://usher-wiki.readthedocs.io/en/latest/matUtils.html>`_. matUtils is installed with the UShER package (see above installation instructions using conda).
+The full manual page including detailed parameter information can be found `here <https://usher-wiki.readthedocs.io/en/latest/matUtils.html>`__. matUtils is installed with the UShER package (see above installation instructions using conda).
 
 .. code-block:: sh
 
@@ -87,7 +87,7 @@ These outputs include newick, vcf, other pb, and Augur JSON capable of being vis
 The above command filters samples with higher parsimony scores than 3 and ancestral branches with a greater length than 10, then collects a subtree representing 
 the nearest 100 samples to our indicated sample. From this subtree this command generates a vcf containing all sample mutation information, a newick representing the subtree, and an Auspice-uploadable JSON in mere seconds.
 
-Tutorials for matUtils, including an example workflow, sample placement uncertainty, and phylogeographic analysis, can be found `here <https://usher-wiki.readthedocs.io/en/latest/tutorials.html>`_.
+Tutorials for matUtils, including an example workflow, sample placement uncertainty, and phylogeographic analysis, can be found `here <https://usher-wiki.readthedocs.io/en/latest/tutorials.html>`__.
 
 
 
@@ -96,7 +96,7 @@ matOptimize
 --------------
 
 matOptimize is a program that can optimize the topology of mutation-annotated trees (MATs) using subtree pruning and regrating (SPR) moves for parsimony.
-The full manual page including detailed parameter information can be found `here <https://usher-wiki.readthedocs.io/en/latest/matOptimize.html>`_. matOptimize is installed with the UShER package (see above installation instructions using conda).
+The full manual page including detailed parameter information can be found `here <https://usher-wiki.readthedocs.io/en/latest/matOptimize.html>`__. matOptimize is installed with the UShER package (see above installation instructions using conda).
 
 .. code-block:: sh
 
