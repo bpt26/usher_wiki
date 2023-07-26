@@ -5,6 +5,8 @@ UShER Wiki
 Welcome to the manual for UShER package, that includes SARS-CoV-2 Phylogenetics tools UShER, matUtils, matOptimize, RIPPLES, strain_phylogenetics, and others. Please see the table of contents below or on the sidebar, or `click here <https://usher-wiki.readthedocs.io/en/latest/QuickStart.html>`_ for a quick tutorial on getting started.
 
 .. toctree::
+   :hidden:
+   
    QuickStart.rst
    Installation.rst
    UShER.rst
@@ -13,14 +15,6 @@ Welcome to the manual for UShER package, that includes SARS-CoV-2 Phylogenetics 
    ripples.rst
    bte.rst
    tutorials.rst
-
-.. toctree::
-    :hidden:
-    
-    covid-meet.rst
-    ismb.rst
-    sp_meet.rst
-    Strain_Phylogenetics.rst
 
 .. _UShER:
 
