@@ -267,7 +267,7 @@ Example Introduce Workflow
 In this example we will infer and investigate introductions of SARS-CoV-2 into Spain using public information
 on the command line and visualize an example introduction of interest with Auspice.
 
-Before beginning, download the example protobuf file `public-2021-04-20.all.masked.nextclade.pangolin.pb <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/public-2021-04-20.all.masked.nextclade.pangolin.pb>`_ 
+Before beginning, download the example protobuf file `public-2021-04-20.all.masked.nextclade.pangolin.pb <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/public-2021-03-02.all.masked.nextclade.pangolin.pb>`_ 
 
 We need a region to analyze; in this example, we are going to use Spain, as it has a few hundred associated samples in the public data
 and is a solid representative example. We need to generate the two-column tab-separated file we use as input to `matUtils introduce`.

@@ -30,7 +30,7 @@ release = '0.0.2'
 
 # -- General configuration ---------------------------------------------------
 
-# https://github.com/sphinx-doc/sphinx/issues/7369 403 blocks by support.orcid.org
+# https://github.com/sphinx-doc/sphinx/issues/7369
 user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'
 
 
@@ -44,11 +44,11 @@ pygments_style = 'sphinx'
 linkcheck_anchors = False
 
 # Put in URLs you want to ignore for linkcheck below. Common problematic URLs include:
-# * doi.org 
+# * doi.org (but only sometimes?)
 # * any docs website that uses ZenDesk
-# * websites with expired certs
+# * websites with weird or expired certs (ex: mlab.wustl.edu)
 # * internal links which are not resolved before compile time (ex: a clickable image with an internal link)
-linkcheck_ignore = [ ] 
+linkcheck_ignore = [ "https://mblab.wustl.edu/GTF22.html" ] 
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -72,7 +72,8 @@ exclude_patterns = ['build', 'Thumbs.db', '.DS_Store']
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+#html_theme = 'default'
+html_theme = 'sphinx_rtd_theme'
 
 # Note that writing options under "html_theme_options" isn't supported if html_theme is default,
 # so we do it like this instead

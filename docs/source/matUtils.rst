@@ -91,7 +91,7 @@ the affected codons are listed sequentially, and the nucleotide mutation is repe
 
 **RoHo score**
 
-Additionally, `matUtils summary` can quickly calculate the RoHo score and related values described in `van Dorp et al 2020 <10.1038/s41467-020-19818-2>`_.
+Additionally, `matUtils summary` can quickly calculate the RoHo score and related values described in `van Dorp et al 2020 <https://doi.org/10.1038/s41467-020-19818-2>`_.
 Briefly, the RoHo or Ratio of Homoplasic Offspring is the ratio of the number of descendents in sister clades with or without a specific mutation over the occurrence of 
 all mutations; homoplasic and positively-selected mutations will recur with increased descendent clade sizes at each occurrence. This can be used to quickly
 and conservatively scan for variants of concern. A full explanation of our implementation and tutorial can be found :ref:`here.<roho-tutorial>`
