@@ -267,7 +267,7 @@ Example Introduce Workflow
 In this example we will infer and investigate introductions of SARS-CoV-2 into Spain using public information
 on the command line and visualize an example introduction of interest with Auspice.
 
-Before beginning, download the example protobuf file `public-2021-04-20.all.masked.nextclade.pangolin.pb <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/public-2021-04-20.all.masked.nextclade.pangolin.pb>`_ 
+Before beginning, download the example protobuf file `public-2021-04-20.all.masked.nextclade.pangolin.pb <https://hgwdev.gi.ucsc.edu/~angie/UShER_SARS-CoV-2/2021/03/02/public-2021-03-02.all.masked.nextclade.pangolin.pb>`_ 
 
 We need a region to analyze; in this example, we are going to use Spain, as it has a few hundred associated samples in the public data
 and is a solid representative example. We need to generate the two-column tab-separated file we use as input to `matUtils introduce`.
@@ -434,7 +434,7 @@ In this workflow, we will output amino acid mutations at each node of a protobuf
 Download the example protobuf file (:download:`translate_example.pb <./translate_example.pb>`), GTF file (:download:`ncbiGenes.gtf <./ncbiGenes.gtf>`), and reference FASTA (`NC_045512v2.fa <https://raw.githubusercontent.com/yatisht/usher/5e83b71829dbe54a37af845fd23d473a8f67b839/test/NC_045512v2.fa>`_).
 
 .. note:: 
-    The input GTF must follow the conventions specified `here <https://mblab.wustl.edu/GTF22.html>`_.
+    The input GTF must follow the conventions specified `here <https://mblab.wustl.edu/GTF22.html>`__.
     If multiple ``CDS`` features are associated with a single ``gene_id``,
     they must be ordered by start position.
 
@@ -527,7 +527,7 @@ The resulting JSON file can now be loaded into Nextstrain / Auspice. Here is the
     :width: 1500px
     :align: center
 
-View the expected JSON in Nextstrain `here <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/aa_annotated.json?branchLabel=aa_mutations&c=aa_mutations>`_.
+View the expected JSON in Nextstrain `here <https://nextstrain.org/fetch/raw.githubusercontent.com/bpt26/usher_wiki/main/docs/source/aa_annotated.json?branchLabel=aa_mutations&c=aa_mutations>`__.
 
 You can use the ``Branch Labels`` menu in the sidebar to view the annotations.
 
@@ -545,10 +545,10 @@ We also include a `snakemake <https://snakemake.readthedocs.io/en/stable/getting
 .. _protobuf-tutorial:
 
 Interacting Directly with Protobuf Files in Python [ADVANCED USERS]
------------------------------------------------------------
+--------------------------------------------------------------------
 
 Advanced users may desire to interface directly with the protobuf. The following is a brief tutorial on doing so.
-Google's general tutorial on interacting with protobuf in python can be found `here <https://developers.google.com/protocol-buffers/docs/pythontutorial#compiling-your-protocol-buffers>`_.
+Google's general tutorial on interacting with protobuf in python can be found `here <https://developers.google.com/protocol-buffers/docs/pythontutorial#compiling-your-protocol-buffers>`__.
 The instructions here can be applied to a number of additional languages supported by google as well, such as java, PHP, and ruby.
 
 Note that this tutorial is specifically for directly manipulating the MAT protobuf file itself in Python; 

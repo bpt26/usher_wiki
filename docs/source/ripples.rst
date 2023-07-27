@@ -6,9 +6,9 @@ RIPPLES
 
 RIPPLES (Recombination Inference using Phylogenetic PLacEmentS) is a program used to detect recombination events in large mutation annotated tree (MAT) files.
 
-----------
+-------------
 Installation
-----------
+-------------
 
 To install RIPPLES, simply follow the directions for `installing UShER <https://usher-wiki.readthedocs.io/en/latest/Installation.html>`_, and RIPPLES will be included in your installation.
 

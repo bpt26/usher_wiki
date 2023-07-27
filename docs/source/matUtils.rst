@@ -4,7 +4,7 @@
 matUtils
 ***************
 
-matUtils is a suite of tools used to analyze, edit, and manipulate mutation annotated tree (.pb) files, such as the ones shared in our public SARS-CoV-2 MAT database (http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/) or those constructed via UShER (read `this <https://usher-wiki.readthedocs.io/en/latest/UShER.html#converting-raw-sequences-into-vcf-for-usher-input>`_ and `this <https://usher-wiki.readthedocs.io/en/latest/UShER.html#pre-processing-global-phylogeny>`_ for steps to construct a MAT from an input phylogeny and an alignment). 
+matUtils is a suite of tools used to analyze, edit, and manipulate mutation annotated tree (.pb) files, such as the ones shared in our public SARS-CoV-2 MAT database (http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/) or those constructed via UShER (read `this <https://usher-wiki.readthedocs.io/en/latest/UShER.html#converting-raw-sequences-into-vcf-for-usher-input>`__ and `this <https://usher-wiki.readthedocs.io/en/latest/UShER.html#pre-processing-global-phylogeny>`__ for steps to construct a MAT from an input phylogeny and an alignment). 
 
 .. _protobuf:
 
@@ -63,9 +63,9 @@ performs phylogenetically informed annotation of amino acid mutations.
 The user provides as input a protobuf file, a GTF file containing gene annotations, and a FASTA reference sequence.
 
 .. note:: 
-    The input GTF must follow the conventions specified `here <https://mblab.wustl.edu/GTF22.html>`_.
+    The input GTF must follow the conventions specified `here <https://mblab.wustl.edu/GTF22.html>`__.
     If multiple ``CDS`` features are associated with a single ``gene_id``,
-    they must be ordered by start position. An example GTF for SARS-CoV-2 can be found `here <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz>`_.
+    they must be ordered by start position. An example GTF for SARS-CoV-2 can be found `here <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz>`__.
 
 The output format is a TSV file with four columns, with one line per node (only including nodes with mutations), e.g.
 
@@ -91,7 +91,7 @@ the affected codons are listed sequentially, and the nucleotide mutation is repe
 
 **RoHo score**
 
-Additionally, `matUtils summary` can quickly calculate the RoHo score and related values described in `van Dorp et al 2020 <10.1038/s41467-020-19818-2>`_.
+Additionally, `matUtils summary` can quickly calculate the RoHo score and related values described in `van Dorp et al 2020 <https://doi.org/10.1038/s41467-020-19818-2>`_.
 Briefly, the RoHo or Ratio of Homoplasic Offspring is the ratio of the number of descendents in sister clades with or without a specific mutation over the occurrence of 
 all mutations; homoplasic and positively-selected mutations will recur with increased descendent clade sizes at each occurrence. This can be used to quickly
 and conservatively scan for variants of concern. A full explanation of our implementation and tutorial can be found :ref:`here.<roho-tutorial>`
