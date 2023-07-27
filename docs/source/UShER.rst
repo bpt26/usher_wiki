@@ -265,7 +265,7 @@ Russ Corbett-Detig has created a module on UShER for the CDC:
     </div>
     <br>
 
-Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. `You can find his slides here <https://usher-wiki.readthedocs.io/en/latest/covid-meet.html>`_.
+Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. :doc:`You can find his slides here <covid-meet>`.
 
 
 --------------
