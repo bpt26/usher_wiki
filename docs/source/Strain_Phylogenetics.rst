@@ -1,7 +1,7 @@
 .. include:: /Includes.rst.txt
 
 **************************
-Strain_Phylogenetics
+Strain Phylogenetics
 **************************
 
 ----------
@@ -144,7 +144,7 @@ Next, the R command accepts the generated data and creates a log(allele count) b
 Presentations
 ----------------------------------------
 
-We have presented this package and analyses on GISAID data at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. `You can find our slides here <https://usher-wiki.readthedocs.io/en/latest/sp_meet.html>`_.
+We have presented this package and analyses on GISAID data at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. :doc:`You can find our slides here <presentations/sp_meet>`.
 
 
 ----------------------------------------

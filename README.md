@@ -12,6 +12,8 @@ Docs will be created in a new folder named `build`, and you can clean up afterwa
 
 ### tips for using RST
 * [RST reference docs](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html)
+* When creating internal links, use `:ref:` or `:doc:` to make a relative path to the page rather than making a hyperlink to the absolute URL, which may change over time. [See sphinx's docs](https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#ref-role) on how to use those.
+  * Images that link to an internal page are a possible exception since there's no other way to make that kind of thing work, but we don't have any of those yet
 * RST can't really do nested formatting (eg it can do **bold** and *italics* but not ***bold italics***)
 * RST takes Python's concept of meaningful whitespace and runs with it, so sometimes you need a blank newline after certain declarations (`:orphan:` and `:hidden:` for example)
 

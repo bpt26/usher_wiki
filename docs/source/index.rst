@@ -15,6 +15,7 @@ Welcome to the manual for UShER package, that includes SARS-CoV-2 Phylogenetics 
    ripples.rst
    bte.rst
    tutorials
+   Strain_Phylogenetics
    presentations/presentations
 
 .. _UShER:
