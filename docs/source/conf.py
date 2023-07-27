@@ -60,8 +60,7 @@ linkcheck_ignore = [ "https://mblab.wustl.edu/GTF22.html" ]
 source_suffix = '.rst'
 
 # Add any paths that contain templates here, relative to this directory.
-# This allows us to have RST documents that don't normally appear in the TOC!
-templates_path = ['_templates', 'presentations']
+templates_path = ['_templates']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
