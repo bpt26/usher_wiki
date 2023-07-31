@@ -10,7 +10,7 @@ matOptimize is a program used to optimize phylogenies using parsimony score. It 
 Installation
 -----------------
 
-To install matOptimize, simply follow the directions for `installing UShER <https://usher-wiki.readthedocs.io/en/latest/Installation.html>`_, and matOptimize will be included in your installation.
+To install matOptimize, simply follow the directions for :doc:`installing UShER <Installation>`, and matOptimize will be included in your installation.
 
 --------------
 Options
@@ -65,4 +65,4 @@ Options
 Presentations
 -----------------
 
-Cheng Ye has presented matOptimize at The Annual International Conference on Intelligent Systems for Molecular Biology (ISMB), held virtually on July 25-30, 2021. `You can find his slides here <https://usher-wiki.readthedocs.io/en/latest/ismb.html>`_.
+Cheng Ye has presented matOptimize at The Annual International Conference on Intelligent Systems for Molecular Biology (ISMB), held virtually on July 25-30, 2021. :doc:`You can find his slides here <presentations/ismb>`.

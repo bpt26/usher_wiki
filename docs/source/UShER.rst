@@ -76,6 +76,8 @@ To familiarize with the different command-line options of UShER, it would be use
   usher --help
 
 
+.. _pre-processing-global-phylogeny:
+
 Pre-processing global phylogeny
 ------------------------------------
 
@@ -200,6 +202,9 @@ We also described a method for measuring tree congruence involving comparing the
     :width: 550px
     :align: center
 
+
+.. _converting-raw-sequences-into-vcf-for-usher-input:
+
 ----------------------------------------------------------------------
 Converting raw sequences into VCF for UShER input
 ----------------------------------------------------------------------
@@ -265,7 +270,7 @@ Russ Corbett-Detig has created a module on UShER for the CDC:
     </div>
     <br>
 
-Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. `You can find his slides here <https://usher-wiki.readthedocs.io/en/latest/covid-meet.html>`_.
+Yatish Turakhia has presented on UShER at the Covid-19 Dynamics & Evolution Meeting, held virtually on October 19-20, 2020. :doc:`You can find his slides here <presentations/covid-meet>`.
 
 
 --------------
