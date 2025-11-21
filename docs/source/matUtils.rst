@@ -139,7 +139,7 @@ Specific Options
 
   --input-mat (-i): Input mutation-annotated tree file [REQUIRED]. If only this argument is set, print the count of samples and nodes in the tree.
   --input-gtf (-g): Input GTF annotation file. Required for --translate (-t)
-  --input-fasta (-g): Input FASTA reference sequence. Required for --translate (-t)
+  --input-fasta (-f): Input FASTA reference sequence. Required for --translate (-t)
   --output-directory (-d): Write all output files to the target directory. Default is current directory
   --samples (-s): Write a two-column tsv listing all samples in the tree and their parsimony score (terminal branch length). Auspice-compatible.
   --clades (-c): Write a tsv listing all clades and the count of associated samples in the tree.
