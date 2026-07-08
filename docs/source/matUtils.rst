@@ -63,7 +63,7 @@ performs phylogenetically informed annotation of amino acid mutations.
 The user provides as input a protobuf file, a GTF file containing gene annotations, and a FASTA reference sequence.
 
 .. note:: 
-    The input GTF must follow the conventions specified `here <https://mblab.wustl.edu/GTF22.html>`__.
+    The input GTF must follow `these conventions <https://web.archive.org/web/20260519102007/https://mblab.wustl.edu/GTF22.html>`__.
     If multiple ``CDS`` features are associated with a single ``gene_id``,
     they must be ordered by start position. An example GTF for SARS-CoV-2 can be found `here <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz>`__.
 
