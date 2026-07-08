@@ -548,7 +548,7 @@ Interacting Directly with Protobuf Files in Python [ADVANCED USERS]
 --------------------------------------------------------------------
 
 Advanced users may desire to interface directly with the protobuf. The following is a brief tutorial on doing so.
-Google's general tutorial on interacting with protobuf in python can be found `here <https://developers.google.com/protocol-buffers/docs/pythontutorial#compiling-your-protocol-buffers>`__.
+Google's general tutorial on interacting with protobuf in python can be found `here <https://protobuf.dev/getting-started/pythontutorial/#compiling-your-protocol-buffers>`__.
 The instructions here can be applied to a number of additional languages supported by google as well, such as java, PHP, and ruby.
 
 Note that this tutorial is specifically for directly manipulating the MAT protobuf file itself in Python; 

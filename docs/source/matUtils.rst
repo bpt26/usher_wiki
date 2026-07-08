@@ -545,4 +545,4 @@ Options
 Publications
 --------------
 
-- McBroome J, Thornlow B, Hinrichs AS, Kramer A, De Maio N, Goldman N, Haussler D, Corbett-Detig R, and Turakhia Y. `A daily-updated database and tools for comprehensive SARS-CoV-2 mutation-annotated trees., <https://academic.oup.com/mbe/advance-article/doi/10.1093/molbev/msab264/6361626>`_ *Molecular Biology and Evolution*. 2021.
+- McBroome J, Thornlow B, Hinrichs AS, Kramer A, De Maio N, Goldman N, Haussler D, Corbett-Detig R, and Turakhia Y. `A daily-updated database and tools for comprehensive SARS-CoV-2 mutation-annotated trees., <https://academic.oup.com/mbe/article/38/12/5819/6361626>`_ *Molecular Biology and Evolution*. 2021.
