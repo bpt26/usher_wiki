@@ -49,7 +49,7 @@ linkcheck_anchors = False
 # * websites with weird or expired certs (ex: mlab.wustl.edu before it went down)
 # * internal links which are not resolved before compile time (ex: a clickable image with an internal link)
 # * gnu.org, since it frequently goes down
-linkcheck_ignore = ["https://www.gnu.org/software/parallel/" ] 
+linkcheck_ignore = ["https://www.gnu.org/software/parallel/", "https://academic.oup.com/*" ] 
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
