@@ -34,13 +34,9 @@ Conda Local Build
   conda env create -f environment.yml
   conda activate usher
   cd ..
-  mkdir build
-  cd build
-  wget https://github.com/oneapi-src/oneTBB/archive/2019_U9.tar.gz 
-  tar -xvzf 2019_U9.tar.gz
-  cmake  -DTBB_DIR=${PWD}/oneTBB-2019_U9  -DCMAKE_PREFIX_PATH=${PWD}/oneTBB-2019_U9/cmake ..
-  make -j
-  cd ..
+  cmake -S . -B build 
+  cmake --build build --parallel 4 
+
 
 followed by, if on a MacOS system:
 
@@ -102,14 +98,9 @@ For MacOS 10.14 or above:
 
   ./install/installMacOS.sh
 
-For Ubuntu 18.04 and above (requires sudo privileges):
+For Ubuntu 20.04 and above (requires sudo privileges):
 
 .. code-block:: sh
 
   ./install/installUbuntu.sh
 
-For CentOS 7 and above (requires sudo privileges):
-
-.. code-block:: sh
-
-  ./install/installCentOS.sh

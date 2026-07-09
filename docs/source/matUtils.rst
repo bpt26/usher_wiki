@@ -63,7 +63,7 @@ performs phylogenetically informed annotation of amino acid mutations.
 The user provides as input a protobuf file, a GTF file containing gene annotations, and a FASTA reference sequence.
 
 .. note:: 
-    The input GTF must follow the conventions specified `here <https://mblab.wustl.edu/GTF22.html>`__.
+    The input GTF must follow `these conventions <https://web.archive.org/web/20260519102007/https://mblab.wustl.edu/GTF22.html>`__.
     If multiple ``CDS`` features are associated with a single ``gene_id``,
     they must be ordered by start position. An example GTF for SARS-CoV-2 can be found `here <http://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/bigZips/genes/ncbiGenes.gtf.gz>`__.
 
@@ -139,7 +139,7 @@ Specific Options
 
   --input-mat (-i): Input mutation-annotated tree file [REQUIRED]. If only this argument is set, print the count of samples and nodes in the tree.
   --input-gtf (-g): Input GTF annotation file. Required for --translate (-t)
-  --input-fasta (-g): Input FASTA reference sequence. Required for --translate (-t)
+  --input-fasta (-f): Input FASTA reference sequence. Required for --translate (-t)
   --output-directory (-d): Write all output files to the target directory. Default is current directory
   --samples (-s): Write a two-column tsv listing all samples in the tree and their parsimony score (terminal branch length). Auspice-compatible.
   --clades (-c): Write a tsv listing all clades and the count of associated samples in the tree.
@@ -274,11 +274,11 @@ Specific Options
   --write-json (-j): Write an Auspice-compatbile json representing the selected subtree.
   --retain-branch-length (-E): Use to not recalculate branch lengths with saving newick output. Used only with -t
   --write-tree (-t): Write a newick string representing the selected subtree to the target file. 
-  --write-taxodium (-l): Write a taxodium-format protobuf to the target file.
-  --x-scale (-G): Specifies custom X-axis scaling for Taxodium output. Does not affect other output formats.
+  --write-taxodium (-l): Write a taxonium-format protobuf to the target file. (Taxonium used to be called taxodium, argument name has not been changed)
+  --x-scale (-G): Specifies custom X-axis scaling for taxonium output. Does not affect other output formats.
   --title (-B): Title to include in --write-taxodium output.
   --description (-D): Description to include in --write-taxodium output.
-  --include-nt (-J): Include nucleotide changes in the taxodium output.
+  --include-nt (-J): Include nucleotide changes in the taxonium output.
   --extra-fields (-F): Comma delimited list of additional fields to include in --write-taxodium output.
   --minimum-subtrees-size (-N): Use to generate a series of JSON or Newick format files representing subtrees of the indicated size covering all queried samples. Uses and overrides -j and -t output arguments.
   --reroot (-y): Indicate an internal node ID to reroot the output tree to. Applied before all other manipulation steps.
@@ -545,4 +545,4 @@ Options
 Publications
 --------------
 
-- McBroome J, Thornlow B, Hinrichs AS, Kramer A, De Maio N, Goldman N, Haussler D, Corbett-Detig R, and Turakhia Y. `A daily-updated database and tools for comprehensive SARS-CoV-2 mutation-annotated trees., <https://academic.oup.com/mbe/advance-article/doi/10.1093/molbev/msab264/6361626>`_ *Molecular Biology and Evolution*. 2021.
+- McBroome J, Thornlow B, Hinrichs AS, Kramer A, De Maio N, Goldman N, Haussler D, Corbett-Detig R, and Turakhia Y. `A daily-updated database and tools for comprehensive SARS-CoV-2 mutation-annotated trees., <https://academic.oup.com/mbe/article/38/12/5819/6361626>`_ *Molecular Biology and Evolution*. 2021.
