@@ -25,7 +25,7 @@ author = 'Bryan Thornlow'
 
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.2'
+release = '0.0.3'
 
 
 # -- General configuration ---------------------------------------------------
@@ -46,9 +46,10 @@ linkcheck_anchors = False
 # Put in URLs you want to ignore for linkcheck below. Common problematic URLs include:
 # * doi.org (but only sometimes?)
 # * any docs website that uses ZenDesk
-# * websites with weird or expired certs (ex: mlab.wustl.edu)
+# * websites with weird or expired certs (ex: mlab.wustl.edu before it went down)
 # * internal links which are not resolved before compile time (ex: a clickable image with an internal link)
-linkcheck_ignore = [ "https://mblab.wustl.edu/GTF22.html" ] 
+# * gnu.org, since it frequently goes down
+linkcheck_ignore = ["https://www.gnu.org/software/parallel/", "https://academic.oup.com/*" ] 
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:

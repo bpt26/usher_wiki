@@ -8,7 +8,7 @@ Strain Phylogenetics
 RotTrees
 ----------
 
-RotTrees enables quick inference of congruence of tanglegrams. This is particularly useful for SARS-CoV-2 phylogenomics due to multiple groups independently analyzing data-sets with many identical samples. Previous tanglegram visualization software, such as `cophylo <ttps://www.rdocumentation.org/packages/phytools/versions/0.7-20/topics/cophylo>`__ and `Dendroscope3 <http://dendroscope.org/>`_ rely on fewer rotations to minimize crossings over, which is inadequate for phylogenies on the scale of SARS-CoV-2. We implemented a quick heuristic to produce vastly improved tanglegrams.
+RotTrees enables quick inference of congruence of tanglegrams. This is particularly useful for SARS-CoV-2 phylogenomics due to multiple groups independently analyzing data-sets with many identical samples. Previous tanglegram visualization software, such as `cophylo <https://www.rdocumentation.org/packages/phytools/versions/0.7-20/topics/cophylo>`__ and `Dendroscope3 <https://dendroscope.org/>`_ rely on fewer rotations to minimize crossings over, which is inadequate for phylogenies on the scale of SARS-CoV-2. We implemented a quick heuristic to produce vastly improved tanglegrams.
 
 First, ensure that `tree_1.nh` and `tree_2.nh` have identical sets of samples. Then, use as follows:
 
@@ -153,7 +153,7 @@ Publications
 
 - Turakhia Y, De Maio N, Thornlow B, Gozashti L, Lanfear R, Walker C, Hinrichs A, Fernandes J, Borges R, Slodkowicz G, Weilguny L, Haussler D, Goldman N, and Corbett-Detig R. `Stability of SARS-CoV-2 Phylogenies. <https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1009175>`_ *PLOS Genetics*. 2020. 16(11): e1009175.
 
-- De Maio N, Walker C, Turakhia Y, Lanfear R, Corbett-Detig R, and Goldman N. `Mutation rates and selection on synonymous mutations in SARS-CoV-2. <https://www.biorxiv.org/content/10.1101/2021.01.14.426705v1.abstract>`_ *bioRxiv*. 2020.
+- De Maio N, Walker C, Turakhia Y, Lanfear R, Corbett-Detig R, and Goldman N. `Mutation rates and selection on synonymous mutations in SARS-CoV-2. <https://academic.oup.com/gbe/article/13/5/evab087/6251359>`_ *Genome Biology and Evolution*. 2021.
 
 - DeMaio N, Walker C, Borges R, Weilguny L, Slodkowicz G, and Goldman N. `Issues with SARS-CoV-2 sequencing data. <http://virological.org/t/issues-with-sars-cov-2-sequencing-data/473>`_ *Virological*. 2020.
 

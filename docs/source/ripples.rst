@@ -53,5 +53,5 @@ RIPPLES minimally requires an input MAT to search for recombination events. An e
 Publications
 --------------
 
-- Turakhia Y, Thornlow B, Hinrichs A, McBroome J, Ayala N, Ye C, De Maio N, Haussler D, Lanfear R, and Corbett-Detig R. `Pandemic-Scale Phylogenomics Reveals Elevated Recombination Rates in the SARS-CoV-2 Spike Region., <https://www.biorxiv.org/content/10.1101/2021.08.04.455157v1.abstract>`_ *bioRxiv*. 2021.
+- Turakhia Y, Thornlow B, Hinrichs A, McBroome J, Ayala N, Ye C, De Maio N, Haussler D, Lanfear R, and Corbett-Detig R. `Pandemic-Scale Phylogenomics Reveals Elevated Recombination Rates in the SARS-CoV-2 Spike Region., <https://www.nature.com/articles/s41586-022-05189-9>`_ *Nature*. 2022.
 

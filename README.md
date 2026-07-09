@@ -1,5 +1,5 @@
 # docs for UShER
-Codebase for [the UShER wiki](https://usher-wiki.readthedocs.io/en/latest/).
+Codebase for [the UShER wiki](https://usher-wiki.readthedocs.io/en/latest/). **This fork is the one that actually pushes to readthedocs.**
 
 ## notes for maintainers of these docs
 ### compiling locally
@@ -20,6 +20,6 @@ Docs will be created in a new folder named `build`, and you can clean up afterwa
 ### common warnings/errors
 * `document isn't included in any toctree` -- "toctree" is the table-of-contents sidebar which appears on the left when the docs are compiled. If you want the file to appear in this sidebar, add it to the toctree declaration in index.rst. If you don't want it to end up on the sidebar, add `:orphan:` plus a blank newline at the top of the document.
   * The `toctree` declaration not only builds the sidebar on the left hand side of the webpage, it also will create a table of contents in the body of the text itself. The docs currently use the `:hidden:` declaration to hide this body-toc -- note that `:hidden:` does not hide the sidebar toc.
-* `Title underline too short` -- RST is picky about this, just roll with it.
+* `Title underline too short` -- RST requires title underlines to match the length of the title. yeah it's goofy but just do what it says.
 * `Duplicate explicit target name` -- [this is another weird RST quirk](https://github.com/sphinx-doc/sphinx/issues/3921), which can be solved by including two underscores instead of one when referencing other pages
 * Some websites (Zendesk-based docs, doi.org, etc) consistently break `linkcheck`, so if you have an external link that you know is working, but it can't pass linkcheck, just add the URL to linkcheck_ignore in conf.py
