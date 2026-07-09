@@ -434,7 +434,7 @@ In this workflow, we will output amino acid mutations at each node of a protobuf
 Download the example protobuf file (:download:`translate_example.pb <./translate_example.pb>`), GTF file (:download:`ncbiGenes.gtf <./ncbiGenes.gtf>`), and reference FASTA (`NC_045512v2.fa <https://raw.githubusercontent.com/yatisht/usher/5e83b71829dbe54a37af845fd23d473a8f67b839/test/NC_045512v2.fa>`_).
 
 .. note:: 
-    The input GTF must follow the conventions specified `here <https://mblab.wustl.edu/GTF22.html>`__.
+    The input GTF must follow `these conventions <https://web.archive.org/web/20260519102007/https://mblab.wustl.edu/GTF22.html>`__.
     If multiple ``CDS`` features are associated with a single ``gene_id``,
     they must be ordered by start position.
 
@@ -548,7 +548,7 @@ Interacting Directly with Protobuf Files in Python [ADVANCED USERS]
 --------------------------------------------------------------------
 
 Advanced users may desire to interface directly with the protobuf. The following is a brief tutorial on doing so.
-Google's general tutorial on interacting with protobuf in python can be found `here <https://developers.google.com/protocol-buffers/docs/pythontutorial#compiling-your-protocol-buffers>`__.
+Google's general tutorial on interacting with protobuf in python can be found `here <https://protobuf.dev/getting-started/pythontutorial/#compiling-your-protocol-buffers>`__.
 The instructions here can be applied to a number of additional languages supported by google as well, such as java, PHP, and ruby.
 
 Note that this tutorial is specifically for directly manipulating the MAT protobuf file itself in Python; 
