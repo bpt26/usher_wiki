@@ -10,6 +10,10 @@ UCSC provides downloadable tree and metadata files for trees of genetic sequence
 * :ref:`SARS-CoV-2 (Covid-19) <header-covid>`
 * :ref:`Tuberculosis (MTBC) <header-tuberculosis>`
 
+With the release of `viral_usher <https://github.com/AngieHinrichs/viral_usher>`_, UCSC now additionally provides trees for hundreds of viral species updated monthly, including `HIV-1 <https://www.taxonium.org/viral-usher/human_immunodeficiency_virus_1/NC_001802.1>`_, `Zika <https://www.taxonium.org/viral-usher/zika_virus/NC_012532.1>`_, `Measles <https://www.taxonium.org/viral-usher/measles_morbillivirus/NC_001498.1>`_, and more. For those who want it all, we additionally host trees for `the full NCBI taxonomy <https://www.taxonium.org/taxonomy/full>`_ and `the AllTheBacteria project <https://www.taxonium.org/atb>`_.
+
+`You can browse all available trees on Taxonium here <https://www.taxonium.org/browse>`_.
+
 .. _header-dengue:
 
 Dengue
@@ -31,6 +35,7 @@ Trees for a variety of influenza A strains can be found `here <https://hgdownloa
 For most of our Influenza A assemblies we use a RefSeq assembly as reference and root. There are two exceptions, representing recent outbreaks:
 
 * H5N1 D1.1 2024 outbreak
+	* `Taxonium version here <https://www.taxonium.org/flu/H5N1-Outbreak-D1-1>`_
 	* `Download here <https://hgdownload.gi.ucsc.edu/hubs/GCF/000/864/105/GCF_000864105.1/UShER_h5n1_D1.1_2024/>`_
 	* Rooted to a concatenation of Genbank segement sequences PQ844107.1, OP597633.1, PQ885594.1, LC718226.1, PQ585621.1, PQ664459.1, OP597621.1, and PQ712157.1
 * H5N1 B3.13 cattle 2024 outbreak
@@ -47,7 +52,7 @@ Mpox, `previously known as monkeypox <https://www.who.int/news/item/28-11-2022-w
 
 The term "hMPXV" is used to reflect that these recent samples show sustained human-to-human transmission, designated clade IIb from the `Happi et al. nomenclature <https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001769>`_. You can `view the hMPXV clade IIB tree on Taxonium  <https://www.taxonium.org/mpox/clade-IIb>`_ or download it `here <https://hgdownload.gi.ucsc.edu/hubs/GCF/014/621/545/GCF_014621545.1/UShER_hMPXV/>`_.
 
-Clade I of MPVX `is also available <as well as `clade I of MPXV <https://hgdownload.gi.ucsc.edu/hubs/GCF/000/857/045/GCF_000857045.1/UShER_MPXV_cladeI/>`_.
+Clade I of MPVX `is also available <https://hgdownload.gi.ucsc.edu/hubs/GCF/000/857/045/GCF_000857045.1/UShER_MPXV_cladeI/>`_.
 
 
 .. _header-rsv:
@@ -66,7 +71,7 @@ You can also place samples on a tree with a reconstructed root `here <https://ge
 
 SARS-CoV-2 (Covid-19)
 ---------------------
-SARS-CoV-2 is the virus that causes COVID-19. The global SARS-CoV-2 tree includes sequences from a variety of sources, including but not limited to INSDC (GenBank/ENA/DDBJ). The SARS-CoV-2 trees and information about their data sources `can be found here <https://hgdownload.gi.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/>`_. You can also `click here to view the latest tree in taxonium <https://taxonium.org/sars-cov-2/public>`_. 
+SARS-CoV-2 is the virus that causes COVID-19. The global SARS-CoV-2 tree includes over seven million sequences from a variety of sources, including but not limited to INSDC (GenBank/ENA/DDBJ). The SARS-CoV-2 trees and information about their data sources `can be found here <https://hgdownload.gi.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/>`_. You can also `click here to view the latest tree in taxonium <https://taxonium.org/sars-cov-2/public>`_. 
 
 
 .. _header-tuberculosis:
@@ -74,6 +79,6 @@ SARS-CoV-2 is the virus that causes COVID-19. The global SARS-CoV-2 tree include
 Tuberculosis (MTBC)
 -------------------
 
-UShER isn't just for viruses anymore. `As described in this preprint <https://www.medrxiv.org/content/10.1101/2025.07.22.25331806v1>`_, we built a tree of *Mycobacterium tuberculosis* bacterial complex (MTBC) annotated with metadata which you can `explore on Taxonium <https://www.taxonium.org/tuberculosis/SRA>`_.
+UShER isn't just for viruses. `As described in this preprint <https://www.medrxiv.org/content/10.1101/2025.07.22.25331806v1>`_, we built a tree of *Mycobacterium tuberculosis* bacterial complex (MTBC) annotated with resistance, country, and other metadata which you can `explore on Taxonium <https://www.taxonium.org/tuberculosis/SRA>`_. 
 
-Although *M. canettii* is considered a member of MTBC and was included in initial analysis, it is excluded from our tree on Taxonium due to being such an extreme outgroup that its inclusion would make navigating the rest of tree difficult.
+MTBC includes tuberculosis in the strict sense, as well as animal-adapted versions such as *Mycobacterium bovis* and *Mycobacterium pinnipedii*, but it excludes NTM (avium complex, etc). Although *Mycobacterium canettii* is considered a member of MTBC and was included in initial analysis, it is excluded from our tree on Taxonium due to being such an extreme outgroup that its inclusion would make navigating the rest of tree difficult.
