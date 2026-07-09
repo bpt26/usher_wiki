@@ -4,11 +4,11 @@ Global UShER trees
 UCSC provides downloadable tree and metadata files for trees of genetic sequences for the following pathogens.
 
 * :ref:`Dengue <header-dengue>`
-* hMPXV (Mpox/Monkeypox)
-* Influenza
-* RSV
-* SARS-CoV-2 (Covid-19)
-* Tuberculosis
+* :ref:`hMPXV (Mpox/Monkeypox) <header-mpox>`
+* :ref:`Influenza <header-flu>`
+* :ref:`RSV <header-rsv>`
+* :ref:`SARS-CoV-2 (Covid-19) <header-covid>`
+* :ref:`Tuberculosis <header-tuberculosis>`
 
 .. _header-dengue:
 
@@ -37,11 +37,11 @@ We also have a tree of clade 1 which can be found `here <https://hgdownload.gi.u
 
 Influenza
 ---------
-Trees for a variety of influenza A strains can be found `here <https://hgdownload.gi.ucsc.edu/hubs/GCF/000/864/105/GCF_000864105.1/>_. 
+Trees for a variety of influenza A strains can be found `here <https://hgdownload.gi.ucsc.edu/hubs/GCF/000/864/105/GCF_000864105.1/>`_. 
 
 For most of our Influenza A assemblies we use a RefSeq assembly as reference and root. There are two exceptions, representing recent outbreaks:
 
-* `H5N1 D1.1 2024 outbreak <https://hgdownload.gi.ucsc.edu/hubs/GCF/000/864/105/GCF_000864105.1/UShER_h5n1_D1.1_2024/>_`, which is rooted to a concatenation of Genbank segement sequences PQ844107.1, OP597633.1, PQ885594.1, LC718226.1, PQ585621.1, PQ664459.1, OP597621.1, and PQ712157.1
+* `H5N1 D1.1 2024 outbreak <https://hgdownload.gi.ucsc.edu/hubs/GCF/000/864/105/GCF_000864105.1/UShER_h5n1_D1.1_2024/>`_, which is rooted to a concatenation of Genbank segement sequences PQ844107.1, OP597633.1, PQ885594.1, LC718226.1, PQ585621.1, PQ664459.1, OP597621.1, and PQ712157.1
 * `H5N1 B3.13 cattle 2024 outbreak <https://hgdownload.gi.ucsc.edu/hubs/GCF/000/864/105/GCF_000864105.1/UShER_h5n1_outbreak_2024/>`, which is rooted to a concatenation of Genbank segement sequences PP755620.1, PP755619.1, PP755618.1, PP753693.1, PP755616.1, PP753695.1, PP755614.1, and PP753097.1
 
 
@@ -51,8 +51,8 @@ RSV
 ---
 Respiratory Syncytial Virus (RSV) is divided into two antigenic types. Global trees developed using INDSDC samples for both RSV-A and RSV-B are available.
 
-* `RSV-A <https://hgdownload.gi.ucsc.edu/hubs/GCF/002/815/475/GCF_002815475.1/UShER_RSV-A/>`_  
-* `RSV-B <https://hgdownload.gi.ucsc.edu/hubs/GCF/000/855/545/GCF_000855545.1/UShER_RSV-B/>`_  
+* RSV-A trees `here <https://hgdownload.gi.ucsc.edu/hubs/GCF/002/815/475/GCF_002815475.1/UShER_RSV-A/>`_  
+* RSV-B trees `here <https://hgdownload.gi.ucsc.edu/hubs/GCF/000/855/545/GCF_000855545.1/UShER_RSV-B/>`_  
 
 You can also place samples on a tree with a reconstructed root `here <https://genome.ucsc.edu/cgi-bin/hgPhyloPlace?hgpp_org=rsv_rgcc>`_.
 
@@ -63,3 +63,10 @@ SARS-CoV-2 (Covid-19)
 ---------------------
 SARS-CoV-2 is the virus that causes COVID-19. The global SARS-CoV-2 tree includes sequences from a variety of sources, including but not limited to INSDC (GenBank/ENA/DDBJ). The SARS-CoV-2 trees and information about their data sources `can be found here <https://hgdownload.gi.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/>`_. You can also `click here to view the latest tree in taxonium <https://taxonium.org/sars-cov-2/public>`_. 
 
+
+.. _header-tuberculosis:
+
+Tuberculosis (MTBC)
+-------------------
+
+UShER isn't just for viruses anymore.`As described in this preprint <https://www.medrxiv.org/content/10.1101/2025.07.22.25331806v1>`_, we built a tree of *Mycobacterium tuberculosis* bacterial complex (MTBC)
