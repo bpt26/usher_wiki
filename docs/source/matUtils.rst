@@ -274,11 +274,11 @@ Specific Options
   --write-json (-j): Write an Auspice-compatbile json representing the selected subtree.
   --retain-branch-length (-E): Use to not recalculate branch lengths with saving newick output. Used only with -t
   --write-tree (-t): Write a newick string representing the selected subtree to the target file. 
-  --write-taxodium (-l): Write a taxodium-format protobuf to the target file.
-  --x-scale (-G): Specifies custom X-axis scaling for Taxodium output. Does not affect other output formats.
+  --write-taxodium (-l): Write a taxonium-format protobuf to the target file. (Taxonium used to be called taxodium, argument name has not been changed)
+  --x-scale (-G): Specifies custom X-axis scaling for taxonium output. Does not affect other output formats.
   --title (-B): Title to include in --write-taxodium output.
   --description (-D): Description to include in --write-taxodium output.
-  --include-nt (-J): Include nucleotide changes in the taxodium output.
+  --include-nt (-J): Include nucleotide changes in the taxonium output.
   --extra-fields (-F): Comma delimited list of additional fields to include in --write-taxodium output.
   --minimum-subtrees-size (-N): Use to generate a series of JSON or Newick format files representing subtrees of the indicated size covering all queried samples. Uses and overrides -j and -t output arguments.
   --reroot (-y): Indicate an internal node ID to reroot the output tree to. Applied before all other manipulation steps.
