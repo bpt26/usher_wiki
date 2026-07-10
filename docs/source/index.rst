@@ -2,7 +2,7 @@
 UShER Wiki
 ***************
 
-Welcome to the manual for UShER package, that includes SARS-CoV-2 Phylogenetics tools UShER, matUtils, matOptimize, RIPPLES, strain_phylogenetics, and others. Please see the table of contents on the sidebar, or :doc:`click here <QuickStart>` for a quick tutorial on getting started. If you are interested in global trees for SARS-COV-2 or other pathogens, :doc:`click here <global_trees>`.
+Welcome to the manual for the UShER package of pandemic-scale phylogenetics tools, including UShER, matUtils, matOptimize, RIPPLES, strain_phylogenetics, and others. Please see the table of contents on the sidebar, or :doc:`click here <QuickStart>` for a quick tutorial on getting started. If you are interested in global trees for SARS-CoV-2 or other pathogens, :doc:`click here <global_trees>`.
 
 .. toctree::
    :hidden:
